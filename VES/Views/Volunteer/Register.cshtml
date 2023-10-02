@@ -1,58 +1,86 @@
-﻿@model VES.Models.Volunteer.VolunteerRegister
+﻿<!DOCTYPE html>
+<link rel="stylesheet" href="~/styles/form-style.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+    <h1>Get Started Today: Explore Volunteer Opportunities by Filling Out the Registration Form</h1>
+    <form>
 
-@{
-    ViewBag.Title = "Register";
-}
+        <label for="full_name">Full Name</label>
+        <input type="text" id="full_name" name="full_name" required>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <h2>Register</h2>
-            <hr />
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
 
-            @using (Html.BeginForm("Register", "Volunteer", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
-            {
-                @Html.AntiForgeryToken()
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Name)
-                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", required = "required" })
-                    <div class="invalid-feedback">Please enter your name.</div>
-                </div>
+        <label for="skills">Skills</label>
+        <input type="text" id="skills" name="skills">
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Email)
-                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", required = "required", type = "email" })
-                    <div class="invalid-feedback">Please enter a valid email address.</div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Password)
-                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", required = "required" })
-                    <div class="invalid-feedback">Please enter a password.</div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ConfirmPassword, "Confirm Password")
-                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", required = "required" })
-                    <div class="invalid-feedback">Please confirm your password.</div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ContactDetails, "Phone Number")
-                    @Html.TextBoxFor(model => model.ContactDetails, new { @class = "form-control", required = "required" })
-                    <div class="invalid-feedback">Please enter your phone number.</div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.AvailableInterests, "Interests")
-                    @Html.ListBoxFor(model => model.AvailableInterests, new SelectList(Model.AvailableInterests), new { @class = "form-control", multiple = "multiple" })
-                </div>
-
-                <div class="form-group" style="margin-top: 20px;">
-                    <button type="submit" class="btn btn-primary">Register</button>
-                </div>
-            }
+        <label for="selectedInterests" class="reference-element">Interests</label>
+        <input type="text" id="selectedInterests" readonly onclick="toggleDropdown()" >
+        <div id="interestsDropdown" class="dropdown-content">
+            <label>
+                <input type="checkbox" class="interest" name="interests[]" value="Animal Welfare"> Animal Welfare
+            </label>
+            <label>
+                <input type="checkbox" class="interest" name="interests[]" value="Environmental Conservation"> Environmental Conservation
+            </label>
+            <label>
+                <input type="checkbox" class="interest" name="interests[]" value="Community Development"> Community Development
+            </label>
         </div>
-    </div>
-</div>
+
+        <label for="availability">Availability</label>
+        <select id="availability" name="availability">
+            <option value="full-time">Daily in Hours</option>
+            <option value="part-time">Long Holidays</option>
+            <option value="weekends">Weekends</option>
+            <option value="occasional">Occasional</option>
+            <option value="holidays">Holidays</option>
+        </select>
+        <input type="submit" value="Register">
+    </form>
+
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById('interestsDropdown');
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            } else {
+                dropdown.style.display = 'block';
+                var interestsLabel = document.querySelector('.reference-element');
+                dropdown.style.top = interestsLabel.offsetTop + interestsLabel.offsetHeight + 'px';
+            }
+        }
+
+        var interestCheckboxes = document.querySelectorAll('.interest');
+        var selectedInterestsField = document.getElementById('selectedInterests');
+        var interestsDropdown = document.getElementById('interestsDropdown');
+
+        document.addEventListener('click', function (event) {
+            if (event.target !== selectedInterestsField && event.target !== interestsDropdown) {
+                interestsDropdown.style.display = 'none';
+            }
+        });
+
+        interestCheckboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                var selectedInterests = [];
+                interestCheckboxes.forEach(function (checkbox) {
+                    if (checkbox.checked) {
+                        selectedInterests.push(checkbox.value);
+                    }
+                });
+                selectedInterestsField.value = selectedInterests.join(', ');
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,15 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace VES.Models.Volunteer
 {
     public class VolunteerRegister
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
-        public string ContactDetails { get; set; }
-        public List<SelectListItem> AvailableInterests { get; set; }
+        [Required]
+        public string FullName { get; set; }
 
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        public string Skills { get; set; }
+
+        public string Availability { get; set; }
     }
+
 }

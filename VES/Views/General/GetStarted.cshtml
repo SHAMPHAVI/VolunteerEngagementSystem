@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <meta name="description" content="Register as a volunteer or a volunteer organization for a specific purpose. Choose your registration type below to get started.">
+    <link rel="stylesheet" href="~/styles/general-style.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Welcome to our Registration Portal</h1>
+    </header>
+    <main>
+
+        <section>
+            <p>
+                Thank you for choosing to register with us. Whether you are an individual looking to volunteer your time, a volunteer organization seeking assistance, or an individual volunteer, we are here to help.
+            </p>
+            <p>
+                Our registration process is designed to be comprehensive and tailored to your needs. Here's what you can expect when you register:
+            </p>
+
+            <h3>Registration Details</h3>
+            <ul>
+                <li>Provide your personal information, including name, contact details, and address.</li>
+                <li>Share your skills and areas of expertise to help us match you with the right opportunities.</li>
+                <li>Specify your interests and causes that matter to you.</li>
+                <li>Set your availability and preferred volunteering hours.</li>
+            </ul>
+
+            <h3>For Volunteer Organizations</h3>
+            <p>
+                If you represent a volunteer organization, in addition to the above, you can manage your organization's profile. This includes updating your organization's mission, contact information, and posting volunteer opportunities for individuals to join.
+            </p>
+
+            <h3>Registration Process</h3>
+            <p>
+                Once you've selected your registration type, you'll be guided through the registration process step by step. We value your privacy and security and assure you that your information will be kept confidential.
+            </p>
+
+            <p4>
+                Ready to get started? Choose your registration type, and let's make a positive impact together!
+            </p4>
+        </section>
+        <div class="centered-container">
+            <a class="btn" asp-controller="Volunteer" asp-action="Register" class="btn">Register as an Individual Volunteer</a>      
+        </div>
+        <div class="centered-container">
+            <a class="btn" asp-controller="Volunteer" asp-action="Login" class="btn">Register as a Volunteer Organization</a>
+        </div>
+
+    </main>
+</body>
+</html>

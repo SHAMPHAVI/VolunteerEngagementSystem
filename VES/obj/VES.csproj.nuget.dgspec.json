@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VoluteerEngagementSystem\\VES\\VES.csproj": {}
+    "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\VES.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VoluteerEngagementSystem\\VES\\VES.csproj": {
+    "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\VES.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VoluteerEngagementSystem\\VES\\VES.csproj",
+        "projectUniqueName": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\VES.csproj",
         "projectName": "VES",
-        "projectPath": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VoluteerEngagementSystem\\VES\\VES.csproj",
+        "projectPath": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\VES.csproj",
         "packagesPath": "C:\\Users\\ShamphaviShanmugasun\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VoluteerEngagementSystem\\VES\\obj\\",
+        "outputPath": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ShamphaviShanmugasun\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,16 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

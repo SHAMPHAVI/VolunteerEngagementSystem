@@ -1,46 +1,62 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using VES.Data;
 using VES.Models.Volunteer;
-using System.Collections.Generic;
 
 namespace VES.Controllers
 {
     public class VolunteerController : Controller
     {
-        public ActionResult Register()
+        private readonly IConfiguration _configuration;
+
+        public VolunteerController(IConfiguration configuration)
         {
-            var model = new VolunteerRegister
+            _configuration = configuration;
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(VolunteerRegister model)
+        {
+            if (ModelState.IsValid)
             {
-                AvailableInterests = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "1", Text = "Cleanups" },
-                    new SelectListItem { Value = "2", Text = "Animals" },
-                }
-            };
+                InsertDataIntoDatabase(model);
+                return RedirectToAction("ThankYou");
+            }
 
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult Register(VolunteerRegister volunteer)
-        {
-            return RedirectToAction("Login");
-        }
-
-        public ActionResult Login()
+        public IActionResult ThankYou()
         {
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Login(string email, string password)
+        private void InsertDataIntoDatabase(VolunteerRegister model)
         {
-            return RedirectToAction("Dashboard");
-        }
+            var connectionString = _configuration.GetConnectionString("DefaultConnection");
 
-        public ActionResult Dashboard()
-        {
-            return View();
+            var optionsBuilder = new DbContextOptionsBuilder<MyDbContext>();
+            optionsBuilder.UseSqlServer(connectionString);
+
+            using (var dbContext = new MyDbContext(optionsBuilder.Options))
+            {
+                try
+                {
+                    dbContext.Users.Add(model);
+                    dbContext.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "An error occurred while saving your data.");
+                }
+            }
         }
     }
 }

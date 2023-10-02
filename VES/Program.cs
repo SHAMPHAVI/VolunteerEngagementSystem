@@ -1,7 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using VES.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Add configuration services
+builder.Configuration.AddJsonFile("appsettings.json");
+
+// Configure DbContext
+builder.Services.AddDbContext<MyDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 var app = builder.Build();
 

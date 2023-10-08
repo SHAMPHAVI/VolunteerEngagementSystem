@@ -4,16 +4,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using VES.Data;
 using VES.Models.Volunteer;
+using MySqlConnector;
 
 namespace VES.Controllers
 {
     public class VolunteerController : Controller
     {
-        private readonly IConfiguration _configuration;
+        private MyDbContext _myDbContext;
 
-        public VolunteerController(IConfiguration configuration)
+        public VolunteerController(MyDbContext myDbContext)
         {
-            _configuration = configuration;
+            _myDbContext = myDbContext;
         }
 
         public IActionResult Register()
@@ -40,23 +41,23 @@ namespace VES.Controllers
 
         private void InsertDataIntoDatabase(VolunteerRegister model)
         {
-            var connectionString = _configuration.GetConnectionString("DefaultConnection");
+            //var connectionString = _configuration.GetConnectionString("MySQLConnection");
 
-            var optionsBuilder = new DbContextOptionsBuilder<MyDbContext>();
-            optionsBuilder.UseSqlServer(connectionString);
+            //var optionsBuilder = new DbContextOptionsBuilder<MyDbContext>();
+            //optionsBuilder.UseSqlServer(connectionString);
 
-            using (var dbContext = new MyDbContext(optionsBuilder.Options))
-            {
+            //using (var dbContext = new MyDbContext(optionsBuilder.Options))
+            //{
                 try
                 {
-                    dbContext.Users.Add(model);
-                    dbContext.SaveChanges();
+                    _myDbContext.Volunteers.Add(model);
+                    _myDbContext.SaveChanges();
                 }
-                catch (Exception ex)
+                catch (DbUpdateException ex)
                 {
                     ModelState.AddModelError("", "An error occurred while saving your data.");
                 }
-            }
+            //}
         }
     }
 }

@@ -100,3 +100,11 @@ C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\obj\Deb
 C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\obj\Debug\net7.0\VES.pdb
 C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\obj\Debug\net7.0\VES.genruntimeconfig.cache
 C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\obj\Debug\net7.0\ref\VES.dll
+C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\Humanizer.dll
+C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\FluentAssertions.dll
+C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\MySqlConnector.dll
+C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll

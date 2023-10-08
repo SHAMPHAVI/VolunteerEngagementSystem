@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using VES.Models.Volunteer;
 
 namespace VES.Data
@@ -11,6 +10,6 @@ namespace VES.Data
         }
 
 
-        public DbSet<VolunteerRegister> Users { get; set; }
+        public DbSet<VolunteerRegister> Volunteers { get; set; }
     }
 }

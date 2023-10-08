@@ -1,17 +1,22 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using VES.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-// Add configuration services
-builder.Configuration.AddJsonFile("appsettings.json");
 
-// Configure DbContext
+// Add configuration services
+builder.Configuration.AddJsonFile("appsettings.json", optional: true);
+
+// Configure DbContext to use MySQL
 builder.Services.AddDbContext<MyDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("MySQLConnection"),
+        new MySqlServerVersion(new Version(8, 1, 0)) // Specify your MySQL server version here
+    );
 });
 
 var app = builder.Build();

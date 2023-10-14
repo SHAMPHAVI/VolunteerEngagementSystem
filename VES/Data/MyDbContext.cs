@@ -11,5 +11,6 @@ namespace VES.Data
 
 
         public DbSet<VolunteerRegister> Volunteers { get; set; }
+        public DbSet<OpportunityModel> Opportunities { get; set; }
     }
 }

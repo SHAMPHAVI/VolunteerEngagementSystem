@@ -108,3 +108,7 @@ C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Deb
 C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\FluentAssertions.dll
 C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\MySqlConnector.dll
 C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\BCrypt.Net.dll
+C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\BouncyCastle.Crypto.dll
+C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout_A.cshtml.rz.scp.css
+C:\Users\ShamphaviShanmugasun\source\repos\VolunteerEngagementSystem\VES\bin\Debug\net7.0\Views\Volunteer\AboutUs.cshtml

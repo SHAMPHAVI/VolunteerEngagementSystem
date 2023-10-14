@@ -261,6 +261,10 @@
       "PackagePath": "staticwebassets\\styles\\home-style.css"
     },
     {
+      "Id": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\styles\\i-style.css",
+      "PackagePath": "staticwebassets\\styles\\i-style.css"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.VES.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

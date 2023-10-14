@@ -4,16 +4,17 @@ namespace VES.Models.Volunteer
 {
     public class VolunteerRegister
     {
-        [Key]
-        public int VolunteerId { get; set; }
+       
 
         [Required(ErrorMessage = "Please enter your full name.")]
-        [Display(Name = "Full Name")]
-        public string FullName { get; set; }
+        [Display(Name = "Full_Name")]
 
+        public string Full_Name { get; set; }
+        [Key]
         [Required(ErrorMessage = "Please enter your email address.")]
         [EmailAddress(ErrorMessage = "Invalid email address.")]
         [Display(Name = "Email")]
+
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter a password.")]

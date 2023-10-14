@@ -19,7 +19,7 @@ form {
 
 label {
     display: block;
-    margin-block-end: 6px;
+    margin-block-end: 4px;
 }
 
 input[type="text"],
@@ -32,7 +32,7 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    margin-block-end: 12px;
+    margin-block-end: 10px;
 }
 
 .dropdown-content {
@@ -58,7 +58,7 @@ input[type="submit"] {
     cursor: pointer;
     position: absolute;
     left: 55%;
-    transform: translateY(1130%);
+    transform: translateY(1065%);
 }
     input[type="submit"]:hover {
         background-color: #2aa5a0;
@@ -77,5 +77,10 @@ input[type="submit"] {
     left: 60%;
 }
 
+p {
+    margin-top: 50px;
+    text-align: center;
+    transform: translateY(5%);
+}
 
 

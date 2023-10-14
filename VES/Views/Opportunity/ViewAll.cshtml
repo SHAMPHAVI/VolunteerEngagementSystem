@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Opportunities</title>
+</head>
+<body>
+    <h1>Opportunities</h1>
+    <a href="Add" class="add-button">+ Add Opportunity</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var opportunity in Model)
+            {
+                <tr>
+                    <td>@opportunity.Title</td>
+                    <td>@opportunity.Description</td>
+                    <td>@opportunity.Location</td>
+                    <td>@opportunity.Date.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

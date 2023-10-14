@@ -26,11 +26,6 @@ namespace VES.Controllers
         {
             return View();
         }
-        public IActionResult AddOpportunity()
-        {
-
-            return View();
-        }
         public IActionResult AboutUs()
         {
             return View();
@@ -41,19 +36,6 @@ namespace VES.Controllers
             if (ModelState.IsValid)
             {
                 InsertUserDataIntoDatabase(model);
-                return RedirectToAction("Home");
-            }
-
-            return View(model);
-        }
-        [HttpPost]
-        public IActionResult AddOpportunity(OpportunityModel model)
-        {
-            string userEmail = HttpContext.Session.GetString("email");
-            model.UserEmail = userEmail;
-            if (ModelState.IsValid)
-            {
-                InsertOpportunityDataIntoDatabase(model);
                 return RedirectToAction("Home");
             }
 
@@ -81,19 +63,6 @@ namespace VES.Controllers
                 {
                     ModelState.AddModelError("", "An error occurred while saving your data.");
                 }
-
-        }
-        private void InsertOpportunityDataIntoDatabase(OpportunityModel model)
-        {
-            try
-            {
-                _myDbContext.Opportunities.Add(model);
-                _myDbContext.SaveChanges();
-            }
-            catch (DbUpdateException ex)
-            {
-                ModelState.AddModelError("", "An error occurred while saving your data.");
-            }
 
         }
         [HttpPost]

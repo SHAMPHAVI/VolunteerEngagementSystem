@@ -36,7 +36,6 @@ namespace VES.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("UserEmail")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Title");
@@ -65,6 +64,9 @@ namespace VES.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Skills")
                         .IsRequired()

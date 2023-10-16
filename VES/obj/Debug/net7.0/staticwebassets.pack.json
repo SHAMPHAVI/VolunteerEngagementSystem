@@ -249,6 +249,14 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\styles\\card-style.css",
+      "PackagePath": "staticwebassets\\styles\\card-style.css"
+    },
+    {
+      "Id": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\styles\\detail-style.css",
+      "PackagePath": "staticwebassets\\styles\\detail-style.css"
+    },
+    {
       "Id": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\styles\\form-style.css",
       "PackagePath": "staticwebassets\\styles\\form-style.css"
     },

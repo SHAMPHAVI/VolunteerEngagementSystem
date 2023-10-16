@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "l54XGjVl8ZavwZvcyjuQ55MAH5zDAHrCc7ydhC50wyw=",
+  "Hash": "gemYGJZivpLxK8DEO7G18D2N1YR95waI3ieX7/74MSM=",
   "Source": "VES",
   "BasePath": "_content/VES",
   "Mode": "Default",
@@ -1086,6 +1086,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\styles\\card-style.css",
+      "SourceId": "VES",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\",
+      "BasePath": "_content/VES",
+      "RelativePath": "styles/card-style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\styles\\card-style.css"
+    },
+    {
+      "Identity": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\styles\\detail-style.css",
+      "SourceId": "VES",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\",
+      "BasePath": "_content/VES",
+      "RelativePath": "styles/detail-style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\styles\\detail-style.css"
     },
     {
       "Identity": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\styles\\form-style.css",

@@ -11,7 +11,7 @@ using VES.Data;
 namespace VES.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20231014053715_CreateOpportunitiesTable")]
+    [Migration("20231016163819_CreateOpportunitiesTable")]
     partial class CreateOpportunitiesTable
     {
         /// <inheritdoc />
@@ -39,7 +39,6 @@ namespace VES.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("UserEmail")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Title");
@@ -68,6 +67,9 @@ namespace VES.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Skills")
                         .IsRequired()

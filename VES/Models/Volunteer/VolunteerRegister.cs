@@ -31,5 +31,6 @@ namespace VES.Models.Volunteer
 
         [Display(Name = "Interests (comma-separated)")]
         public string Interests { get; set; }
+        public string? Role { get; set; }
     }
 }

@@ -23,6 +23,16 @@ namespace VES.Controllers
 
             return View();
         }
+        public IActionResult Details(string title)
+        {
+            var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
+            if (opportunityDetails == null)
+            {
+                return View("OpportunityNotFound");
+            }
+
+            return View(opportunityDetails);
+        }
         [HttpPost]
         public IActionResult Add(OpportunityModel model)
         {
@@ -36,12 +46,6 @@ namespace VES.Controllers
 
             return View(model);
         }
-
-        //public IActionResult ViewAll()
-        //{
-        //    return View();
-        //}
-       
         private void InsertOpportunityDataIntoDatabase(OpportunityModel model)
         {
             try

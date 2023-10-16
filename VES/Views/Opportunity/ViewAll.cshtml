@@ -1,31 +1,29 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@{
+    Layout = "_Layout_A";
+}
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="~/styles/card-style.css">
 <head>
     <title>Opportunities</title>
 </head>
 <body>
-    <h1>Opportunities</h1>
-    <a href="Add" class="add-button">+ Add Opportunity</a>
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Location</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var opportunity in Model)
-            {
-                <tr>
-                    <td>@opportunity.Title</td>
-                    <td>@opportunity.Description</td>
-                    <td>@opportunity.Location</td>
-                    <td>@opportunity.Date.ToShortDateString()</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="header">
+        <a href="Add" class="add-button">+ Add Opportunity</a>
+        <h1>Opportunities</h1>
+        
+    </div>
+    <div class="cards-container">
+        @foreach (var opportunity in Model)
+        {
+            <a href="Details?title=@opportunity.Title" class="card">
+                <div>
+                <h2>@opportunity.Title</h2>
+                <p><strong>Location:</strong> @opportunity.Location</p>
+                <p><strong>Date:</strong> @opportunity.Date.ToShortDateString()</p>
+                </div>
+            </a>
+        }
+    </div>
 </body>
 </html>

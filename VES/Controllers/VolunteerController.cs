@@ -54,11 +54,14 @@ namespace VES.Controllers
         }
         private void InsertUserDataIntoDatabase(VolunteerRegister model)
         {
-                try
+            model.Role = "Volunteer";
+            try
                 {
                     _myDbContext.Volunteers.Add(model);
                     _myDbContext.SaveChanges();
-                }
+                    string data = model.Email;
+                    HttpContext.Session.SetString("email", data);
+            }
                 catch (DbUpdateException ex)
                 {
                     ModelState.AddModelError("", "An error occurred while saving your data.");

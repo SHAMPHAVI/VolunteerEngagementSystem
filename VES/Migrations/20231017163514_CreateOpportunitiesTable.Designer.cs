@@ -11,7 +11,7 @@ using VES.Data;
 namespace VES.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20231016163819_CreateOpportunitiesTable")]
+    [Migration("20231017163514_CreateOpportunitiesTable")]
     partial class CreateOpportunitiesTable
     {
         /// <inheritdoc />
@@ -26,6 +26,10 @@ namespace VES.Migrations
                 {
                     b.Property<string>("Title")
                         .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");

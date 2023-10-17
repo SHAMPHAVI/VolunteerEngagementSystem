@@ -24,6 +24,10 @@ namespace VES.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("varchar(255)");
 
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 

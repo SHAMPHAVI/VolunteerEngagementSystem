@@ -7,10 +7,11 @@
     @if (Model != null)
     {
         <div class="header">
-        <a href="ViewAll" class="back-link">← Back</a>
+            <a href="ViewAll"> <img src="~/images/Back.jpg" alt="Back" /></a>
         <h1>@Model.Title</h1>
         </div>
         <p><strong>Location:</strong> @Model.Location</p>
+        <p><strong>Category:</strong> @Model.Category</p>
         <p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
         <p><strong>Description:</strong> @Model.Description</p>
         <a href="JoinEvent" class="join-button">Join Event</a>

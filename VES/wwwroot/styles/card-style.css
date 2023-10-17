@@ -1,35 +1,42 @@
 ﻿.card {
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 10px;
+    padding: 5px;
     margin: 10px;
     box-shadow: 2px 2px 5px #888888;
     width: 300px;
+    height: 120px;
     display: inline-block;
 }
 
     .card h2 {
         font-size: 20px;
-        color: lightseagreen
+        color: lightseagreen;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis; 
     }
 
     .card p {
         font-size: 14px;
-        margin-bottom: 5px;
-        color:  teal 
+        margin-bottom: 2px;
+        color: teal;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align:left;
     }
 .cards-container a {
     text-decoration: none;
-    background-color: ivory 
+    background-color: ivory;
 }
-.cards-container a:has(:hover) {
-    background-color: aliceblue
-}
+    .cards-container a:has(:hover) {
+        background-color: aliceblue; 
+        padding-bottom: 10px;
+    }
 body {
     font-family: 'Arial', sans-serif;
     background-color: #fff;
-    margin: 0;
-    padding: 0;
     text-align: center;
 }
 
@@ -38,28 +45,22 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    padding: 10px;
+    padding: 0px;
 }
 
-h1 {
-    text-align: center; 
-    color: #37d3c2;
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    margin: 0;
+img {
     flex: 1;
+    max-width: 275px; 
+    height: auto;
 }
 
 .add-button {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 2px 2px;
     background-color: #37d3c2;
     color: #fff;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 7px;
     font-weight: bold;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -69,4 +70,15 @@ h1 {
         color: #fff;
     }
 
+.cardcont {
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    text-align: center;
+    overflow: auto;
+    max-height: 465px;
+    text-align:center;
+    width:1400px;
+    margin-left:-50px;
+    margin-top:20px;
+}
 

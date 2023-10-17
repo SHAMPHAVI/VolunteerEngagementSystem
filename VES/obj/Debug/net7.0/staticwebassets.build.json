@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gemYGJZivpLxK8DEO7G18D2N1YR95waI3ieX7/74MSM=",
+  "Hash": "MM19FH7K9x/Q3ceHiNFj/bBkSxDNVgxlkUknMHWMYiY=",
   "Source": "VES",
   "BasePath": "_content/VES",
   "Mode": "Default",
@@ -85,6 +85,23 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\images\\Back.jpg",
+      "SourceId": "VES",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\",
+      "BasePath": "_content/VES",
+      "RelativePath": "images/Back.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Back.jpg"
+    },
+    {
       "Identity": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\images\\Logo.PNG",
       "SourceId": "VES",
       "SourceType": "Discovered",
@@ -100,6 +117,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Logo.PNG"
+    },
+    {
+      "Identity": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\images\\Opportunities.PNG",
+      "SourceId": "VES",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\",
+      "BasePath": "_content/VES",
+      "RelativePath": "images/Opportunities.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Opportunities.PNG"
     },
     {
       "Identity": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\js\\site.js",

@@ -1,29 +1,48 @@
 ﻿@{
     Layout = "_Layout_A";
+    var locationFilter = Context.Request.Query["location"].ToString();
+    var categoryFilter = Context.Request.Query["category"].ToString();
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="~/styles/card-style.css">
-<head>
-    <title>Opportunities</title>
-</head>
 <body>
     <div class="header">
+        <img src="~/images/Opportunities.png" alt="Opportunities" />
         <a href="Add" class="add-button">+ Add Opportunity</a>
-        <h1>Opportunities</h1>
-        
     </div>
+    <div class="filter">
+        <form method="get">
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" value="@locationFilter" />
+
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" value="@categoryFilter" />
+
+
+            <input type="submit" value="Filter" />
+            <a href="?" class="clear-filter-button">Clear</a>
+        </form>
+    </div>
+    <div class="cardcont">
     <div class="cards-container">
         @foreach (var opportunity in Model)
         {
-            <a href="Details?title=@opportunity.Title" class="card">
-                <div>
-                <h2>@opportunity.Title</h2>
-                <p><strong>Location:</strong> @opportunity.Location</p>
-                <p><strong>Date:</strong> @opportunity.Date.ToShortDateString()</p>
-                </div>
-            </a>
+            if ((string.IsNullOrWhiteSpace(locationFilter) || opportunity.Location.Contains(locationFilter, StringComparison.OrdinalIgnoreCase))
+            && (string.IsNullOrWhiteSpace(categoryFilter) || opportunity.Category.Contains(categoryFilter, StringComparison.OrdinalIgnoreCase)))
+            {
+                <a href="Details?title=@opportunity.Title" class="card">
+                    <div>
+                        <h2>@opportunity.Title</h2>
+                        <p><strong>Location :</strong> @opportunity.Location</p>
+                        <p><strong>Category :</strong> @opportunity.Category</p>
+                        <p><strong>Date     :</strong> @opportunity.Date.ToShortDateString()</p>
+                    </div>
+                </a>
+            }
         }
+    </div>
     </div>
 </body>
 </html>

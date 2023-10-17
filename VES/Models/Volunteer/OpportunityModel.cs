@@ -19,5 +19,6 @@ public class OpportunityModel
     [DataType(DataType.Date)]
     public DateTime Date { get; set; }
     public string? UserEmail { get; set; }
+    public string Category { get; set; }
 }
 

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace VES.Models.Volunteer
+namespace VES.Models
 {
     public class VolunteerLogin
     {

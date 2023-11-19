@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace VES.Models.Volunteer
+namespace VES.Models
 {
     public class VolunteerRegister
     {
-       
+
 
         [Required(ErrorMessage = "Please enter your full name.")]
         [Display(Name = "Full_Name")]

@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using VES.Models.Volunteer;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using VES.Models;
+using VES.Models.Location;
 
 namespace VES.Data
 {
@@ -12,5 +14,10 @@ namespace VES.Data
 
         public DbSet<VolunteerRegister> Volunteers { get; set; }
         public DbSet<OpportunityModel> Opportunities { get; set; }
+        public DbSet<EventRegistration> EventRegistrations { get; set; }
+        public DbSet<Province> Provinces { get; set; }
+        public DbSet<District> Districts { get; set; }
+        public DbSet<City> Cities { get; set; }
+
     }
 }

@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VES.Data;
-using VES.Models.Volunteer;
-using Org.BouncyCastle.Crypto.Generators;
 using Microsoft.AspNetCore.Authentication;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using VES.Models;
 
 namespace VES.Controllers
 {

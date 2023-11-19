@@ -6,15 +6,18 @@
 <body>
     @if (Model != null)
     {
-        <div class="header">
-            <a href="ViewAll"> <img src="~/images/Back.jpg" alt="Back" /></a>
-        <h1>@Model.Title</h1>
-        </div>
-        <p><strong>Location:</strong> @Model.Location</p>
-        <p><strong>Category:</strong> @Model.Category</p>
-        <p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
-        <p><strong>Description:</strong> @Model.Description</p>
-        <a href="JoinEvent" class="join-button">Join Event</a>
+        <form method="post" action="Join">
+            <div class="header">
+                <a href="ViewAll"> <img src="~/images/Back.jpg" alt="Back" /></a>
+                <input type="hidden" name="EventName" value="@Model.Title">
+                <h1 >@Model.Title</h1>
+            </div>
+            <p><strong>Location:</strong> @Model.Location</p>
+            <p><strong>Category:</strong> @Model.Category</p>
+            <p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
+            <p><strong>Description:</strong> @Model.Description</p>
+            <input type="submit" value="Join">
+        </form>
     }
     else
     {

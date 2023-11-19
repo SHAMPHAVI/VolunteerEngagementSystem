@@ -1,6 +1,8 @@
-﻿@{
+﻿@model OpportunityModel
+@{
     Layout = "_Layout_A";
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,15 +21,51 @@
 
             <label for="description">Description</label>
             <textarea id="description" name="description" required></textarea>
+            <table>
+                <tr>
+                    <td class="field-label">
+                        <label for="province">Province</label>
+                    </td>
+                    <td class="field-label">
+                        <label for="district">District</label>
+                    </td>
+                    <td class="field-label">
+                        <label for="city">City</label>
+                    </td>
+                </tr>
+                <tr>
+                    @*<td class="field-select">
+                        <select id="province" name="province" onclick= "getprovinces()" onchange="updateDistricts()">
+                           <option id = "" value="">Please choose a province</option>
+                        </select>
+                    </td>*@
+                    <td class="field-select">
+                        <select id="province" name="province" onchange="updateDistricts()">
+                            <option id="" value="">Please choose a province</option>
+                            <option value="Central" id="2">Central</option>
+                            <option value="Eastern" id="6">Eastern</option>
+                            <option value="North Central" id="8">North Central</option>
+                            <option value="North Western" id="4">North Western</option>
+                            <option value="Northern" id="9">Northern</option>
+                            <option value="Sabaragamuwa" id="5">Sabaragamuwa</option>
+                            <option value="Southern" id="3">Southern</option>
+                            <option value="Uva" id="7">Uva</option>
+                            <option value="Western" id="1">Western</option>
+                        </select>
+                    </td>
+                    <td class="field-select">
+                        <select id="district" name="district" onchange="updateCities()" disabled>
+                            <option id = "" value="">Please choose a province first</option>
+                        </select>
+                    </td>
+                    <td class="field-select">
+                        <select id="city" name="city" disabled>
+                            <option id="" value="">Please choose a district first</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
 
-            <label for="location">Location</label>
-            <select id="location" name="location">
-                <option value="Colombo">Colombo</option>
-                <option value="Kandy">Kandy</option>
-                <option value="Jaffna">Jaffna</option>
-                <option value="Galle">Galle</option>
-                <option value="Ampara">Ampara</option>
-            </select>
             <label for="category">Category</label>
             <select id="category" name="category">
                 <option value="Environmental Conservation">Environmental Conservation</option>
@@ -45,13 +83,74 @@
                 <option value="Microvolunteering">Microvolunteering</option>
                 <option value="Food Distribution">Food Distribution</option>
             </select>
-
             <label for="date">Date</label>
             <input type="date" id="date" name="date" required>
-
             <input type="submit" value="Post Opportunity">
         </form>
     </main>
-    <script src="validation.js"></script>
+    <script>
+        function getprovinces() {
+            fetch(`/Opportunity/GetProvinces`)
+                .then(response => response.json())
+                .then(data => {
+                    var provinceDropdown = document.getElementById("province");
+                    provinceDropdown.innerHTML = "<option id = '' value=''>Please choose a province</option>";
+
+                    data.forEach(province => {
+                        var option = document.createElement("option");
+                        option.value = province.name_en;
+                        option.id = province.id;
+                        option.text = province.name_en;
+                        provinceDropdown.appendChild(option);
+                    });
+
+                });
+        }
+    </script>
+    <script>
+        function updateDistricts() {
+            var selectedProvinceOption = document.getElementById("province");
+            var selectedProvince = selectedProvinceOption.options[selectedProvinceOption.selectedIndex].id;
+            fetch(`/Opportunity/GetDistricts?province=${selectedProvince}`)
+                .then(response => response.json())
+                .then(data => {
+                    var districtDropdown = document.getElementById("district");
+                    districtDropdown.innerHTML = "<option id = '' value=''>Please choose a district</option>";
+
+                    data.forEach(district => {
+                        var option = document.createElement("option");
+                        option.value = district.name_en;
+                        option.id = district.id;
+                        option.text = district.name_en; 
+                        districtDropdown.appendChild(option);
+                    });
+                    districtDropdown.removeAttribute("disabled");
+                    
+                });
+        }
+    </script>
+    <script>
+        function updateCities() {
+            var selectedDistrictOption = document.getElementById("district");
+            var selectedDistrict = selectedDistrictOption.options[selectedDistrictOption.selectedIndex].id;
+            fetch(`/Opportunity/GetCities?district=${selectedDistrict}`)
+                .then(response => response.json())
+                .then(data => {
+                    var cityDropdown = document.getElementById("city");
+                    cityDropdown.innerHTML = "<option id = '' value=''>Please choose a city</option>";
+
+                    data.forEach(city => {
+                        var option = document.createElement("option");
+                        option.value = city.name_en;
+                        option.id = city.id;
+                        option.text = city.name_en;
+                        cityDropdown.appendChild(option);
+                    });
+                    cityDropdown.removeAttribute("disabled");
+
+                });
+        }
+    </script>
+
 </body>
 </html>

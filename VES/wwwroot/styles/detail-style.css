@@ -73,3 +73,19 @@ img{
         margin: 0;
         flex: 1;
     }
+
+input[type="submit"] {
+    background-color: #37d3c2;
+    color: white;
+    padding: 10px 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+    input[type="submit"]:hover {
+        background-color: #2aa5a0;
+    }

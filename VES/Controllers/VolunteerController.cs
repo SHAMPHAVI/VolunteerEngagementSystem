@@ -17,30 +17,58 @@ namespace VES.Controllers
             _myDbContext = myDbContext;
         }
 
-        public IActionResult Register()
-        {
-            return View();
-        }
-        public IActionResult Login()
-        {
-            return View();
-        }
+
+    
         public IActionResult AboutUs()
+        {
+            return View();
+        }
+        public IActionResult OrgRegister()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult OrgRegister(VolunteerRegister model)
+        {
+            model.Role = "Organization";
+
+                if (ModelState.IsValid && InsertUserDataIntoDatabase(model))
+                {
+                    return RedirectToAction("Home");
+                }
+                return View(model);
+           
+        }
+        public IActionResult Register()
         {
             return View();
         }
         [HttpPost]
         public IActionResult Register(VolunteerRegister model)
         {
-            if (ModelState.IsValid)
-            {
-                InsertUserDataIntoDatabase(model);
-                return RedirectToAction("Home");
-            }
+            model.Role = "Volunteer";
 
-            return View(model);
+                if (ModelState.IsValid && InsertUserDataIntoDatabase(model))
+                {
+                    return RedirectToAction("Home");
+                }
+
+                return View(model);
+            
         }
-
+        private bool IsDuplicateKeyError(DbUpdateException ex)
+        {
+            var error = ex.InnerException.Message;
+            if (error.Contains("Duplicate entry"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
         public IActionResult Home()
         {
             return View();
@@ -51,21 +79,36 @@ namespace VES.Controllers
 
             return RedirectToAction("Index");
         }
-        private void InsertUserDataIntoDatabase(VolunteerRegister model)
+        private bool InsertUserDataIntoDatabase(VolunteerRegister model)
         {
-            model.Role = "Volunteer";
             try
-                {
-                    _myDbContext.Volunteers.Add(model);
-                    _myDbContext.SaveChanges();
-                    string data = model.Email;
-                    HttpContext.Session.SetString("email", data);
+            {
+                _myDbContext.Volunteers.Add(model);
+                _myDbContext.SaveChanges();
+                string data = model.Email;
+                HttpContext.Session.SetString("email", data);
+                return true; 
             }
-                catch (DbUpdateException ex)
+            catch (DbUpdateException ex)
+            {
+                if (IsDuplicateKeyError(ex))
                 {
-                    ModelState.AddModelError("", "An error occurred while saving your data.");
+                    ModelState.AddModelError("", "The email address is already in use. Please log in if you have an account or register with a different email address.");
+
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Please verify entered details and ensure all required fields are filled.");
+
                 }
 
+                return false; 
+            }
+        }
+
+        public IActionResult Login()
+        {
+            return View();
         }
         [HttpPost]
         public IActionResult Login(VolunteerLogin model)

@@ -7,7 +7,7 @@
     <title>Registration Form</title>
 </head>
 <body>
-    <h1>Get Started Today: Explore Volunteer Opportunities by Filling Out the Registration Form</h1>
+    <h1>Get Started Today: Join Volunteer Organization Community by Filling Out the Registration Form</h1>
     @if (ViewData.ModelState.IsValid == false)
     {
         <div class="alert alert-danger">
@@ -19,7 +19,7 @@
             </ul>
         </div>
     }
-    <form action="Register" method="post">
+    <form action="OrgRegister" method="post">
 
         <label for="full_name">Full Name</label>
         <input type="text" id="full_name" name="full_name" required>
@@ -30,8 +30,8 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
 
-        <label for="skills">Skills</label>
-        <input type="text" id="skills" name="skills">
+        <label for="orgName">Organization Name</label>
+        <input type="text" id="orgName" name="orgName">
 
         <label for="selectedInterests" class="reference-element">Interests</label>
         <input type="text" id="selectedInterests" readonly onclick="toggleDropdown()" >
@@ -92,7 +92,6 @@
             });
         });
     </script>
-
 
 </body>
 </html>

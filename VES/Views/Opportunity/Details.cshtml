@@ -12,13 +12,16 @@
                 <input type="hidden" name="EventName" value="@Model.Title">
                 <h1 >@Model.Title</h1>
             </div>
-            <p><strong>Location:</strong> @Model.Location</p>
+            <p><strong>Location:</strong> @Model.Province, @Model.District, @Model.City</p>
             <p><strong>Category:</strong> @Model.Category</p>
             <p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
             <p><strong>Description:</strong> @Model.Description</p>
+            <div class="space"></div>
             <input type="submit" value="Join">
+           
         </form>
     }
+
     else
     {
         <p>Opportunity not found.</p>

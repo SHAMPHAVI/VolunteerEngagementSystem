@@ -27,22 +27,6 @@ img{
     height:auto;
 }
 
-.join-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #37d3c2;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 50px; 
-    font-weight: bold; 
-    transition: background-color 0.3s, color 0.3s;
-}
-
-    .join-button:hover {
-        background-color: #2aa5a0;
-        color: #fff;
-    }
 .header {
     display: flex;
     align-items: center;
@@ -81,7 +65,7 @@ input[type="submit"] {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    width: 100%;
+    width: 100px;
     transition: background-color 0.3s;
     margin-top: 10px;
 }
@@ -89,3 +73,7 @@ input[type="submit"] {
     input[type="submit"]:hover {
         background-color: #2aa5a0;
     }
+.space{
+    padding-top:
+        50px
+}-

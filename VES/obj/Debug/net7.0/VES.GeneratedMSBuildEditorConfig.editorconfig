@@ -40,6 +40,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ShamphaviShanmugasun/source/repos/VolunteerEngagementSystem/VES/Views/Opportunity/Events.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcRXZlbnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ShamphaviShanmugasun/source/repos/VolunteerEngagementSystem/VES/Views/Opportunity/ViewAll.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcVmlld0FsbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -62,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ShamphaviShanmugasun/source/repos/VolunteerEngagementSystem/VES/Views/Volunteer/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9sdW50ZWVyXExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ShamphaviShanmugasun/source/repos/VolunteerEngagementSystem/VES/Views/Volunteer/OrgRegister.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9sdW50ZWVyXE9yZ1JlZ2lzdGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ShamphaviShanmugasun/source/repos/VolunteerEngagementSystem/VES/Views/Volunteer/Register.cshtml]

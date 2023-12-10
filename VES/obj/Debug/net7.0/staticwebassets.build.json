@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MM19FH7K9x/Q3ceHiNFj/bBkSxDNVgxlkUknMHWMYiY=",
+  "Hash": "DNx6TcqqacrtL/zn6YAwVnTJvfot/9M+MejB5OMMcjU=",
   "Source": "VES",
   "BasePath": "_content/VES",
   "Mode": "Default",
@@ -117,6 +117,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Logo.PNG"
+    },
+    {
+      "Identity": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\images\\MyEvents.PNG",
+      "SourceId": "VES",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\",
+      "BasePath": "_content/VES",
+      "RelativePath": "images/MyEvents.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\MyEvents.PNG"
     },
     {
       "Identity": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\images\\Opportunities.PNG",

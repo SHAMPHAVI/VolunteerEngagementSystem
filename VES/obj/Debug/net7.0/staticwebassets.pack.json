@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\images\\Logo.PNG"
     },
     {
+      "Id": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\images\\MyEvents.PNG",
+      "PackagePath": "staticwebassets\\images\\MyEvents.PNG"
+    },
+    {
       "Id": "C:\\Users\\ShamphaviShanmugasun\\source\\repos\\VolunteerEngagementSystem\\VES\\wwwroot\\images\\Opportunities.PNG",
       "PackagePath": "staticwebassets\\images\\Opportunities.PNG"
     },

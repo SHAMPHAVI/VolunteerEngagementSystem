@@ -2,12 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using VES.Data;
 using VES.Models;
-using Org.BouncyCastle.Crypto.Generators;
 using Microsoft.AspNetCore.Authentication;
-using System.ComponentModel.DataAnnotations;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using VES.Models.Location;
 
 namespace VES.Controllers
@@ -35,6 +30,16 @@ namespace VES.Controllers
 
             return View(opportunityDetails);
         }
+        public IActionResult JoinEvents(string title)
+        {
+            var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
+            if (opportunityDetails == null)
+            {
+                return View("OpportunityNotFound");
+            }
+
+            return View(opportunityDetails);
+        }
         [HttpPost]
         public IActionResult Add(OpportunityModel model)
         {
@@ -44,7 +49,7 @@ namespace VES.Controllers
             if (ModelState.IsValid)
             {
                 InsertOpportunityDataIntoDatabase(model);
-                return RedirectToAction("ViewAll");
+                return RedirectToAction("Events");
             }
 
             return View(model);
@@ -67,8 +72,35 @@ namespace VES.Controllers
             var opportunities = _myDbContext.Opportunities.ToList();
             return View(opportunities);
         }
+        public IActionResult Events()
+        {
+            List<OpportunityModel> joinedEvents = new List<OpportunityModel>();
+            string userEmail = HttpContext.Session.GetString("email");
+            var myEvents = _myDbContext.Opportunities.Where(o => o.UserEmail == userEmail).ToList();
+            var regEvents = _myDbContext.EventRegistrations.Where(o => o.UserEmail == userEmail).ToList();
+            foreach (var reg in regEvents) {
+                var title = reg.EventName;
+                var events = _myDbContext.Opportunities.Where(o => o.Title == title);
+               joinedEvents.AddRange(events);
+            }
+            var othersEvents = _myDbContext.Opportunities.Where(o => o.UserEmail != userEmail).ToList();
+            var notJoinedEvents = othersEvents.Where(o => !joinedEvents.Any(j => j.Title == o.Title)).ToList();
+            var viewModel = new MyEventsViewModel
+            {
+                MyEvents = myEvents,
+                JoinedEvents = joinedEvents,
+                OtherEvents= notJoinedEvents
+            };
+            return View(viewModel);
+        }
+        public class MyEventsViewModel
+        {
+            public List<OpportunityModel> MyEvents { get; set; }
+            public List<OpportunityModel> JoinedEvents { get; set; }
+            public List<OpportunityModel> OtherEvents { get; set; }
+        }
         [HttpPost]
-        public void Join(EventRegistration model)
+        public IActionResult Join(EventRegistration model)
         {
             var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == model.EventName);
             model.EventEmail = opportunityDetails.UserEmail;
@@ -78,9 +110,9 @@ namespace VES.Controllers
             if (ModelState.IsValid)
             {
                 InsertEventDataIntoDatabase(model);
-                //return RedirectToAction("ViewAll");
+                return RedirectToAction("Events");
             }
-            //return View("ViewAll");
+            return View(model);
         }
 
         private void InsertEventDataIntoDatabase(EventRegistration model)

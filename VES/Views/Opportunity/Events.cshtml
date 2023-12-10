@@ -1,49 +1,164 @@
-﻿
-@{
+﻿@{
     Layout = "_Layout_A";
     var locationFilter = Context.Request.Query["location"].ToString();
     var categoryFilter = Context.Request.Query["category"].ToString();
 }
-
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="~/styles/card-style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opportunities</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/styles/card-style.css">
+</head>
 <body>
-    <div class="header">
-        <img src="~/images/Opportunities.png" alt="Opportunities" />
-        <a href="Add" class="add-button">+ Add Opportunity</a>
-    </div>
-    <div class="filter">
-        <form method="get">
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" value="@locationFilter" />
+    <div class="container mt-5">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" onclick="openTab('tab1')">My Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" onclick="openTab('tab2')">Joined Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tab3" onclick="openTab('tab3')">Other Events</a>
+            </li>
+        </ul>
 
-            <label for="category">Category:</label>
-            <input type="text" id="category" name="category" value="@categoryFilter" />
+        <div class="tab-content mt-2">
+            <div class="tab-pane fade show active" id="tab1">
+                <div class="filter">
+                    <form method="get">
+                        <label for="location">Location:</label>
+                        <input type="text" id="location" name="location" value="@locationFilter" />
 
+                        <label for="category">Category:</label>
+                        <input type="text" id="category" name="category" value="@categoryFilter" />
 
-            <input type="submit" value="Filter" />
-            <a href="?" class="clear-filter-button">Clear</a>
-        </form>
-    </div>
-    <div class="cardcont">
-    <div class="cards-container">
-        @foreach (var opportunity in Model)
-        {
-            if ((string.IsNullOrWhiteSpace(locationFilter) || opportunity.Province.Contains(locationFilter, StringComparison.OrdinalIgnoreCase))
-            && (string.IsNullOrWhiteSpace(categoryFilter) || opportunity.Category.Contains(categoryFilter, StringComparison.OrdinalIgnoreCase)))
-            {
-                <a href="Details?title=@opportunity.Title" class="card">
-                    <div>
-                        <h2>@opportunity.Title</h2>
-                        <p><strong>Location :</strong> @opportunity.City, @opportunity.District, @opportunity.Province</p>
-                        <p><strong>Category :</strong> @opportunity.Category</p>
-                        <p><strong>Date     :</strong> @opportunity.Date.ToShortDateString()</p>
+                        <input type="submit" value="Filter" />
+                        <a href="?" class="clear-filter-button">Clear</a>
+                        <a href="Add" class="add-button">+ Add Opportunity</a>
+                    </form>
+                </div>
+                <div class="cardcont">
+                    <div class="cards-container">
+                        @foreach (var opportunity in Model.MyEvents)
+                        {
+                            if ((string.IsNullOrWhiteSpace(locationFilter) || opportunity.Province.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.City.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.District.Contains(locationFilter, StringComparison.OrdinalIgnoreCase))
+                            && (string.IsNullOrWhiteSpace(categoryFilter) || opportunity.Category.Contains(categoryFilter, StringComparison.OrdinalIgnoreCase)))
+                            {
+                                <a href="Details?title=@opportunity.Title" class="card">
+                                    <div>
+                                        <h2>@opportunity.Title</h2>
+                                        <p><strong>Location :</strong> @opportunity.City, @opportunity.District, @opportunity.Province</p>
+                                        <p><strong>Category :</strong> @opportunity.Category</p>
+                                        <p><strong>Date     :</strong> @opportunity.Date.ToShortDateString()</p>
+                                    </div>
+                                </a>
+                            }
+                        }
                     </div>
-                </a>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="tab2">
+                <div class="filter">
+                    <form method="get">
+                        <label for="location">Location:</label>
+                        <input type="text" id="location" name="location" value="@locationFilter" />
+
+                        <label for="category">Category:</label>
+                        <input type="text" id="category" name="category" value="@categoryFilter" />
+
+                        <input type="submit" value="Filter" />
+                        <a href="?" class="clear-filter-button">Clear</a>
+                    </form>
+                </div>
+                <div class="cardcont">
+                    <div class="cards-container">
+                        @foreach (var opportunity in Model.JoinedEvents)
+                        {
+                            if ((string.IsNullOrWhiteSpace(locationFilter) || opportunity.Province.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.City.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.District.Contains(locationFilter, StringComparison.OrdinalIgnoreCase))
+                            && (string.IsNullOrWhiteSpace(categoryFilter) || opportunity.Category.Contains(categoryFilter, StringComparison.OrdinalIgnoreCase)))
+                            {
+                                <a href="Details?title=@opportunity.Title" class="card">
+                                    <div>
+                                        <h2>@opportunity.Title</h2>
+                                        <p><strong>Location :</strong> @opportunity.City, @opportunity.District, @opportunity.Province</p>
+                                        <p><strong>Category :</strong> @opportunity.Category</p>
+                                        <p><strong>Date     :</strong> @opportunity.Date.ToShortDateString()</p>
+                                    </div>
+                                </a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="tab3">
+                <div class="filter">
+                    <form method="get">
+                        <label for="location">Location:</label>
+                        <input type="text" id="location" name="location" value="@locationFilter" />
+
+                        <label for="category">Category:</label>
+                        <input type="text" id="category" name="category" value="@categoryFilter" />
+
+                        <input type="submit" value="Filter" />
+                        <a href="?" class="clear-filter-button">Clear</a>
+                    </form>
+                </div>
+                <div class="cardcont">
+                    <div class="cards-container">
+                        @foreach (var opportunity in Model.OtherEvents)
+                        {
+                            if ((string.IsNullOrWhiteSpace(locationFilter) || opportunity.Province.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.City.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.District.Contains(locationFilter, StringComparison.OrdinalIgnoreCase))
+                            && (string.IsNullOrWhiteSpace(categoryFilter) || opportunity.Category.Contains(categoryFilter, StringComparison.OrdinalIgnoreCase)))
+                            {
+                                <a href="JoinEvents?title=@opportunity.Title" class="card">
+                                    <div>
+                                        <h2>@opportunity.Title</h2>
+                                        <p><strong>Location :</strong> @opportunity.City, @opportunity.District, @opportunity.Province</p>
+                                        <p><strong>Category :</strong> @opportunity.Category</p>
+                                        <p><strong>Date     :</strong> @opportunity.Date.ToShortDateString()</p>
+                                    </div>
+                                </a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
+
+    <script>
+        function openTab(tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName('tab-pane');
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove('show', 'active');
             }
+            document.getElementById(tabName).classList.add('show', 'active');
+
+            tablinks = document.getElementsByClassName('nav-link');
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove('active');
+            }
+            document.getElementById(tabName + '-tab').classList.add('active');
+
+            var myEventsContent = document.getElementById('myEventsContent');
+            myEventsContent.style.display = (tabName === 'tab1') ? 'block' : 'none';
         }
-    </div>
-    </div>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            openTab('tab1');
+        });
+    </script>
 </body>
 </html>
+

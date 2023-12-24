@@ -40,6 +40,18 @@ namespace VES.Controllers
 
             return View(opportunityDetails);
         }
+        public IActionResult JoinedEvent(string title)
+        {
+            var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
+            if (opportunityDetails == null)
+            {
+                return View("OpportunityNotFound");
+            }
+
+            return View(opportunityDetails);
+        }
+        
+
         [HttpPost]
         public IActionResult Add(OpportunityModel model)
         {
@@ -107,6 +119,7 @@ namespace VES.Controllers
             string userEmail = HttpContext.Session.GetString("email");
             model.UserEmail = userEmail;
             model.Id= Guid.NewGuid();
+            model.JoinedDate = DateTime.Now;
             if (ModelState.IsValid)
             {
                 InsertEventDataIntoDatabase(model);
@@ -114,7 +127,24 @@ namespace VES.Controllers
             }
             return View(model);
         }
+        [HttpPost]
+        public IActionResult Leave(EventRegistration model)
+        {
+            if (model != null)
+            {
+                string userEmail = HttpContext.Session.GetString("email");
+                var existingRegistration = _myDbContext.EventRegistrations
+                    .FirstOrDefault(r => r.EventName == model.EventName && r.UserEmail == userEmail);
 
+                if (existingRegistration != null)
+                {
+                    _myDbContext.EventRegistrations.Remove(existingRegistration);
+                    _myDbContext.SaveChanges();
+                    return RedirectToAction("Events");
+                }
+            }
+            return View(model);
+        }
         private void InsertEventDataIntoDatabase(EventRegistration model)
         {
             try
@@ -155,6 +185,87 @@ namespace VES.Controllers
         {
             var provinces = _myDbContext.Provinces.OrderBy(p => p.name_en).ToList();
             return Json(provinces);
+        }
+        public IActionResult Notification()
+        {
+            string userEmail = HttpContext.Session.GetString("email");
+
+            var othervol = _myDbContext.EventRegistrations.Where(p => p.EventEmail == userEmail).ToList();
+            var myvol = _myDbContext.EventRegistrations.Where(p => p.UserEmail == userEmail).ToList();
+
+            var allNotifications = othervol.Concat(myvol)
+                                            .OrderByDescending(notification => notification.JoinedDate)
+                                            .ToList();
+
+            var viewModel = new NotificationViewModel
+            {
+                UserEmail = userEmail,
+                AllNotifications = allNotifications
+            };
+
+            return View(viewModel);
+        }
+        public class NotificationViewModel
+        {
+            public string UserEmail { get; set; }
+            public List<EventRegistration> AllNotifications { get; set; }
+        }
+        [HttpPost]
+        public IActionResult Update(OpportunityModel updatedModel, string title)
+        {
+            updatedModel.UserEmail= HttpContext.Session.GetString("email");
+            updatedModel.Title= title;
+            if (ModelState.IsValid)
+            {
+                var existingOpportunity = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == updatedModel.Title);
+
+                if (existingOpportunity != null)
+                {
+                    existingOpportunity.Province = updatedModel.Province;
+                    existingOpportunity.District = updatedModel.District;
+                    existingOpportunity.City = updatedModel.City;
+                    existingOpportunity.Category = updatedModel.Category;
+                    existingOpportunity.Date = updatedModel.Date;
+                    existingOpportunity.Description = updatedModel.Description;
+                    _myDbContext.SaveChanges();
+                    return RedirectToAction("Details", new { title = existingOpportunity.Title });
+                }
+                else
+                {
+                    return View("OpportunityNotFound");
+                }
+            }
+            return View("Details");
+        }
+        [HttpPost]
+        public IActionResult Edit(string title)
+        {
+            var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
+            if (opportunityDetails == null)
+            {
+                return View("OpportunityNotFound");
+            }
+
+            return View(opportunityDetails);
+        }
+        public IActionResult Delete(string title)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingOpportunity = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
+
+                if (existingOpportunity != null)
+                {
+                    _myDbContext.Opportunities.Remove(existingOpportunity);
+                    _myDbContext.SaveChanges();
+                    return RedirectToAction("Events");
+                }
+                else
+                {
+                    return View("OpportunityNotFound");
+                }
+            }
+            return View("Events");
         }
     }
 }

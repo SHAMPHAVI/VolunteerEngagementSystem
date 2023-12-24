@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/styles/detail-style.css">
+</head>
+<body>
+    @if (Model != null)
+    {
+        <form method="post" action="Leave">
+            <div class="header">
+                <a href="Events"> <img src="~/images/Back.jpg" alt="Back" /></a>
+                <input type="hidden" name="EventName" value="@Model.Title">
+                <h1 >@Model.Title</h1>
+            </div>
+            <p><strong>Location:</strong> @Model.Province, @Model.District, @Model.City</p>
+            <p><strong>Category:</strong> @Model.Category</p>
+            <p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
+            <p><strong>Description:</strong> @Model.Description</p>
+            <div class="space"></div>
+            <input type="submit" value="Leave">
+           
+        </form>
+        <form method="post" action="@Url.Action("Contact", "Event")">
+            <input type="hidden" name="EventName" value="@Model.Title">
+            <button type="submit" class="contact-button">Contact Organizer</button>
+        </form>
+    }
+
+    else
+    {
+        <p>Opportunity not found.</p>
+    }
+</body>
+</html>

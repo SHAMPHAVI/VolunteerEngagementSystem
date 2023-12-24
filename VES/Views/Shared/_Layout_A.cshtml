@@ -7,31 +7,18 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/VES.styles.css" asp-append-version="true" />
-    <style>
-        .navbar-white {
-            background-color: #37d3c2;
-            color: white;
-            font-weight: bold;
-        }
-
-        .footer {
-            background-color: #37d3c2;
-            color: white;
-            text-align: center;
-        }
-
-        .navbar {
-            height: 50px; 
-        }
-
-        .logo-image {
-            max-width: 100%;
-            max-height: 50px;
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/styles/layout-style.css">
 </head>
+@using Microsoft.AspNetCore.Http
+@{
+    string userEmail = Context.Session.GetString("email"); 
+    char firstLetter = ' ';
+    if (!string.IsNullOrEmpty(userEmail))
+    {
+        firstLetter = userEmail[0];
+    }
+}
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-white border-bottom box-shadow mb-3">
@@ -56,10 +43,37 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Opportunity" asp-action="Events">Events</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="ViewAll">Notification</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Logout</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white" href="#" id="importantDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-exclamation-circle fa-lg text-error"></i>
+                            </a>
+                            <div class="dropdown-menu important-dropdown-menu" aria-labelledby="importantDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Opportunity" asp-action="AddAlert">
+                                Add Alert
+                                </a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Opportunity" asp-action="ViewAlerts">
+                                View Alerts
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="notification-icon" asp-area="" asp-controller="Opportunity" asp-action="Notification">
+                                <i class="fas fa-bell fa-sm" ></i>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user fa-lg"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">Profile</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Logout</a>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -77,6 +91,7 @@
             &copy; @DateTime.Now.Year VIT Connect. All Rights Reserved. <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

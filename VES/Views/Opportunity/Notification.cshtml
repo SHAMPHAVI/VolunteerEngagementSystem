@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "_Layout_A";
+}
+<h1 style="color: #37d3c2; text-align: center;">Notifications</h1>
+
+@foreach (var vol in Model.AllNotifications)
+{
+    if (vol.UserEmail != Model.UserEmail)
+    {
+        <div class="alert alert-warning" role="alert">
+            <p class="mb-0">
+                Great news! A new volunteer has joined for the <strong>@vol.EventName</strong> event organized by you.
+                Feel free to reach out to them at <strong>@vol.UserEmail</strong>. 
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-success" role="alert">
+            <p class="mb-0">
+                Thank you for joining the <strong>@vol.EventName</strong> event!
+                If you have any questions or need further details, please don't hesitate to contact <strong>@vol.EventEmail</strong>.
+            </p>
+        </div>
+
+    }
+}
+

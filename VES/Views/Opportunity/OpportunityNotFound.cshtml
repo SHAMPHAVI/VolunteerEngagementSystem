@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "_Layout_A";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oops! Opportunity Not Found</title>
+    <link rel="stylesheet" href="~/styles/detail-style.css" />
+</head>
+<body>
+    <div class="header">
+        <a href="Events"> <img src="~/images/Back.jpg" alt="Back" /></a>
+        <h1 class="fun-title">Oh No! Opportunity Not Found</h1>
+    </div>
+    <div class="space"></div>
+    <label class="error-message">
+        <strong>It seems like the opportunity you were searching for has gone on a secret mission.</strong>
+    </label>
+    <div class="space"></div>
+    <a href="@Url.Action("Events", "Opportunity")" class="discover-button">Back to Events</a>
+</body>
+</html>

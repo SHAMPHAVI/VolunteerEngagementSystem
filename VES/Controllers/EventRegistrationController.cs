@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VES.Data;
 using VES.Models;
@@ -24,7 +23,7 @@ namespace VES.Controllers
                 var eventRegistration = new EventRegistration
                 {
                     EventName = eventName,
-                    UserEmail = userEmail
+                    UserEmail = userEmail,
                 };
 
                 if (ModelState.IsValid)

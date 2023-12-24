@@ -21,7 +21,7 @@
     }
     <form action="OrgRegister" method="post">
 
-        <label for="full_name">Full Name</label>
+        <label for="full_name">Organization Name</label>
         <input type="text" id="full_name" name="full_name" required>
 
         <label for="email">Email</label>
@@ -30,20 +30,26 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
 
-        <label for="orgName">Organization Name</label>
-        <input type="text" id="orgName" name="orgName">
+        <label for="skills">Motto</label>
+        <input type="text" id="skills" name="skills">
 
-        <label for="selectedInterests" class="reference-element">Interests</label>
+        <label for="selectedInterests" class="reference-element">Preferred Availability</label>
         <input type="text" id="selectedInterests" readonly onclick="toggleDropdown()" >
         <div id="interestsDropdown" class="dropdown-content">
             <label>
-                <input type="checkbox" class="interest" name="interests[]" value="Animal Welfare"> Animal Welfare
+                <input type="checkbox" class="interest" name="interests[]" value="Daily in Hours"> Daily in Hours
             </label>
             <label>
-                <input type="checkbox" class="interest" name="interests[]" value="Environmental Conservation"> Environmental Conservation
+                <input type="checkbox" class="interest" name="interests[]" value="Long Holidays"> Long Holidays
             </label>
             <label>
-                <input type="checkbox" class="interest" name="interests[]" value="Community Development"> Community Development
+                <input type="checkbox" class="interest" name="interests[]" value="Weekends"> Weekends
+            </label>
+            <label>
+                <input type="checkbox" class="interest" name="interests[]" value="Occasional"> Occasional
+            </label>
+            <label>
+                <input type="checkbox" class="interest" name="interests[]" value="Holidays"> Holidays
             </label>
         </div>
 

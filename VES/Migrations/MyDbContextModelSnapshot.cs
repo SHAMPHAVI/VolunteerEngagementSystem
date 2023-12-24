@@ -62,6 +62,9 @@ namespace VES.Migrations
                     b.Property<string>("EventName")
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime?>("JoinedDate")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("UserEmail")
                         .HasColumnType("longtext");
 
@@ -113,6 +116,7 @@ namespace VES.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("name_en")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("id");
@@ -146,7 +150,6 @@ namespace VES.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Skills")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Email");

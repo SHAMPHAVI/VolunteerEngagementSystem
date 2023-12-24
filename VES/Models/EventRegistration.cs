@@ -13,5 +13,6 @@ namespace VES.Models
         public string? UserEmail { get; set; }
         [Display(Name = "EventName")]
         public string? EventName { get; set; }
+        public DateTime? JoinedDate { get; set;}
     }
 }

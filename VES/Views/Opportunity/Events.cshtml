@@ -82,7 +82,7 @@
                             if ((string.IsNullOrWhiteSpace(locationFilter) || opportunity.Province.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.City.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.District.Contains(locationFilter, StringComparison.OrdinalIgnoreCase))
                             && (string.IsNullOrWhiteSpace(categoryFilter) || opportunity.Category.Contains(categoryFilter, StringComparison.OrdinalIgnoreCase)))
                             {
-                                <a href="Details?title=@opportunity.Title" class="card">
+                                <a href="JoinedEvent?title=@opportunity.Title" class="card">
                                     <div>
                                         <h2>@opportunity.Title</h2>
                                         <p><strong>Location :</strong> @opportunity.City, @opportunity.District, @opportunity.Province</p>

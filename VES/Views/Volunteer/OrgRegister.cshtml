@@ -29,75 +29,17 @@
 
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
-
-        <label for="skills">Motto</label>
-        <input type="text" id="skills" name="skills">
-
-        <label for="selectedInterests" class="reference-element">Preferred Availability</label>
-        <input type="text" id="selectedInterests" readonly onclick="toggleDropdown()" >
-        <div id="interestsDropdown" class="dropdown-content">
-            <label>
-                <input type="checkbox" class="interest" name="interests[]" value="Daily in Hours"> Daily in Hours
-            </label>
-            <label>
-                <input type="checkbox" class="interest" name="interests[]" value="Long Holidays"> Long Holidays
-            </label>
-            <label>
-                <input type="checkbox" class="interest" name="interests[]" value="Weekends"> Weekends
-            </label>
-            <label>
-                <input type="checkbox" class="interest" name="interests[]" value="Occasional"> Occasional
-            </label>
-            <label>
-                <input type="checkbox" class="interest" name="interests[]" value="Holidays"> Holidays
-            </label>
-        </div>
-
-        <label for="availability">Availability</label>
-        <select id="availability" name="availability">
-            <option value="full-time">Daily in Hours</option>
-            <option value="part-time">Long Holidays</option>
-            <option value="weekends">Weekends</option>
-            <option value="occasional">Occasional</option>
-            <option value="holidays">Holidays</option>
+        <label for="category">Category</label>
+        <select id="category" name="category">
+            <option value="Human Services and Welfare">Human Services and Welfare</option>
+            <option value="Environmental and Conservation">Environmental and Conservation</option>
+            <option value="Community Development and Education">Community Development and Education</option>
         </select>
+        <label for="date">Established Date</label>
+        <input type="date" id="date" name="date" required>
         <input type="submit" value="Register">
-    </form>
+       </form>
+    <div class="space"></div>
     <p>Already have an account? <a href="Login">Login</a></p>
-    <script>
-        function toggleDropdown() {
-            var dropdown = document.getElementById('interestsDropdown');
-            if (dropdown.style.display === 'block') {
-                dropdown.style.display = 'none';
-            } else {
-                dropdown.style.display = 'block';
-                var interestsLabel = document.querySelector('.reference-element');
-                dropdown.style.top = interestsLabel.offsetTop + interestsLabel.offsetHeight + 'px';
-            }
-        }
-
-        var interestCheckboxes = document.querySelectorAll('.interest');
-        var selectedInterestsField = document.getElementById('selectedInterests');
-        var interestsDropdown = document.getElementById('interestsDropdown');
-
-        document.addEventListener('click', function (event) {
-            if (event.target !== selectedInterestsField && event.target !== interestsDropdown) {
-                interestsDropdown.style.display = 'none';
-            }
-        });
-
-        interestCheckboxes.forEach(function (checkbox) {
-            checkbox.addEventListener('change', function () {
-                var selectedInterests = [];
-                interestCheckboxes.forEach(function (checkbox) {
-                    if (checkbox.checked) {
-                        selectedInterests.push(checkbox.value);
-                    }
-                });
-                selectedInterestsField.value = selectedInterests.join(', ');
-            });
-        });
-    </script>
-
 </body>
 </html>

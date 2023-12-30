@@ -269,6 +269,10 @@
       "PackagePath": "staticwebassets\\styles\\detail-style.css"
     },
     {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\edit-style.css",
+      "PackagePath": "staticwebassets\\styles\\edit-style.css"
+    },
+    {
       "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\form-style.css",
       "PackagePath": "staticwebassets\\styles\\form-style.css"
     },
@@ -287,6 +291,10 @@
     {
       "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\layout-style.css",
       "PackagePath": "staticwebassets\\styles\\layout-style.css"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\profile-style.css",
+      "PackagePath": "staticwebassets\\styles\\profile-style.css"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.VES.Microsoft.AspNetCore.StaticWebAssets.props",

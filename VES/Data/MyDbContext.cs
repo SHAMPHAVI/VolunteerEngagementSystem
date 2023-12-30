@@ -18,6 +18,9 @@ namespace VES.Data
         public DbSet<Province> Provinces { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<AlertModel> AlertInfo { get; set; }
+        public DbSet<Alert> Alerts { get; set; }
+        public DbSet<RateModel> EventRating { get; set; }
 
     }
 }

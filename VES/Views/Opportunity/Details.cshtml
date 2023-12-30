@@ -1,34 +1,39 @@
-﻿@{
-    Layout = "_Layout_A";
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/styles/detail-style.css">
 </head>
 <body>
-    @if (Model != null)
-    {
-        <form method="post" action="@Url.Action("Edit", "Opportunity", new { title = Model.Title })">
-            <div class="header">
-                <a href="Events"> <img src="~/images/Back.jpg" alt="Back" /></a>
-                <h1>@Model.Title</h1>
-            </div>
-            <p><strong>Location:</strong> @Model.Province, @Model.District, @Model.City</p>
-            <p><strong>Category:</strong> @Model.Category</p>
-            <p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
-            <p><strong>Description:</strong> @Model.Description</p>
-            <div class="space"></div>
-            <input type="submit" value="Edit">
-        </form>
-        <form method="post" action="@Url.Action("Delete", "Opportunity", new { title = Model.Title })">
-            <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this opportunity?');">
-        </form>
-    }
+    <div>
+        @if (Model != null)
+        {
+            <form method="post" action="@Url.Action("Edit", "Opportunity", new { title = Model.Title })">
+                <div class="header">
+                    <a href="Events"><img src="~/images/Back.jpg" alt="Back" /></a>
+                    <h1 class="mt-2">@Model.Title</h1>
+                </div>
+                <p><strong>Location:</strong> @Model.Province, @Model.District, @Model.City</p>
+                <p><strong>Category:</strong> @Model.Category</p>
+                <p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
+                <p><strong>Description:</strong> </p>
+                <div class="description-container mb-3">
+                    <p>@Model.Description</p>
+                </div>
+                <input type="submit" value="Edit" class="btn btn-primary">
+            </form>
+            <form method="post" action="@Url.Action("Delete", "Opportunity", new { title = Model.Title })">
+                <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this opportunity?');">
+            </form>
+        }
+        else
+        {
+            <p class="alert alert-warning">Opportunity not found.</p>
+        }
+    </div>
 
-    else
-    {
-        <p>Opportunity not found.</p>
-    }
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

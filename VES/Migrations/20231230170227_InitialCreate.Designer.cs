@@ -11,7 +11,7 @@ using VES.Data;
 namespace VES.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20231213103323_InitialCreate")]
+    [Migration("20231230170227_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -51,6 +51,74 @@ namespace VES.Migrations
                     b.HasKey("Title");
 
                     b.ToTable("Opportunities");
+                });
+
+            modelBuilder.Entity("VES.Models.Alert", b =>
+                {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("BloodGroup")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("City")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("District")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Province")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Team")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Alerts");
+                });
+
+            modelBuilder.Entity("VES.Models.AlertModel", b =>
+                {
+                    b.Property<string>("Email")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("BloodGroup")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("City")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("District")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Province")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Team")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Email");
+
+                    b.ToTable("AlertInfo");
                 });
 
             modelBuilder.Entity("VES.Models.EventRegistration", b =>
@@ -127,20 +195,45 @@ namespace VES.Migrations
                     b.ToTable("Provinces");
                 });
 
+            modelBuilder.Entity("VES.Models.RateModel", b =>
+                {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("EventEmail")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EventName")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EventRating");
+                });
+
             modelBuilder.Entity("VES.Models.VolunteerRegister", b =>
                 {
                     b.Property<string>("Email")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("Availability")
+                    b.Property<string>("Category")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Date")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Full_Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Interests")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -150,9 +243,6 @@ namespace VES.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("Role")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Skills")
                         .HasColumnType("longtext");
 
                     b.HasKey("Email");

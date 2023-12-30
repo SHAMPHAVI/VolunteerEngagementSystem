@@ -13,12 +13,11 @@ p {
     text-align: left;
     max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
     border: 5px solid #fff;
     border-radius: 1px;
-    box-shadow:  20px 20px 20px rgba(0, 0, 0, 0.6);
     background-color: #fff;
-    padding-bottom:4px
+    padding-bottom:2px
 }
 
 img{
@@ -74,6 +73,39 @@ input[type="submit"] {
         background-color: #2aa5a0;
     }
 .space{
-    padding-top:
-        50px
-}-
+    padding-top: 5px
+}
+h2{
+    text-align:left;
+    padding-top:30px;
+}
+.rating {
+    display: inline-block;
+}
+
+    .rating input {
+        display: none;
+    }
+
+    .rating label {
+        position: relative;
+        cursor: pointer;
+        display: inline-block;
+        width: 50px;
+        margin: 0;
+        padding: 0;
+    }
+
+        .rating label:before {
+            content: '\2605';
+            font-size: 50px;
+            color: #f90; 
+        }
+
+    .rating input:checked ~ label ~ label:before {
+        color: #ccc;
+    }
+.rate{
+    width: 140px;
+    align-content:center;
+}

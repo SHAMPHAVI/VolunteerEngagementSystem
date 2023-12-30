@@ -1,0 +1,38 @@
+﻿<link rel="stylesheet" href="~/styles/edit-style.css">
+@model VolunteerRegister
+
+@{
+    Layout = "_Layout_A";
+}
+
+<h1>Edit Volunteer Profile</h1>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <form asp-action="EditProfile" method="post">
+                    <div class="form-group">
+                        <label for="FullName">Organization Name</label>
+                        <input type="text" class="form-control" id="FullName" name="Full_Name" value="@Model.Full_Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Established Date</label>
+                        <input type="date" class="form-control" id="date" name="Date" value="@Model.Date">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Category">Category</label>
+                        <select class="form-control" id="Category" name="Category">
+                            <option value="Human Services and Welfare">Human Services and Welfare</option>
+                            <option value="Environmental and Conservation">Environmental and Conservation</option>
+                            <option value="Community Development and Education">Community Development and Education</option>
+                        </select>
+                    </div>
+                    <div class="space"></div>
+                    <button type="submit" class="btn">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

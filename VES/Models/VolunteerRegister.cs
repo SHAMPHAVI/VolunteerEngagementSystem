@@ -19,14 +19,11 @@ namespace VES.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Skills")]
-        public string? Skills { get; set; }
+        [Display(Name = "Category")]
+        public string? Category { get; set; }
 
-        [Display(Name = "Availability")]
-        public string Availability { get; set; }
-
-        [Display(Name = "Interests")]
-        public string Interests { get; set; }
+        [Display(Name = "Ddate")]
+        public string Date { get; set; }
         public string? Role { get; set; }
     }
 }

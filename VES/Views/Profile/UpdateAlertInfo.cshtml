@@ -1,0 +1,158 @@
+﻿@model AlertModel
+@{
+    Layout = "_Layout_A";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/styles/i-style.css">
+</head>
+<body>
+    <header>
+        <h1>Update Alert Information</h1>
+    </header>
+    <main>
+        <form action="UpdateInfo" method="post">
+            <table>
+                <tr>
+                    <label for="bloodGroup">Blood Group</label>
+
+                    <select id="bloodGroup" name="bloodGroup">
+                        <option value="">Please choose a blood group</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </tr>
+                <div class="space"></div>
+                <tr>
+                    <td class="field-label">
+                        <label for="province">Province</label>
+                    </td>
+                    <td class="field-label">
+                        <label for="district">District</label>
+                    </td>
+                    <td class="field-label">
+                        <label for="city">City</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="field-select">
+                        <select id="province" name="province" onchange="updateDistricts()">
+                            <option id="" value="">Please choose a province</option>
+                            <option value="Central" id="2">Central</option>
+                            <option value="Eastern" id="6">Eastern</option>
+                            <option value="North Central" id="8">North Central</option>
+                            <option value="North Western" id="4">North Western</option>
+                            <option value="Northern" id="9">Northern</option>
+                            <option value="Sabaragamuwa" id="5">Sabaragamuwa</option>
+                            <option value="Southern" id="3">Southern</option>
+                            <option value="Uva" id="7">Uva</option>
+                            <option value="Western" id="1">Western</option>
+                        </select>
+                    </td>
+                    <td class="field-select">
+                        <select id="district" name="district" onchange="updateCities()" disabled>
+                            <option id="" value="">Please choose a province first</option>
+                        </select>
+                    </td>
+                    <td class="field-select">
+                        <select id="city" name="city" disabled>
+                            <option id="" value="">Please choose a district first</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <label for="team">Team</label>
+                    <select id="team" name="team">
+                        <option value="">Please choose a team</option>
+                        <option value="LocalEmergencyResponseTeams">Local Emergency Response Teams</option>
+                        <option value="RedCrossAndOtherReliefOrganizations">Red Cross and Other Relief Organizations</option>
+                        <option value="MedicalResponseTeams">Medical Response Teams</option>
+                        <option value="SearchAndRescueTeams">Search and Rescue Teams</option>
+                        <option value="CommunityEmergencyShelterVolunteers">Community Emergency Shelter Volunteers</option>
+                        <option value="EmergencyHotlinesAndSupportServices">Emergency Hotlines and Support Services</option>
+                        <option value="DisasterReliefSupplyDistribution">Disaster Relief Supply Distribution</option>
+                        <option value="AnimalRescueAndCare">Animal Rescue and Care</option>
+                        <option value="RemoteEmergencySupport">Remote Emergency Support</option>
+                        <option value="CommunityEmergencyPlanningCommittees">Community Emergency Planning Committees</option>
+                    </select>
+                </tr>
+                <div class="space"></div>
+            </table>
+            <input type="submit" value="Save Changes">
+        </form>
+    </main>
+    <script>
+        function getprovinces() {
+            fetch(`/Opportunity/GetProvinces`)
+                .then(response => response.json())
+                .then(data => {
+                    var provinceDropdown = document.getElementById("province");
+                    provinceDropdown.innerHTML = "<option id = '' value=''>Please choose a province</option>";
+
+                    data.forEach(province => {
+                        var option = document.createElement("option");
+                        option.value = province.name_en;
+                        option.id = province.id;
+                        option.text = province.name_en;
+                        provinceDropdown.appendChild(option);
+                    });
+
+                });
+        }
+    </script>
+    <script>
+        function updateDistricts() {
+            var selectedProvinceOption = document.getElementById("province");
+            var selectedProvince = selectedProvinceOption.options[selectedProvinceOption.selectedIndex].id;
+            fetch(`/Opportunity/GetDistricts?province=${selectedProvince}`)
+                .then(response => response.json())
+                .then(data => {
+                    var districtDropdown = document.getElementById("district");
+                    districtDropdown.innerHTML = "<option id = '' value=''>Please choose a district</option>";
+
+                    data.forEach(district => {
+                        var option = document.createElement("option");
+                        option.value = district.name_en;
+                        option.id = district.id;
+                        option.text = district.name_en;
+                        districtDropdown.appendChild(option);
+                    });
+                    districtDropdown.removeAttribute("disabled");
+
+                });
+        }
+    </script>
+    <script>
+        function updateCities() {
+            var selectedDistrictOption = document.getElementById("district");
+            var selectedDistrict = selectedDistrictOption.options[selectedDistrictOption.selectedIndex].id;
+            fetch(`/Opportunity/GetCities?district=${selectedDistrict}`)
+                .then(response => response.json())
+                .then(data => {
+                    var cityDropdown = document.getElementById("city");
+                    cityDropdown.innerHTML = "<option id = '' value=''>Please choose a city</option>";
+
+                    data.forEach(city => {
+                        var option = document.createElement("option");
+                        option.value = city.name_en;
+                        option.id = city.id;
+                        option.text = city.name_en;
+                        cityDropdown.appendChild(option);
+                    });
+                    cityDropdown.removeAttribute("disabled");
+
+                });
+        }
+    </script>
+</body>
+</html>

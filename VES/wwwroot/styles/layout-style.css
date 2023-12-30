@@ -20,36 +20,29 @@
     display: block;
     margin: 0 auto;
 }
-.user-icon {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #fefefe;
-    color: #37d3c2;
-    font-size: 18px;
-    line-height: 40px;
-    text-align: center;
-    border: 2px solid #37d3c2;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
+.fa-user{
+    color: #fff;
+    text-shadow: 2px 2px 5px #1f86cb;
 }
 
-    .user-icon:hover {
-        background-color: #37d3c2; 
-        color: #fff;
-    }
+.fa-user:hover {
+    background-color: #37d3c2;
+    color: #1f86cb;
+    text-shadow: 2px 2px 5px #fff;
+}
 .notification-icon {
     position: relative;
     display: inline-block;
-    font-size: 24px;
-    color: #ecd448;
+    font-size: 27px;
+    color: #fff;
     cursor: pointer;
     transition: color 0.3s ease;
+    text-shadow: 2px 2px 5px #ffd700;
 }
 
     .notification-icon:hover {
         color: #ffd700;
+        text-shadow: 2px 2px 5px #fff;
     }
 .notification-icon,
 .user-icon,
@@ -59,11 +52,16 @@
 .text-error {
     color: #ff0000; 
 }
-.dropdown-menu {
-    min-width: 75px;
-    right: 0;
-    left: auto;
-}
 .important-dropdown-menu {
     min-width: 110px;
+}
+#importantDropdown {
+    color: #fff; text-shadow: 2px 2px 5px #ff0000;
+}
+.fa-exclamation-circle:hover {
+    color: #ff0000;
+    text-shadow: 2px 2px 5px #fff;
+}
+.dropdown-menu.profile-dropdown-menu.show{
+    min-width: 55px;
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "44KvD1CTchOPf4fYOa3AP+i4ub0eR5cv68jPTHC/p24=",
+  "Hash": "j2hSk01TRGTfIuBrgHFJSCo07JHqoVe/GaTGy1iqD78=",
   "Source": "VES",
   "BasePath": "_content/VES",
   "Mode": "Default",
@@ -1309,6 +1309,25 @@
       "OriginalItemSpec": "wwwroot\\styles\\detail-style.css"
     },
     {
+      "Identity": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\edit-style.css",
+      "SourceId": "VES",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\",
+      "BasePath": "_content/VES",
+      "RelativePath": "styles/edit-style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\styles\\edit-style.css"
+    },
+    {
       "Identity": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\form-style.css",
       "SourceId": "VES",
       "SourceType": "Discovered",
@@ -1402,6 +1421,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\styles\\layout-style.css"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\profile-style.css",
+      "SourceId": "VES",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\",
+      "BasePath": "_content/VES",
+      "RelativePath": "styles/profile-style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\styles\\profile-style.css"
     }
   ]
 }

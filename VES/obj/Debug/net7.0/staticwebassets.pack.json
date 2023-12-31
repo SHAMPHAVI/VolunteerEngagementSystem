@@ -261,6 +261,14 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\admin-layout-style.css",
+      "PackagePath": "staticwebassets\\styles\\admin-layout-style.css"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\calendar-style.css",
+      "PackagePath": "staticwebassets\\styles\\calendar-style.css"
+    },
+    {
       "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\card-style.css",
       "PackagePath": "staticwebassets\\styles\\card-style.css"
     },
@@ -295,6 +303,10 @@
     {
       "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\profile-style.css",
       "PackagePath": "staticwebassets\\styles\\profile-style.css"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\rate-style.css",
+      "PackagePath": "staticwebassets\\styles\\rate-style.css"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.VES.Microsoft.AspNetCore.StaticWebAssets.props",

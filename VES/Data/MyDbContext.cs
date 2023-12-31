@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VES.Models;
+using VES.Models.Admin;
 using VES.Models.Location;
 
 namespace VES.Data
@@ -13,6 +14,7 @@ namespace VES.Data
 
 
         public DbSet<VolunteerRegister> Volunteers { get; set; }
+        public DbSet<AdminLogin> Admin { get; set; }
         public DbSet<OpportunityModel> Opportunities { get; set; }
         public DbSet<EventRegistration> EventRegistrations { get; set; }
         public DbSet<Province> Provinces { get; set; }
@@ -21,6 +23,7 @@ namespace VES.Data
         public DbSet<AlertModel> AlertInfo { get; set; }
         public DbSet<Alert> Alerts { get; set; }
         public DbSet<RateModel> EventRating { get; set; }
+        public DbSet<ParticipantRating> ParticipantRating { get; set; }
 
     }
 }

@@ -50,6 +50,20 @@ namespace VES.Migrations
                     b.ToTable("Opportunities");
                 });
 
+            modelBuilder.Entity("VES.Models.Admin.AdminLogin", b =>
+                {
+                    b.Property<string>("Email")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Email");
+
+                    b.ToTable("Admin");
+                });
+
             modelBuilder.Entity("VES.Models.Alert", b =>
                 {
                     b.Property<Guid?>("Id")
@@ -190,6 +204,35 @@ namespace VES.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Provinces");
+                });
+
+            modelBuilder.Entity("VES.Models.ParticipantRating", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("EventName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Participant")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ParticipantRating");
                 });
 
             modelBuilder.Entity("VES.Models.RateModel", b =>

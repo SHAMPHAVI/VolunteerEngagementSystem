@@ -30,6 +30,9 @@
             display: block;
             margin: 0 auto;
         }
+        .dec:hover{
+            text-decoration:underline;
+        }
     </style>
 </head>
 <body>
@@ -50,6 +53,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="AboutUs">About us</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white dec" asp-area="" asp-controller="Admin" asp-action="Login">Login as Admin</a>
                         </li>
                     </ul>
                 </div>

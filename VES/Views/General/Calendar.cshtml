@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "_Layout_A";
+}
+@using VES.Helpers
+
+<div style="text-align: center; margin-bottom: 20px;">
+    <form asp-action="Calendar" asp-controller="General" method="get">
+        <label for="year">Year:</label>
+        <select id="year" name="year" asp-items="HtmlHelpers.GetYearOptions(Model.Year)">
+            <!-- Populate year options -->
+        </select>
+
+        <label for="month">Month:</label>
+        <select id="month" name="month" asp-items="HtmlHelpers.GetMonthOptions(Model.Month)">
+            <!-- Populate month options -->
+        </select>
+
+        <button type="submit" class="btn btn-primary">Go</button>
+    </form>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var week in Model.GetCalendarWeeks(Model.Year, Model.Month))
+            {
+                <tr>
+                    @foreach (var day in week.Days)
+                    {
+                        <td style="width: 100px; height: 100px; overflow: hidden; white-space: nowrap;">
+                            <strong>@day.Day</strong><br />
+
+                            @foreach (var evt in Model.GetEventsForDay(Model.Year, Model.Month, day.Day))
+                            {
+                                <div>@HtmlHelpers.Truncate(evt.Title, 20)</div>
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

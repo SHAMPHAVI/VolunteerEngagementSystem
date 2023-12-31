@@ -18,12 +18,23 @@
 <body>
     @if (Model != null)
     {
-        <form method="post" action="RateEvent">
-            <div class="header">
+        
+        <form>
+            <div class="head">
                 <a href="Events"> <img src="~/images/Back.jpg" alt="Back" /></a>
+                <h1>@Model.Title</h1>
+            </div>
+            <p><strong>Location:</strong> @Model.Province, @Model.District, @Model.City</p>
+            <p><strong>Category:</strong> @Model.Category</p>
+            <p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
+            <div class="p1">
+                <p>@Model.Description</p>
+            </div>
+        </form>
+        <form method="post" action="RateEvent">
+            <div class="head">
                 <input type="hidden" name="EventName" value="@Model.Title">
                 <input type="hidden" name="EventEmail" value="@Model.UserEmail">
-                <h1>@Model.Title</h1>
             </div>
             <div class="form-group">
                 <div class="rating">
@@ -40,16 +51,9 @@
                 </div>
                 <input type="hidden" id="Rating" name="Rating" value="">
                 <div>
-                <button class="rate" type="submit">Submit Rating</button>
+                    <button class="rate" type="submit">Submit Rating</button>
                 </div>
-            </div>                       
-        </form>
-        <form>
-            <h2><strong>Details</strong></h2>
-            <p><strong>Location:</strong> @Model.Province, @Model.District, @Model.City</p>
-            <p><strong>Category:</strong> @Model.Category</p>
-            <p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
-            <p><strong>Description:</strong> @Model.Description</p>
+            </div>
         </form>
     }
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "j2hSk01TRGTfIuBrgHFJSCo07JHqoVe/GaTGy1iqD78=",
+  "Hash": "DKw3T1IG0WyWJ0m+u1YEzbyd9w/Dl1dw8DS4gVOlo/w=",
   "Source": "VES",
   "BasePath": "_content/VES",
   "Mode": "Default",
@@ -1271,6 +1271,44 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
+      "Identity": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\admin-layout-style.css",
+      "SourceId": "VES",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\",
+      "BasePath": "_content/VES",
+      "RelativePath": "styles/admin-layout-style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\styles\\admin-layout-style.css"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\calendar-style.css",
+      "SourceId": "VES",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\",
+      "BasePath": "_content/VES",
+      "RelativePath": "styles/calendar-style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\styles\\calendar-style.css"
+    },
+    {
       "Identity": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\card-style.css",
       "SourceId": "VES",
       "SourceType": "Discovered",
@@ -1440,6 +1478,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\styles\\profile-style.css"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\rate-style.css",
+      "SourceId": "VES",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\",
+      "BasePath": "_content/VES",
+      "RelativePath": "styles/rate-style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\styles\\rate-style.css"
     }
   ]
 }

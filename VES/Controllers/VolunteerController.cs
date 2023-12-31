@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using VES.Models;
+using static VES.Controllers.OpportunityController;
 
 namespace VES.Controllers
 {
@@ -130,6 +131,85 @@ namespace VES.Controllers
 
             return View();
         }
+        [HttpPost]
+        public IActionResult AddRating(ParticipantRating model)
+        {
+            Random random = new Random();
+            model.UserEmail= HttpContext.Session.GetString("email");
+            model.ID = random.Next();
+            model.Date = DateTime.Now.Date;
+            var existingRating = _myDbContext.ParticipantRating
+            .FirstOrDefault(pr => pr.Participant == model.Participant && pr.EventName == model.EventName);
+            if (existingRating != null)
+            {
+                existingRating.Rating = model.Rating;
+                existingRating.Date = model.Date;
+            }
+            else
+            {
+                _myDbContext.ParticipantRating.Add(model);
+            }
+            _myDbContext.SaveChanges();
+            return RedirectToAction("Participant_Rating","Opportunity");
+        }
+        public IActionResult Event_Rating()
+        {
+            DateTime today = DateTime.Now.Date;
+            var user = HttpContext.Session.GetString("email");
+            List<OpportunityModel> joinedEvents = new List<OpportunityModel>();
+            var regEvents = _myDbContext.EventRegistrations.Where(o => o.UserEmail == user).ToList();
+            foreach (var reg in regEvents)
+            {
+                var title = reg.EventName;
+                var events = _myDbContext.Opportunities.Where(o => o.Title == title);
+                joinedEvents.AddRange(events);
+            }
+            var pastEvents = joinedEvents.Where(o => o.Date < today).ToList();
+            var eventRatings = new List<EventRatingViewModel>();
 
+            foreach (var eventRegistration in pastEvents)
+            {
+                var rating = _myDbContext.EventRating
+                    .FirstOrDefault(pr => pr.EventName == eventRegistration.Title);
+
+                var ViewModel = new EventRatingViewModel
+                {
+                    EventName = eventRegistration.Title,
+                    EventEmail = eventRegistration.UserEmail,
+                    Rating = rating != null ? rating.Rating : null
+                };
+
+                eventRatings.Add(ViewModel);
+            }
+
+            return View(eventRatings);
+        }
+        public class EventRatingViewModel
+        {
+            public string? EventName { get; set; }
+            public string? EventEmail { get; set; }
+            public int? Rating { get; set; }
+        }
+        [HttpPost]
+        public IActionResult UpdateRating(RateModel model)
+        {
+            Random random = new Random();
+            model.UserEmail = HttpContext.Session.GetString("email");
+            model.Id = Guid.NewGuid();
+            model.Date = DateTime.Now.Date;
+            var existingRating = _myDbContext.EventRating
+            .FirstOrDefault(pr => pr.UserEmail == model.UserEmail && pr.EventName == model.EventName);
+            if (existingRating != null)
+            {
+                existingRating.Rating = model.Rating;
+                existingRating.Date = model.Date;
+            }
+            else
+            {
+                _myDbContext.EventRating.Add(model);
+            }
+            _myDbContext.SaveChanges();
+            return RedirectToAction("Event_Rating", "Volunteer");
+        }
     }
 }

@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@(ViewData["Title"] ?? "Admin Dashboard")</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-xzVRP41Pyz2N6P3zpiX9KotYXQq2PZ0IBiANPKx7zWOxp0F5WnYtFZZ1lWbp3QoU" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/styles/admin-layout-style.css">
+</head>
+<body>
+    <div id="dashboard">
+        <div id="sidebar">
+            <button id="toggleBtn" class="btn btn-secondary" onclick="toggleSidebar()">
+                <i id="toggleIcon" class="fas fa-arrow-left"></i>
+            </button>
+
+            <ul id="menu" class="nav flex-column">
+                <li class="nav-item"><a class="nav-link" href="#" onclick="loadContent('Menu1Content')">Menu 1</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="loadContent('Menu2Content')">Menu 2</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="loadContent('Menu3Content')">Menu 3</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="loadContent('Menu4Content')">Menu 4</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="loadContent('Menu5Content')">Menu 5</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="loadContent('Menu6Content')">Menu 6</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="loadContent('Menu7Content')">Menu 7</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="loadContent('Menu8Content')">Menu 8</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="loadContent('Menu9Content')">Menu 9</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="loadContent('Menu10Content')">Menu 10</a></li>
+            </ul>
+        </div>
+
+        <!-- Content -->
+        <div id="content">
+            <div id="dynamicContent">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+        @await RenderSectionAsync("Scripts", required: false)
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            var toggleBtn = document.getElementById('toggleBtn');
+            var toggleIcon = document.getElementById('toggleIcon');
+
+            sidebar.style.width = (sidebar.style.width === '200px' || sidebar.style.width === '') ? '0' : '200px';
+            toggleBtn.classList.toggle('collapsed');
+        }
+        function loadContent(menu) {
+            var contentContainer = document.getElementById('dynamicContent');
+            contentContainer.innerHTML = 'Content for ' + menu;
+        }
+    </script>
+</body>
+</html>

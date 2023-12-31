@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = "_Layout_A";
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -9,7 +12,7 @@
         @if (Model != null)
         {
             <form method="post" action="@Url.Action("Edit", "Opportunity", new { title = Model.Title })">
-                <div class="header">
+                <div class="head">
                     <a href="Events"><img src="~/images/Back.jpg" alt="Back" /></a>
                     <h1 class="mt-2">@Model.Title</h1>
                 </div>
@@ -17,7 +20,7 @@
                 <p><strong>Category:</strong> @Model.Category</p>
                 <p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
                 <p><strong>Description:</strong> </p>
-                <div class="description-container mb-3">
+                <div class="p1">
                     <p>@Model.Description</p>
                 </div>
                 <input type="submit" value="Edit" class="btn btn-primary">

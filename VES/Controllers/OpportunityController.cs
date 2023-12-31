@@ -20,6 +20,39 @@ namespace VES.Controllers
         {
             return View();
         }
+        public IActionResult Participant_Rating()
+        {
+            var user = HttpContext.Session.GetString("email");
+            var events = _myDbContext.EventRegistrations
+                .Where(e => e.EventEmail == user)
+                .ToList();
+
+            var participantRatings = new List<ParticipantRatingViewModel>();
+
+            foreach (var eventRegistration in events)
+            {
+                var rating = _myDbContext.ParticipantRating
+                    .FirstOrDefault(pr => pr.EventName == eventRegistration.EventName && pr.Participant == eventRegistration.UserEmail);
+
+                var participantRatingViewModel = new ParticipantRatingViewModel
+                {
+                    EventName = eventRegistration.EventName,
+                    Participant = eventRegistration.UserEmail,
+                    Rating = rating != null ? rating.Rating : null
+                };
+
+                participantRatings.Add(participantRatingViewModel);
+            }
+
+            return View(participantRatings);
+        }
+
+        public class ParticipantRatingViewModel
+        {
+            public string? Participant { get; set; }
+            public string? EventName { get; set; }
+            public int? Rating { get; set; }
+        }
 
         public IActionResult Details(string title)
         {
@@ -115,10 +148,11 @@ namespace VES.Controllers
         }
         public IActionResult Events()
         {
-            List<OpportunityModel> joinedEvents = new List<OpportunityModel>();
             DateTime today = DateTime.Now.Date;
             string userEmail = HttpContext.Session.GetString("email");
             var myEvents = _myDbContext.Opportunities.Where(o => o.UserEmail == userEmail).ToList();
+            VolunteerRegister volunteer = _myDbContext.Volunteers.FirstOrDefault(v => v.Email == userEmail);
+            List<OpportunityModel> joinedEvents = new List<OpportunityModel>();
             var regEvents = _myDbContext.EventRegistrations.Where(o => o.UserEmail == userEmail).ToList();
             foreach (var reg in regEvents)
             {
@@ -135,9 +169,16 @@ namespace VES.Controllers
                 MyEvents = myEvents,
                 JoinedEvents = futureEvents,
                 OtherEvents = notJoinedEvents,
-                PastEvents = pastEvents,
+                PastEvents = pastEvents
             };
-            return View(viewModel);
+            if (volunteer.Role == "Volunteer")
+            {
+                return View(viewModel);
+            }
+            else
+            {
+                return View("MyEvents",viewModel);
+            }
         }
         public class MyEventsViewModel
         {
@@ -319,50 +360,66 @@ namespace VES.Controllers
             List<Alert> locAlerts = new List<Alert>();
             List<Alert> bTypeAlerts = new List<Alert>();
             List<Alert> teamAlerts = new List<Alert>();
+            List<Alert> myAlerts = new List<Alert>();
             string user = HttpContext.Session.GetString("email");
-            var info = _myDbContext.AlertInfo.FirstOrDefault(o => o.Email == user);
-            var alert = _myDbContext.Alerts.FirstOrDefault(o => o.UserEmail != user);
-            switch (alert.Location)
+            VolunteerRegister volunteer = _myDbContext.Volunteers.FirstOrDefault(v => v.Email == user);
+            if (volunteer.Role == "Volunteer")
             {
-                case "City":
-                    if (alert.City == info.City)
-                    {
-                        locAlerts.Add(alert);
-                    }
-                    break;
-                case "Province":
-                    if (alert.Province == info.Province)
-                    {
-                        locAlerts.Add(alert);
-                    }
-                    break;
-                case "District":
-                    if (alert.District == info.District)
-                    {
-                        locAlerts.Add(alert);
-                    }
-                    break;
-            }
-            if(alert.BloodGroup == info.BloodGroup)
-            {
-                bTypeAlerts.Add(alert);
-            }
-            if (alert.Team == info.Team)
-            {
-                teamAlerts.Add(alert);
-            }
-            List<Alert> sortedLocAlerts = locAlerts.OrderBy(a => a.DueDate).ToList();
-            List<Alert> sortedbTypeAlerts = bTypeAlerts.OrderBy(a => a.DueDate).ToList();
-            List<Alert> sortedteamAlerts = teamAlerts.OrderBy(a => a.DueDate).ToList();
+                var info = _myDbContext.AlertInfo.FirstOrDefault(o => o.Email == user);
+                var alert = _myDbContext.Alerts.FirstOrDefault(o => o.UserEmail != user);
+                switch (alert.Location)
+                {
+                    case "City":
+                        if (alert.City == info.City)
+                        {
+                            locAlerts.Add(alert);
+                        }
+                        break;
+                    case "Province":
+                        if (alert.Province == info.Province)
+                        {
+                            locAlerts.Add(alert);
+                        }
+                        break;
+                    case "District":
+                        if (alert.District == info.District)
+                        {
+                            locAlerts.Add(alert);
+                        }
+                        break;
+                }
+                if (alert.BloodGroup == info.BloodGroup)
+                {
+                    bTypeAlerts.Add(alert);
+                }
+                if (alert.Team == info.Team)
+                {
+                    teamAlerts.Add(alert);
+                }
+                List<Alert> sortedLocAlerts = locAlerts.OrderBy(a => a.DueDate).ToList();
+                List<Alert> sortedbTypeAlerts = bTypeAlerts.OrderBy(a => a.DueDate).ToList();
+                List<Alert> sortedteamAlerts = teamAlerts.OrderBy(a => a.DueDate).ToList();
 
-            var viewModel = new MyAlertViewModel
-            {
-                LocAlerts = sortedLocAlerts,
-                BTypeAlerts = sortedbTypeAlerts, 
-                TeamAlerts = sortedteamAlerts
-            };
+                var viewModel = new MyAlertViewModel
+                {
+                    LocAlerts = sortedLocAlerts,
+                    BTypeAlerts = sortedbTypeAlerts,
+                    TeamAlerts = sortedteamAlerts
+                };
 
-            return View(viewModel);
+                return View(viewModel);
+            }
+            else
+            {
+                var alert = _myDbContext.Alerts.FirstOrDefault(o => o.UserEmail == user);
+                if (alert.UserEmail == user)
+                {
+                    myAlerts.Add(alert);
+                }
+                List<Alert> sortedAlerts = myAlerts.OrderBy(a => a.DueDate).ToList();
+                return View("MyAlerts", sortedAlerts);
+            }
+            
         }
 
         public class MyAlertViewModel
@@ -376,6 +433,7 @@ namespace VES.Controllers
         {
             model.UserEmail = HttpContext.Session.GetString("email");
             model.Id = Guid.NewGuid();
+            model.Date= DateTime.Now.Date;
             var name = model.EventName;
             if (ModelState.IsValid)
             {

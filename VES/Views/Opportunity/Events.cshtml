@@ -24,9 +24,6 @@
             <li class="nav-item">
                 <a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tab3" onclick="openTab('tab3')">Other Events</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="tab4-tab" data-toggle="tab" href="#tab4" onclick="openTab('tab4')">Past Events</a>
-            </li>
         </ul>
 
         <div class="tab-content mt-2">
@@ -41,6 +38,9 @@
 
                         <input type="submit" value="Filter" />
                         <a href="?" class="clear-filter-button">Clear</a>
+                        <p1 class="gap"></p1>
+                        <a href="Participant_Rating" class="rating-button">Participant Rating</a>
+                        <p1 class="gap-less"></p1>
                         <a href="Add" class="add-button">+ Add Opportunity</a>
                     </form>
                 </div>
@@ -76,6 +76,9 @@
 
                         <input type="submit" value="Filter" />
                         <a href="?" class="clear-filter-button">Clear</a>
+                        <p1 class="gap"></p1>
+                        <p1 class="gap"></p1>
+                        <a asp-area="" asp-controller="Volunteer" asp-action="Event_Rating" class="add-button">Rate Past Events</a>
                     </form>
                 </div>
                 <div class="cardcont">
@@ -120,39 +123,6 @@
                             && (string.IsNullOrWhiteSpace(categoryFilter) || opportunity.Category.Contains(categoryFilter, StringComparison.OrdinalIgnoreCase)))
                             {
                                 <a href="JoinEvents?title=@opportunity.Title" class="card">
-                                    <div>
-                                        <h2>@opportunity.Title</h2>
-                                        <p><strong>Location :</strong> @opportunity.City, @opportunity.District, @opportunity.Province</p>
-                                        <p><strong>Category :</strong> @opportunity.Category</p>
-                                        <p><strong>Date     :</strong> @opportunity.Date.ToShortDateString()</p>
-                                    </div>
-                                </a>
-                            }
-                        }
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="tab4">
-                <div class="filter">
-                    <form method="get">
-                        <label for="location">Location:</label>
-                        <input type="text" id="location" name="location" value="@locationFilter" />
-
-                        <label for="category">Category:</label>
-                        <input type="text" id="category" name="category" value="@categoryFilter" />
-
-                        <input type="submit" value="Filter" />
-                        <a href="?" class="clear-filter-button">Clear</a>
-                    </form>
-                </div>
-                <div class="cardcont">
-                    <div class="cards-container">
-                        @foreach (var opportunity in Model.PastEvents)
-                        {
-                            if ((string.IsNullOrWhiteSpace(locationFilter) || opportunity.Province.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.City.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.District.Contains(locationFilter, StringComparison.OrdinalIgnoreCase))
-                            && (string.IsNullOrWhiteSpace(categoryFilter) || opportunity.Category.Contains(categoryFilter, StringComparison.OrdinalIgnoreCase)))
-                            {
-                                <a href="PastEvent?title=@opportunity.Title" class="card">
                                     <div>
                                         <h2>@opportunity.Title</h2>
                                         <p><strong>Location :</strong> @opportunity.City, @opportunity.District, @opportunity.Province</p>

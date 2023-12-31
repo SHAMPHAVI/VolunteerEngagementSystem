@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "_Layout_A";
+}
+
+<head>
+    <link rel="stylesheet" href="~/styles/rate-style.css">
+</head>
+
+<div class="container mt-4">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>User Email</th>
+                <th>Event Name</th>
+                <th>Rating</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Participant</td>
+                    <td><a href="Details?title=@item.EventName">@item.EventName</a></td>
+                    <td>
+                        @if (item.Rating != null)
+                        {
+                            <div class="star-rating rated">
+                                @for (int i = 0; i < item.Rating; i++)
+                                {
+                                    <span class="fa fa-star"></span>
+                                }
+                                @for (int i = item.Rating; i < 5; i++)
+                                {
+                                    <span class="fa fa-star unrated"></span>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Not Rated</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Rating == null)
+                        {
+                            <form asp-action="AddRating" asp-controller="Volunteer" method="post">
+                                <input type="hidden" name="EventName" value="@item.EventName" />
+                                <input type="hidden" name="Participant" value="@item.Participant" />
+                                <div class="form-group">
+                                    <input type="number" class="small-input" name="Rating" required min="1" max="5" />
+                                    <button type="submit">Add</button>
+                                </div>
+                                
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-action="AddRating" asp-controller="Volunteer" method="post">
+                                <input type="hidden" name="EventName" value="@item.EventName" />
+                                <input type="hidden" name="Participant" value="@item.Participant" />
+                                <div class="form-group">
+                                    <input type="number" class="small-input" name="Rating" required min="1" max="5" />
+                                    <button type="submit">Update</button>
+                                </div>                                
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

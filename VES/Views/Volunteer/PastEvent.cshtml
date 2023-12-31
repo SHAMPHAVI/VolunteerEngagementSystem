@@ -9,7 +9,7 @@
 <body>
     @if (Model != null)
     {
-        <form method="post" action="Join">
+        <form>
             <div class="head">
                 <a href="Events"> <img src="~/images/Back.jpg" alt="Back" /></a>
                 <input type="hidden" name="EventName" value="@Model.Title">
@@ -20,9 +20,7 @@
             <p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
             <div class="p1">
                 <p>@Model.Description</p>
-            </div>
-            <input type="submit" value="Join">
-           
+            </div>           
         </form>
     }
 

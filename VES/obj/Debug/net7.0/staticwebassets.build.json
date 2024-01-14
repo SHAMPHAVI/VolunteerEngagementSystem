@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DKw3T1IG0WyWJ0m+u1YEzbyd9w/Dl1dw8DS4gVOlo/w=",
+  "Hash": "NNLVz6/CS6aHl1OeAkCQXXUwZ8b4spXfC+gkRQX16k0=",
   "Source": "VES",
   "BasePath": "_content/VES",
   "Mode": "Default",
@@ -1326,6 +1326,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\styles\\card-style.css"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\dashboard-style.css",
+      "SourceId": "VES",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\",
+      "BasePath": "_content/VES",
+      "RelativePath": "styles/dashboard-style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\styles\\dashboard-style.css"
     },
     {
       "Identity": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\detail-style.css",

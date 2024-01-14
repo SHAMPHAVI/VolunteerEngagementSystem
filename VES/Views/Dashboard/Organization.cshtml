@@ -1,0 +1,58 @@
+﻿<link rel="stylesheet" href="~/styles/dashboard-style.css">
+@{
+    Layout = "_Layout_Admin";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Users</title>
+    <!-- Include necessary Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h2>Users</h2>
+
+    @if (Model != null)
+    {
+        <div class="piechart-container">
+            <div class="piechart">
+                <canvas id="rolePieChart"></canvas>
+            </div>
+            <div class="piechart">
+                <canvas id="genderPieChart"></canvas>
+            </div>
+            <div class="piechart">
+                <canvas id="categoryPieChart"></canvas>
+            </div>
+        </div>
+    }
+
+    <script>
+        // Role Pie Chart
+        var roleData = @Html.Raw(Json.Serialize(Model.Role));
+        var roleLabels = Object.keys(roleData);
+        var roleValues = Object.values(roleData).map(group => group.length);
+        var roleCtx = document.getElementById('rolePieChart').getContext('2d');
+        var rolePieChart = new Chart(roleCtx, {
+            type: 'pie',
+            data: {
+                labels: roleLabels,
+                datasets: [{
+                    data: roleValues,
+                    backgroundColor: [
+                        'rgba(0, 123, 255, 0.7)',   
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                    ]
+                }]
+            }
+        });    
+    </script>
+
+    <div>
+        <a href="@Url.Action("DownloadPdf")">Download as PDF</a>
+        <a href="@Url.Action("DownloadExcel")">Download as Excel</a>
+    </div>
+</body>
+</html>

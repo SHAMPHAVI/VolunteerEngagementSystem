@@ -81,20 +81,12 @@ namespace VES.Controllers
             }
             else
             {
-                return View("MyEvents", viewModel);
+                return View(viewModel);
             }
         }
 
         public class MyEventsViewModel
         {
-            //public MyEventsViewModel()
-            //{
-            //    MyEvents = new List<OpportunityModel>();
-            //    JoinedEvents = new List<OpportunityModel>();
-            //    OtherEvents = new List<OpportunityModel>();
-            //    PastEvents = new List<OpportunityModel>();
-            //}
-
             public List<OpportunityModel> MyEvents { get; set; }
             public List<OpportunityModel> JoinedEvents { get; set; }
             public List<OpportunityModel> OtherEvents { get; set; }

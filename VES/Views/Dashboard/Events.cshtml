@@ -1,0 +1,90 @@
+﻿<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js">
+<link rel="stylesheet" href="~/styles/dashboard-style.css">
+@{
+    Layout = "_Layout_Admin";
+}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="dashboard-section">
+                <h3>Category Wise Events</h3>
+                <canvas id="categoryChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="dashboard-section">
+                <h3>Province Wise Events</h3>
+                <canvas id="provinceChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    var categoryLabels = [];
+    var categoryData = [];
+
+    @foreach (var category in Model.Category)
+    {
+        <text>categoryLabels.push('@category.Key');</text>
+        <text>categoryData.push('@category.Value.Count');</text>
+    }
+
+    var categoryChartConfig = {
+        type: 'bar',
+        data: {
+            labels: categoryLabels,
+            datasets: [{
+                axis: 'y',
+                label: 'Category',
+                data: categoryData,
+                fill: false,
+                backgroundColor: '#A79FA6',
+                borderColor: '#A79FA6',
+                borderWidth: 0.5,
+                barThickness: 20 
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+        }
+    };
+
+    var categoryChartCanvas = document.getElementById('categoryChart').getContext('2d');
+    new Chart(categoryChartCanvas, categoryChartConfig);
+
+    var provinceLabels = [];
+    var provinceData = [];
+
+    @foreach (var province in Model.Province)
+    {
+        <text>provinceLabels.push('@province.Key');</text>
+        <text>provinceData.push('@province.Value.Count');</text>
+    }
+
+    var provinceChartConfig = {
+        type: 'bar',
+        data: {
+            labels: provinceLabels,
+            datasets: [{
+                axis: 'y',
+                label: 'Province',
+                data: provinceData,
+                fill: false,
+                backgroundColor: '#B7CECE',
+                borderColor: '#B7CECE',
+                borderWidth: 0.5,
+                barThickness: 20 
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+        }
+    };
+
+    var provinceChartCanvas = document.getElementById('provinceChart').getContext('2d');
+    new Chart(provinceChartCanvas, provinceChartConfig);
+</script>

@@ -1,7 +1,7 @@
 ﻿body {
-    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 0;
 }
 
 #dashboard {
@@ -9,60 +9,65 @@
 }
 
 #sidebar {
-    width: 200px;
+    width: 130px;
     background-color: #333;
     color: #fff;
-    padding: 20px;
+    padding: 5px;
     transition: width 0.3s;
     overflow: hidden;
-}
-
-#content {
-    flex: 1;
-    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    min-height: 680px
 }
 
 #menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    padding-left: 0;
 }
 
     #menu li {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
 
     #menu a {
+        color: #ffffff;
         text-decoration: none;
-        color: #fff;
         display: block;
-        padding: 10px;
-        background-color: #555;
+        padding: 8px 10px;
         border-radius: 5px;
         transition: background-color 0.3s;
     }
 
         #menu a:hover {
-            background-color: #777;
+            background-color: #606264;
+            color: #fff;
         }
 
-#toggleBtn {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.container {
+    flex-grow: 1;
+    padding: 20px;
 }
 
-    #toggleBtn:hover {
-        background-color: #555;
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #343a40;
+    color: #ffffff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        width: 80px;
+        padding: 10px;
     }
 
-#toggleIcon {
-    transition: transform 0.3s;
+    #menu a {
+        text-align: center;
+    }
+        
 }
-
-#toggleBtn.collapsed #toggleIcon {
-    transform: rotate(180deg);
+.active {
+    background-color: #fff;
+    color: #000;
 }

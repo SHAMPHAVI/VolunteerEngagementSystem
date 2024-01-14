@@ -7,12 +7,10 @@
     <form asp-action="Calendar" asp-controller="General" method="get">
         <label for="year">Year:</label>
         <select id="year" name="year" asp-items="HtmlHelpers.GetYearOptions(Model.Year)">
-            <!-- Populate year options -->
         </select>
 
         <label for="month">Month:</label>
         <select id="month" name="month" asp-items="HtmlHelpers.GetMonthOptions(Model.Month)">
-            <!-- Populate month options -->
         </select>
 
         <button type="submit" class="btn btn-primary">Go</button>

@@ -273,6 +273,10 @@
       "PackagePath": "staticwebassets\\styles\\card-style.css"
     },
     {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\dashboard-style.css",
+      "PackagePath": "staticwebassets\\styles\\dashboard-style.css"
+    },
+    {
       "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\detail-style.css",
       "PackagePath": "staticwebassets\\styles\\detail-style.css"
     },

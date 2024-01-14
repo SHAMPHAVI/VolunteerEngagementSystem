@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VES.Controllers
 {
@@ -33,7 +34,7 @@ namespace VES.Controllers
                 {
                     string data = model.Email;
                     HttpContext.Session.SetString("email", data);
-                    return RedirectToAction("Dashboard");
+                    return RedirectToAction("Users","Dashboard");
                 }
                 else
                 {
@@ -43,5 +44,6 @@ namespace VES.Controllers
 
             return View();
         }
-    }
+       
+        }
 }

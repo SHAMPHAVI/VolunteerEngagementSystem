@@ -1,0 +1,96 @@
+﻿<link rel="stylesheet" href="~/styles/dashboard-style.css">
+@{
+    Layout = "_Layout_Admin";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    @if (Model != null)
+    {
+        <div class="piechart-container">
+            <div class="piechart">
+                <h3>User Role</h3>
+                <canvas id="rolePieChart"></canvas>
+            </div>
+            <div class="piechart">
+                <h3>Organization Category</h3>
+                <canvas id="categoryPieChart"></canvas>
+            </div>
+            <div class="piechart">
+                <h3>Volunteer Gender</h3>
+                <canvas id="genderPieChart"></canvas>
+            </div>
+           
+        </div>
+    }
+    <script>
+        var roleData = @Html.Raw(Json.Serialize(Model.Role));
+        var roleLabels = Object.keys(roleData);
+        var roleValues = Object.values(roleData).map(group => group.length);
+        var roleCtx = document.getElementById('rolePieChart').getContext('2d');
+        var rolePieChart = new Chart(roleCtx, {
+            type: 'pie',
+            data: {
+                labels: roleLabels,
+                datasets: [{
+                    data: roleValues,
+                    backgroundColor: [
+                        '#6A7A89',
+                        '#A79FA6',
+                        '#B7CECE'
+                    ]
+                }]
+            }
+        });
+    </script>
+    <script>
+        var genderData = @Html.Raw(Json.Serialize(Model.Gender));
+        var genderLabels = Object.keys(genderData);
+        var genderValues = Object.values(genderData).map(group => group.length);
+        var genderCtx = document.getElementById('genderPieChart').getContext('2d');
+        var genderPieChart = new Chart(genderCtx, {
+            type: 'pie',
+            data: {
+                labels: genderLabels,
+                datasets: [{
+                    data: genderValues,
+                    backgroundColor: [
+                        '#6A7A89',
+                        '#A79FA6',
+                        '#B7CECE'
+                    ]
+                }]
+            }            
+        });
+    </script>
+    <script>
+        var categoryData = @Html.Raw(Json.Serialize(Model.Category));
+        var categoryLabels = Object.keys(categoryData);
+        var categoryValues = Object.values(categoryData).map(group => group.length);
+        var categoryCtx = document.getElementById('categoryPieChart').getContext('2d');
+        var categoryPieChart = new Chart(categoryCtx, {
+            type: 'pie',
+            data: {
+                labels: categoryLabels,
+                datasets: [{
+                    data: categoryValues,
+                    backgroundColor: [
+                        '#B7CECE',
+                        '#6A7A89',
+                        '#A79FA6'
+                        
+                    ]
+                }]
+            }  
+        });
+    </script>
+    @*     <div>
+    <a href="@Url.Action("DownloadPdf")">Download as PDF</a>
+    <a href="@Url.Action("DownloadExcel")">Download as Excel</a>
+    </div> *@
+</body>
+</html>

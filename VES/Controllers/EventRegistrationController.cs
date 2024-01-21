@@ -15,34 +15,58 @@ namespace VES.Controllers
         {
             _context = context;
         }
+        private bool IsUserAuthenticated(string userEmail)
+        {
+            return _context.Volunteers.Any(a => a.Email == userEmail);
+        }
+        private RedirectToActionResult HomePage()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+  
         public IActionResult RegisterEvent(string eventName)
         {
-            string userEmail = HttpContext.Session.GetString("email"); 
-            if (!string.IsNullOrEmpty(eventName) && !string.IsNullOrEmpty(userEmail))
+            string userEmail = HttpContext.Session.GetString("email");
+            if (IsUserAuthenticated(userEmail))
             {
-                var eventRegistration = new EventRegistration
+                if (!string.IsNullOrEmpty(eventName) && !string.IsNullOrEmpty(userEmail))
                 {
-                    EventName = eventName,
-                    UserEmail = userEmail,
-                };
+                    var eventRegistration = new EventRegistration
+                    {
+                        EventName = eventName,
+                        UserEmail = userEmail,
+                    };
 
-                if (ModelState.IsValid)
-                {
-                    InsertEventRegistrationDataIntoDatabase(eventRegistration);
-                    return RedirectToAction("ViewAll");
+                    if (ModelState.IsValid)
+                    {
+                        InsertEventRegistrationDataIntoDatabase(eventRegistration);
+                        return RedirectToAction("ViewAll");
+                    }
                 }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid input or user not authenticated.");
+                }
+
+                return View("ViewAll");
             }
             else
             {
-                ModelState.AddModelError("", "Invalid input or user not authenticated.");
+                return HomePage();
             }
-
-            return View("ViewAll");
         }
         public IActionResult ViewAll()
         {
-            var opportunities = _context.Opportunities.ToList();
-            return View(opportunities);
+            string userEmail = HttpContext.Session.GetString("email");
+            if (IsUserAuthenticated(userEmail))
+            {
+                var opportunities = _context.Opportunities.ToList();
+                return View(opportunities);
+            }
+            else
+            {
+                return HomePage();
+            }
         }
         private void InsertEventRegistrationDataIntoDatabase(EventRegistration model)
         {

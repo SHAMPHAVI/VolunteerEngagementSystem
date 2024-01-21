@@ -305,6 +305,10 @@
       "PackagePath": "staticwebassets\\styles\\layout-style.css"
     },
     {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\overview-style.css",
+      "PackagePath": "staticwebassets\\styles\\overview-style.css"
+    },
+    {
       "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\profile-style.css",
       "PackagePath": "staticwebassets\\styles\\profile-style.css"
     },

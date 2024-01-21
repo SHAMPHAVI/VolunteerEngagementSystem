@@ -5,45 +5,40 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <div class="rate">
-<div class="rate1">
-    <div class="col-md-6">
-        <div class="rating">
-            <canvas id="volunteerChart" width="600" height="600"></canvas>
+    <div class="rate1">
+        <div class="col-md-6">
+            <div class="rating">
+                <canvas id="volChart" width="600" height="600"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="rating">
+                <canvas id="volunteerChart" width="600" height="600"></canvas>
+            </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="rating">
-            <canvas id="organizationChart" width="600" height="600"></canvas>
+    <div class="rate2">
+        <div class="col-md-6">
+            <div class="rating">
+                <canvas id="organizationChart" width="600" height="600"></canvas>
+            </div>
         </div>
     </div>
-</div>
-<div class="rate2">
-    <div class="col-md-6">
-        <div class="rating">
-            <canvas id="volChart" width="600" height="600"></canvas>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="rating">
-            <canvas id="orgChart" width="600" height="600"></canvas>
-        </div>
-    </div>
-</div>
 </div>
 <script>
-    var volLabels = @Html.Raw(Json.Serialize(Model.VolRating.Keys));
-    var volData = @Html.Raw(Json.Serialize(Model.VolRating.Values));
+    var volLabels = @Html.Raw(Json.Serialize(Model.Participant.Keys));
+    var volData = @Html.Raw(Json.Serialize(Model.Participant.Values));
     var vChartConfig = {
         type: 'bar',
         data: {
             labels: volLabels,
             datasets: [{
                 axis: 'y',
-                label: 'Volunteer Rating',
+                label: 'Participant Engagement',
                 data: volData,
                 fill: false,
-                backgroundColor: '#9aa8a8',
-                borderColor: '#9aa8a8',
+                backgroundColor: '#6A7A89',
+                borderColor: '#6A7A89',
                 borderWidth: 0.5,
                 barThickness: 20
             }]
@@ -65,51 +60,17 @@
     var volChartCanvas = document.getElementById('volChart').getContext('2d');
     new Chart(volChartCanvas, vChartConfig);
 
-    var orgLabels = @Html.Raw(Json.Serialize(Model.OrgRating.Keys));
-    var orgData = @Html.Raw(Json.Serialize(Model.OrgRating.Values));
-    var oChartConfig = {
-        type: 'bar',
-        data: {
-            labels: orgLabels,
-            datasets: [{
-                axis: 'y',
-                label: 'Organization Rating',
-                data: orgData,
-                fill: false,
-                backgroundColor: '#6A7A89',
-                borderColor: '#6A7A89',
-                borderWidth: 0.5,
-                barThickness: 20
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            plugins: {
-                legend: {
-                    labels: {
-                        font: {
-                            family: 'Stencil',
-                            size: 16 
-                        }
-                    }
-                }
-            }
-        }
-    };
-    var orgChartCanvas = document.getElementById('orgChart').getContext('2d');
-    new Chart(orgChartCanvas, oChartConfig);
-
-    var organizationLabels = @Html.Raw(Json.Serialize(Model.EventRating.Keys));
-    var organizationData = @Html.Raw(Json.Serialize(Model.EventRating.Values));
-    var volunteerLabels = @Html.Raw(Json.Serialize(Model.ParticipantRating.Keys));
-    var volunteerData = @Html.Raw(Json.Serialize(Model.ParticipantRating.Values));
+    var organizationLabels = @Html.Raw(Json.Serialize(Model.Event.Keys));
+    var organizationData = @Html.Raw(Json.Serialize(Model.Event.Values));
+    var volunteerLabels = @Html.Raw(Json.Serialize(Model.Organizer.Keys));
+    var volunteerData = @Html.Raw(Json.Serialize(Model.Organizer.Values));
     var volChartConfig = {
         type: 'bar',
         data: {
             labels: volunteerLabels,
             datasets: [{
                 axis: 'y',
-                label: 'Participant Rating',
+                label: 'Organizer Engagement',
                 data: volunteerData,
                 fill: false,
                 backgroundColor: '#A79FA6',
@@ -140,7 +101,7 @@
             labels: organizationLabels,
             datasets: [{
                 axis: 'y',
-                label: 'Organizer Rating',
+                label: 'Engagement Based on Event Category',
                 data: organizationData,
                 fill: false,
                 backgroundColor: '#B7CECE',

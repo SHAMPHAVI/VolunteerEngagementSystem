@@ -1,0 +1,183 @@
+﻿<link rel="stylesheet" href="~/styles/dashboard-style.css">
+@{
+    Layout = "_Layout_Admin";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+      <div class="rate">
+        <div class="piechart-cont">
+            <div class="piechart">
+                <h3>Team</h3>
+                <canvas id="rolePieChart"></canvas>
+            </div>
+            <div class="piechart">
+                <h3>Blood Group</h3>
+                <canvas id="categoryPieChart"></canvas>
+            </div>
+        </div>
+        <div class="rate1">
+            <div class="col-md-6">
+                <div class="rating">
+                    <canvas id="volChart" width="600" height="600"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="rating">
+                    <canvas id="volunteerChart" width="600" height="600"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="rate2">
+            <div class="col-md-6">
+                <div class="rating">
+                    <canvas id="organizationChart" width="600" height="600"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var vol = @Html.Raw(Json.Serialize(Model.Province));
+        var volLabels = Object.keys(vol);
+        var volData = Object.values(vol).map(group => group.length);
+        var vChartConfig = {
+            type: 'bar',
+            data: {
+                labels: volLabels,
+                datasets: [{
+                    axis: 'y',
+                    label: 'Participant Engagement',
+                    data: volData,
+                    fill: false,
+                    backgroundColor: '#6A7A89',
+                    borderColor: '#6A7A89',
+                    borderWidth: 0.5,
+                    barThickness: 20
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                family: 'Stencil',
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        var volChartCanvas = document.getElementById('volChart').getContext('2d');
+        new Chart(volChartCanvas, vChartConfig);
+
+        var o = @Html.Raw(Json.Serialize(Model.District));
+        var organizationLabels = Object.keys(o);
+        var organizationData = Object.values(o).map(group => group.length);
+        var l = @Html.Raw(Json.Serialize(Model.City));
+        var volunteerLabels = Object.keys(l);
+        var volunteerData = Object.values(l).map(group => group.length);
+        var volChartConfig = {
+            type: 'bar',
+            data: {
+                labels: volunteerLabels,
+                datasets: [{
+                    axis: 'y',
+                    label: 'Organizer Engagement',
+                    data: volunteerData,
+                    fill: false,
+                    backgroundColor: '#A79FA6',
+                    borderColor: '#A79FA6',
+                    borderWidth: 0.5,
+                    barThickness: 20
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                family: 'Stencil',
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        var volunteerChartCanvas = document.getElementById('volunteerChart').getContext('2d');
+        new Chart(volunteerChartCanvas, volChartConfig);
+        var orgChartConfig = {
+            type: 'bar',
+            data: {
+                labels: organizationLabels,
+                datasets: [{
+                    axis: 'y',
+                    label: 'Engagement Based on Event Category',
+                    data: organizationData,
+                    fill: false,
+                    backgroundColor: '#B7CECE',
+                    borderColor: '#B7CECE',
+                    borderWidth: 0.5,
+                    barThickness: 20
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                family: 'Stencil',
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        var organizationChartCanvas = document.getElementById('organizationChart').getContext('2d');
+        new Chart(organizationChartCanvas, orgChartConfig);
+    </script>
+    <script>
+        var roleData = @Html.Raw(Json.Serialize(Model.Team));
+        var roleLabels = Object.keys(roleData);
+        var roleValues = Object.values(roleData).map(group => group.length);
+        var roleCtx = document.getElementById('rolePieChart').getContext('2d');
+        var rolePieChart = new Chart(roleCtx, {
+            type: 'pie',
+            data: {
+                labels: roleLabels,
+                datasets: [{
+                    data: roleValues,
+                    backgroundColor:
+                        ['#6A7A89', '#A79FA6', '#B7CECE', '#8f9fa9', '#88929d', '#c5bfc6', '#887E86', '#d7e5e5', '#9aa8a8']
+                }]
+            }
+        });
+    </script>
+    <script>
+        var genderData = @Html.Raw(Json.Serialize(Model.Blood));
+        var genderLabels = Object.keys(genderData);
+        var genderValues = Object.values(genderData).map(group => group.length);
+        var genderCtx = document.getElementById('categoryPieChart').getContext('2d');
+        var genderPieChart = new Chart(genderCtx, {
+            type: 'pie',
+            data: {
+                labels: genderLabels,
+                datasets: [{
+                    data: genderValues,
+                    backgroundColor: 
+                    ['#6A7A89','#A79FA6','#B7CECE','#8f9fa9','#88929d','#c5bfc6','#887E86','#d7e5e5', '#9aa8a8']
+                }]
+            }            
+        });
+    </script>
+</body>
+</html>

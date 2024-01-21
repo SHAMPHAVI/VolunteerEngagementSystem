@@ -37,3 +37,10 @@ h3 {
     min-width: 1225px;
     padding-right:150px;
 }
+.piechart-cont {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    flex-direction: row;
+    padding-right: 100px;
+}

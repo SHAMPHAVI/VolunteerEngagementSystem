@@ -1,0 +1,560 @@
+﻿<link rel="stylesheet" href="~/styles/overview-style.css">
+@{
+    Layout = "_Layout_Admin";
+}
+
+    
+  
+<h2>Overview</h2>
+
+@if (Model != null)
+{
+    <ul class="nav nav-tabs" id="myTabs">
+        <li class="nav-item">
+            <a class="nav-link active" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="false">Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events" aria-selected="false">Events</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="alerts-tab" data-toggle="tab" href="#alerts" role="tab" aria-controls="alerts" aria-selected="false">Alerts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="engagement-tab" data-toggle="tab" href="#engagements" role="tab" aria-controls="engagement" aria-selected="false">Engagement</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="rating-tab" data-toggle="tab" href="#ratings" role="tab" aria-controls="rating" aria-selected="false">Rating</a>
+        </li>
+    </ul>
+    <div class="tab-content mt-3">
+        <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
+            <form id="userFilters">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="roleFilter">Role:</label>
+                        <select class="form-control" id="roleFilter">
+                            <option value="">All</option>
+                            <option value="Volunteer">Volunteer</option>
+                            <option value="Organization">Organization</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="dateRangeFilter">Date Range:</label>
+                        <div class="input-daterange input-group" id="dateRangePicker">
+                            <input type="text" class="form-control" id="startDate" name="start" placeholder="From">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">to</span>
+                            </div>
+                            <input type="text" class="form-control" id="endDate" name="end" placeholder="To">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="categoryFilter">Category:</label>
+                        <select class="form-control" id="categoryFilter">
+                            <option value="">All</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Environmental and Conservation">Environmental and Conservation</option>
+                            <option value="Human Services and Welfare">Human Services and Welfare</option>
+                            <option value="Community Development and Education">Community Development and Education</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="space"></div>
+                        <button type="button" class="btn btn-primary" id="applyFilters">Filter</button>
+                        <button type="button" class="btn btn-secondary" id="clearFilters">Clear</button>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="space"></div>
+                        <a><strong>Download as :</strong></a>
+                        <a href="#" class="link link-success" id="downloadPDF">PDF</a>
+                        <a href="#" class="link link-success" id="downloadExcel">Excel</a>
+                    </div>
+                </div>
+            </form>
+            <table id="userTable" class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr data-role="@user.Role" data-date="@user.Date" data-category="@user.Category">
+                            <td>@user.Full_Name</td>
+                            <td>@user.Email</td>
+                            <td>@user.Role</td>
+                            <td>@user.Category</td>
+                            <td>@user.Date</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
+            <form id="eventFilters">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="location">Location:</label>
+                        <input type="text" id="location" name="location" class="form-control" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="dateRangeFilter">Date Range:</label>
+                        <div class="input-daterange input-group" id="datePicker">
+                            <input type="text" class="form-control" id="sDate" name="start" placeholder="From">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">to</span>
+                            </div>
+                            <input type="text" class="form-control" id="eDate" name="end" placeholder="To">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="categoryFilter">Category:</label>
+                        <select class="form-control" id="catFilter">
+                            <option value="">All</option>
+                            <option value="Environmental Conservation">Environmental Conservation</option>
+                            <option value="Community Service">Community Service</option>
+                            <option value="Youth and Education">Youth and Education</option>
+                            <option value="Health and Wellness">Health and Wellness</option>
+                            <option value="Human Rights and Advocacy">Human Rights and Advocacy</option>
+                            <option value="Disaster Relief">Disaster Relief</option>
+                            <option value="Animal Welfare">Animal Welfare</option>
+                            <option value="Arts and Culture">Arts and Culture</option>
+                            <option value="International Volunteerism">International Volunteerism</option>
+                            <option value="Online and Virtual Volunteering">Online and Virtual Volunteering</option>
+                            <option value="Crisis Hotlines">Crisis Hotlines</option>
+                            <option value="Elderly Care">Elderly Care</option>
+                            <option value="Microvolunteering">Microvolunteering</option>
+                            <option value="Food Distribution">Food Distribution</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="space"></div>
+                        <button type="button" class="btn btn-primary" id="apply">Filter</button>
+                        <button type="button" class="btn btn-secondary" id="clear">Clear</button>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="space"></div>
+                        <a><strong>Download as :</strong></a>
+                        <a href="#" class="link link-success" id="downloadEventPDF">PDF</a>
+                        <a href="#" class="link link-success" id="downloadEventExcel">Excel</a>
+                    </div>
+                </div>
+            </form>
+            <table id="eventTable" class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>User Email</th>
+                        <th>Province</th>
+                        <th>District</th>
+                        <th>City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var events in Model.Events)
+                    {
+                        <tr data-province="@events.Province"
+                            data-district="@events.District"
+                            data-city="@events.City"
+                            data-date="@events.Date"
+                            data-category="@events.Category">
+                            <td>@events.Title</td>
+                            <td>@events.Category</td>
+                            <td>
+                                @events.Date.Date.ToString("yyyy-MM-dd")
+                            </td>
+                            <td>@events.UserEmail</td>
+                            <td>@events.Province</td>
+                            <td>@events.District</td>
+                            <td>@events.City</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="alerts" role="tabpanel" aria-labelledby="alerts-tab">
+            <form id="alertFilters">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="location">Location:</label>
+                        <input type="text" id="alertlocation" name="location" class="form-control" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="dateRangeFilter">Date Range:</label>
+                        <div class="input-daterange input-group" id="datePicker">
+                            <input type="text" class="form-control" id="alertStart" name="start" placeholder="From">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">to</span>
+                            </div>
+                            <input type="text" class="form-control" id="alertEnd" name="end" placeholder="To">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="categoryFilter">Team:</label>
+                        <select class="form-control" id="teamFilter">
+                            <option value="">All</option>
+                            <option value="Local Emergency Response Teams">Local Emergency Response Teams</option>
+                            <option value="RedCross And OtherRelief Organizations">Red Cross and Other Relief Organizations</option>
+                            <option value="Medical Response Teams">Medical Response Teams</option>
+                            <option value="Search and Rescue Teams">Search and Rescue Teams</option>
+                            <option value="Community Emergency Shelter Volunteers">Community Emergency Shelter Volunteers</option>
+                            <option value="Emergency Hotlines And Support Services">Emergency Hotlines and Support Services</option>
+                            <option value="Disaster Relief Supply Distribution">Disaster Relief Supply Distribution</option>
+                            <option value="Animal Rescue And Care">Animal Rescue and Care</option>
+                            <option value="Remote Emergency Support">Remote Emergency Support</option>
+                            <option value="Community Emergency Planning Committees">Community Emergency Planning Committees</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="categoryFilter">Blood Group:</label>
+                        <select class="form-control" id="bloodFilter">
+                            <option value="">All</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="space"></div>
+                        <button type="button" class="btn btn-primary" id="filterAlerts">Filter</button>
+                        <button type="button" class="btn btn-secondary" id="clearAlert">Clear</button>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="space"></div>
+                        <a><strong>Download as :</strong></a>
+                        <a href="#" class="link link-success" id="downloadAlertPDF">PDF</a>
+                        <a href="#" class="link link-success" id="downloadAlertExcel">Excel</a>
+                    </div>
+                </div>
+            </form>
+            <table id="alertTable" class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>                        
+                        <th>Due Date</th>
+                        <th>User Email</th>
+                        <th>Province</th>
+                        <th>District</th>
+                        <th>City</th>
+                        <th>Team</th>
+                        <th>Blood Group</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var alerts in Model.Alerts)
+                    {
+                        <tr data-province="@alerts.Province"
+                            data-district="@alerts.District"
+                            data-city="@alerts.City"
+                            data-date="@alerts.DueDate"
+                            data-team="@alerts.Team"
+                            data-blood="@alerts.BloodGroup">
+                            <td>@alerts.Title</td>
+                            <td>
+                                @alerts.DueDate.Date.ToString("yyyy-MM-dd")
+                            </td>
+                            <td>@alerts.UserEmail</td>
+                            <td>@alerts.Province</td>
+                            <td>@alerts.District</td>
+                            <td>@alerts.City</td>
+                            <td>@alerts.Team</td>
+                            <td>@alerts.BloodGroup</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="engagements" role="tabpanel" aria-labelledby="engagements-tab">
+            <form id="engagementFilters">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <div class="space"></div>
+                        <div class="space"></div>                        
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="count">Count:</label>
+                        <input type="text" id="count" name="count" class="form-control" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="entity">Entity:</label>
+                        <input type="text" id="entity" name="entity" class="form-control" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="categoryFilter">Category:</label>
+                        <select class="form-control" id="countcategory">
+                            <option value="">All</option>
+                            <option value="Participant">Participant</option>
+                            <option value="Organizer">Organizer</option>
+                            <option value="Event">Event</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="space"></div>
+                        <button type="button" class="btn btn-primary" id="filterAlerts">Filter</button>
+                        <button type="button" class="btn btn-secondary" id="clearAlert">Clear</button>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="space"></div>
+                        <a><strong>Download as :</strong></a>
+                        <a href="#" class="link link-success" id="downloadAlertPDF">PDF</a>
+                        <a href="#" class="link link-success" id="downloadAlertExcel">Excel</a>
+                    </div>
+                </div>
+            </form>
+            <table id="engagementTable" class="table">
+                <thead>
+                    <tr>
+                        <th>Entity</th>
+                        <th>Category</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var eng in Model.Engagement.Participant)
+                    {
+                        <tr data-entity="@eng.Key"
+                            data-count="@eng.Value"
+                            data-category="Participant">
+                            <td>@eng.Key</td>
+                            <td>@eng.Value</td>
+                            <td>Participant</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    
+}
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.5.13/dist/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTabs a').on('click', function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+                clearFilters();
+            });
+
+            function applyUserFilters() {
+                var roleFilter = $('#roleFilter').val();
+                var startDate = $('#startDate').val();
+                var endDate = $('#endDate').val();
+                var categoryFilter = $('#categoryFilter').val();
+
+                $('#userTable tbody tr').each(function () {
+                    var row = $(this);
+                    var role = row.data('role');
+                    var date = new Date(row.data('date'));
+                    var category = row.data('category');
+
+                    var roleMatch = roleFilter === '' || role === roleFilter;
+                    var dateMatch = (startDate === '' || endDate === '') || (date >= new Date(startDate) && date <= new Date(endDate));
+                    var categoryMatch = categoryFilter === '' || category === categoryFilter;
+
+                    row.toggle(roleMatch && dateMatch && categoryMatch);
+                });
+            }
+
+            function applyEventFilters() {
+                var startDate = $('#sDate').val();
+                var endDate = $('#eDate').val();
+                var location = $('#location').val();
+                var categoryFilter = $('#catFilter').val();
+
+                $('#eventTable tbody tr').each(function () {
+                    var row = $(this);
+                    var date = new Date(row.data('date'));
+                    var rowDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                    var category = row.data('category');
+                    var province = row.data('province');
+                    var district = row.data('district');
+                    var city = row.data('city');
+
+                    var dateMatch = (startDate === '' || endDate === '') || (rowDate >= new Date(startDate) && rowDate <= new Date(endDate));
+                    var categoryMatch = categoryFilter === '' || category === categoryFilter;
+                    var locationMatch = location === '' ||
+                        province.toLowerCase().includes(location.toLowerCase()) ||
+                        district.toLowerCase().includes(location.toLowerCase()) ||
+                        city.toLowerCase().includes(location.toLowerCase());
+
+                    row.toggle(locationMatch && dateMatch && categoryMatch);
+                });
+            }
+            function applyAlertFilters() {
+                var startDate = $('#alertStart').val();
+                var endDate = $('#alertEnd').val();
+                var location = $('#alertlocation').val();
+                var TeamFilter = $('#teamFilter').val();
+                var BloodFilter = $('#bloodFilter').val();
+
+                $('#alertTable tbody tr').each(function () {
+                    var row = $(this);
+                    var date = new Date(row.data('date'));
+                    var rowDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                    var province = row.data('province');
+                    var district = row.data('district');
+                    var city = row.data('city');
+                    var team = row.data('team');
+                    var blood = row.data('blood');
+
+                    var dateMatch = (startDate === '' || endDate === '') || (rowDate >= new Date(startDate) && rowDate <= new Date(endDate));
+                    var teamMatch = TeamFilter === '' || team === TeamFilter;
+                    var bloodMatch = BloodFilter === '' || blood === BloodFilter;
+                    var locationMatch = location === '' ||
+                        province.toLowerCase().includes(location.toLowerCase()) ||
+                        district.toLowerCase().includes(location.toLowerCase()) ||
+                        city.toLowerCase().includes(location.toLowerCase());
+
+                    row.toggle(locationMatch && dateMatch && teamMatch && bloodMatch);
+                });
+            }
+            function clearFilters() {
+                $('#startDate').val('');
+                $('#endDate').val('');
+                $('#roleFilter').val('');
+                $('#categoryFilter').val('');
+
+                $('#userTable tbody tr').show();
+            }
+            function clear() {
+                $('#sDate').val('');
+                $('#eDate').val('');
+                $('#catFilter').val('');
+                $('#location').val('');
+
+                $('#eventTable tbody tr').show();
+            }
+            function clearAlert() {
+                $('#alertStart').val('');
+                $('#alertEnd').val('');
+                $('#teamcatFilter').val('');
+                $('#alertlocation').val('');
+                $('#bloodFilter').val('');
+
+                $('#alertTable tbody tr').show();
+            }
+            $('#applyFilters').on('click', function () {
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+                    applyUserFilters();
+
+            });
+            $('#apply').on('click', function () {
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+                applyEventFilters();
+
+            });
+            $('#filterAlerts').on('click', function () {
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+                applyAlertFilters();
+
+            });
+            $('#clearFilters').on('click', function () {
+                clearFilters();
+            });
+            $('#clear').on('click', function () {
+                clear();
+            });
+            $('#clearAlert').on('click', function () {
+                clearAlert();
+            });
+            function downloadPDF(tableId, filename) {
+                var doc = new window.jspdf.jsPDF();
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+                var table;
+
+                if (activeTab === 'users-tab') {
+                    table = $('#userTable');
+                } else if (activeTab === 'events-tab') {
+                    table = $('#eventTable');
+                } else if (activeTab === 'alerts-tab') {
+                    table = $('#alertTable');
+                }
+                html2canvas(table[0], {
+                    onrendered: function (canvas) {
+                        var imgData = canvas.toDataURL('image/png');
+                        doc.addImage(imgData, 'PNG', 15, 15, 180, 0);
+                        doc.autoTable({ html: '#' + tableId });
+                        doc.save(filename + '.pdf');
+                    }
+                });
+            }
+            function downloadExcel(tableId, filename) {
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+                var table;
+
+                if (activeTab === 'users-tab') {
+                    table = $('#userTable');
+                } else if (activeTab === 'events-tab') {
+                    table = $('#eventTable');
+                } else if (activeTab === 'alerts-tab') {
+                    table = $('#alertTable');
+                }
+                var headings = [];
+                table.find('thead th').each(function () {
+                    headings.push($(this).text());
+                });
+
+                var data = [headings];
+                table.find('tbody tr').each(function () {
+                    var row = [];
+                    $(this).find('td').each(function () {
+                        row.push($(this).text());
+                    });
+                    data.push(row);
+                });
+                var ws = XLSX.utils.aoa_to_sheet(data);
+                var wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, 'Sheet 1');
+                XLSX.writeFile(wb, filename + '.xlsx');
+            }
+
+            $('#downloadPDF').on('click', function () {
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+
+                    downloadPDF('userTable', 'UsersTable');
+            });
+            $('#downloadEventPDF').on('click', function () {
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+                    downloadPDF('eventTable', 'EventsTable');
+   
+            });
+            $('#downloadExcel').on('click', function () {
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+                    downloadExcel('userTable', 'UsersTable');
+            });
+            $('#downloadEventExcel').on('click', function () {
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+                downloadExcel('eventTable', 'EventsTable');
+            });
+            $('#downloadAlertPDF').on('click', function () {
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+                downloadPDF('alertTable', 'AlertsTable');
+
+            });
+            $('#downloadAlertExcel').on('click', function () {
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+                downloadExcel('alertTable', 'AlertsTable');
+            });
+        });
+    </script>
+    }

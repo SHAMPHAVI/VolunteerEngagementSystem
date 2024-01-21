@@ -15,7 +15,15 @@ namespace VES.Controllers
         {
             _myDbContext = myDbContext;
         }
-
+        private bool IsUserAuthenticated()
+        {
+            string userEmail = HttpContext.Session.GetString("email");
+            return _myDbContext.Volunteers.Any(a => a.Email == userEmail);
+        }
+        private RedirectToActionResult HomePage()
+        {
+            return RedirectToAction("Index", "Home");
+        }
         public IActionResult Add()
         {
             return View();

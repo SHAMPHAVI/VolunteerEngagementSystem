@@ -360,17 +360,26 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="entity">Email:</label>
-                        <input type="text" id="email" name="entity" class="form-control" />
+                        <input type="text" id="rateemail" name="entity" class="form-control" />
                     </div>
                     <div class="form-group col-md-3">
                         <label for="categoryFilter">Category:</label>
-                        <select class="form-control" id="group">
+                        <select class="form-control" id="ratecategory">
                             <option value="">All</option>
-                            <option value="1 and above">1 and above</option>
-                            <option value="2 and above">2 and above</option>
-                            <option value="3 and above">3 and above</option>
-                            <option value="4 and above">4 and above</option>
-                            <option value="5 and above">5 and above</option>
+                            <option value="1 & above">1 & above</option>
+                            <option value="2 & above">2 & above</option>
+                            <option value="3 & above">3 & above</option>
+                            <option value="4 & above">4 & above</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="categoryFilter">Category:</label>
+                        <select class="form-control" id="itemcategory">
+                            <option value="">All</option>
+                            <option value="Participant">Participant</option>
+                            <option value="Organizer">Organizer</option>
+                            <option value="Volunteer">Volunteer</option>
+                            <option value="Organization">Organization</option>
                         </select>
                     </div>
                     <div class="form-group col-md-3">
@@ -381,47 +390,58 @@
                     <div class="form-group col-md-3">
                         <div class="space"></div>
                         <a><strong>Download as :</strong></a>
-                        <a href="#" class="link link-success" id="downloadEngPDF">PDF</a>
-                        <a href="#" class="link link-success" id="downloadEngExcel">Excel</a>
+                        <a href="#" class="link link-success" id="downloadRatePDF">PDF</a>
+                        <a href="#" class="link link-success" id="downloadRateExcel">Excel</a>
                     </div>
                 </div>
             </form>
-            <table id="engagementTable" class="table">
+            <table id="ratingTable" class="table">
                 <thead>
                     <tr>
                         <th>Entity</th>
-                        <th>Count</th>
+                        <th>Rating</th>
                         <th>Category</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var eng in Model.Engagement.Participant)
+                    @foreach (var eng in Model.Rating.VolRating)
                     {
                         <tr data-entity="@eng.Key"
+                            data-rating="@eng.Value"
+                            data-group="Volunteer">
+                            <td>@eng.Key</td>
+                            <td>@eng.Value</td>
+                            <td>Volunteer</td>
+                        </tr>
+                    }
+                    @foreach (var eng in Model.Rating.OrgRating)
+                    {
+                        <tr data-entity="@eng.Key"
+                            data-rating="@eng.Value"
+                            data-group="Organization">
+                            <td>@eng.Key</td>
+                            <td>@eng.Value</td>
+                            <td>Organization</td>
+                        </tr>
+                    }
+                    @foreach (var eng in Model.Rating.ParticipantRating)
+                    {
+                        <tr data-entity="@eng.Key"
+                            data-rating="@eng.Value"
                             data-group="Participant">
                             <td>@eng.Key</td>
                             <td>@eng.Value</td>
                             <td>Participant</td>
                         </tr>
                     }
-                    @foreach (var eng in Model.Engagement.Organizer)
+                    @foreach (var eng in Model.Rating.EventRating)
                     {
                         <tr data-entity="@eng.Key"
-                            data-count="@eng.Value"
+                            data-rating="@eng.Value"
                             data-group="Organizer">
                             <td>@eng.Key</td>
                             <td>@eng.Value</td>
                             <td>Organizer</td>
-                        </tr>
-                    }
-                    @foreach (var eng in Model.Engagement.Event)
-                    {
-                        <tr data-entity="@eng.Key"
-                            data-count="@eng.Value"
-                            data-group="Event">
-                            <td>@eng.Key</td>
-                            <td>@eng.Value</td>
-                            <td>Event</td>
                         </tr>
                     }
                 </tbody>
@@ -537,6 +557,30 @@
                     row.toggle(entityMatch && groupMatch);
                 });
             }
+            function applyRateFilters() {
+                var emailFilter = $('#rateemail').val();
+                var ratingFilter = $('#ratecategory').val();
+                var categoryFilter = $('#itemcategory').val();
+
+
+                $('#ratingTable tbody tr').each(function () {
+                    var row = $(this);
+                    var group = row.data('group');
+                    var entity = row.data('entity');
+                    var rating = row.data('rating');
+
+
+                    var entityMatch = emailFilter === '' || entity.includes(emailFilter);
+                    var groupMatch = categoryFilter === '' || group === categoryFilter;
+                    var ratingMatch = true; 
+                    if (ratingFilter !== '') {
+                        var minRating = parseInt(ratingFilter.split(' ')[0]); 
+                        ratingMatch = rating >= minRating;
+                    }
+
+                    row.toggle(entityMatch && groupMatch && ratingMatch);
+                });
+            }
             function clearFilters() {
                 $('#startDate').val('');
                 $('#endDate').val('');
@@ -567,6 +611,12 @@
                 $('#group').val('');
                 $('#engagementTable tbody tr').show();
             }
+            function clearRate() {
+                $('#entity').val('');
+                $('#group').val('');
+                $('#rating').val('');
+                $('#ratingTable tbody tr').show();
+            }
             $('#applyFilters').on('click', function () {
                 var activeTab = $('#myTabs .nav-link.active').attr('id');
                     applyUserFilters();
@@ -587,6 +637,11 @@
                 applyEngFilters();
 
             });
+            $('#filterRate').on('click', function () {
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+                applyRateFilters();
+
+            });
             $('#clearFilters').on('click', function () {
                 clearFilters();
             });
@@ -599,7 +654,9 @@
             $('#clearEng').on('click', function () {
                 clearEng();
             });
-
+            $('#clearRate').on('click', function () {
+                clearRate();
+            });
             function downloadPDF(tableId, filename) {
                 var doc = new window.jspdf.jsPDF();
                 var activeTab = $('#myTabs .nav-link.active').attr('id');
@@ -613,6 +670,8 @@
                     table = $('#alertTable');
                 } else if (activeTab === 'engagements-tab') {
                     table = $('#engagementTable');
+                } else if (activeTab === 'ratings-tab') {
+                    table = $('#ratingTable');
                 }
                 html2canvas(table[0], {
                     onrendered: function (canvas) {
@@ -635,6 +694,8 @@
                     table = $('#alertTable');
                 } else if (activeTab === 'engagements-tab') {
                     table = $('#engagementTable');
+                } else if (activeTab === 'ratings-tab') {
+                    table = $('#ratingTable');
                 }
                 var headings = [];
                 table.find('thead th').each(function () {
@@ -690,6 +751,15 @@
             $('#downloadEngExcel').on('click', function () {
                 var activeTab = $('#myTabs .nav-link.active').attr('id');
                 downloadExcel('engagementTable', 'EngagementTable');
+            });
+            $('#downloadRatePDF').on('click', function () {
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+                downloadPDF('ratingTable', 'RatingTable');
+
+            });
+            $('#downloadRateExcel').on('click', function () {
+                var activeTab = $('#myTabs .nav-link.active').attr('id');
+                downloadExcel('ratingTable', 'RatingTable');
             });
         });
     </script>

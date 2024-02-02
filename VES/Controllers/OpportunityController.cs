@@ -64,43 +64,76 @@ namespace VES.Controllers
 
         public IActionResult Details(string title)
         {
-            var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
-            if (opportunityDetails == null)
+            string userEmail = HttpContext.Session.GetString("email");
+            if (IsUserAuthenticated(userEmail))
             {
-                return View("OpportunityNotFound");
-            }
+                var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
+                if (opportunityDetails == null)
+                {
+                    return View("OpportunityNotFound");
+                }
 
-            return View(opportunityDetails);
+                return View(opportunityDetails);
+            }
+            else
+            {
+                return HomePage();
+            }
         }
         public IActionResult JoinEvents(string title)
         {
-            var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
+            string userEmail = HttpContext.Session.GetString("email");
+            if (IsUserAuthenticated(userEmail))
+            {
+                var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
             if (opportunityDetails == null)
             {
                 return View("OpportunityNotFound");
             }
 
             return View(opportunityDetails);
+            }
+            else
+            {
+                return HomePage();
+            }
+
         }
         public IActionResult PastEvent(string title)
         {
-            var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
+            string userEmail = HttpContext.Session.GetString("email");
+            if (IsUserAuthenticated(userEmail))
+            {
+                var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
             if (opportunityDetails == null)
             {
                 return View("OpportunityNotFound");
             }
 
             return View(opportunityDetails);
+            }
+            else
+            {
+                return HomePage();
+            }
         }
         public IActionResult JoinedEvent(string title)
         {
-            var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
+            string userEmail = HttpContext.Session.GetString("email");
+            if (IsUserAuthenticated(userEmail))
+            {
+                var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
             if (opportunityDetails == null)
             {
                 return View("OpportunityNotFound");
             }
 
             return View(opportunityDetails);
+            }
+            else
+            {
+                return HomePage();
+            }
         }
 
 
@@ -131,6 +164,10 @@ namespace VES.Controllers
             }
 
         }
+        private bool IsUserAuthenticated(string userEmail)
+        {
+            return _myDbContext.Volunteers.Any(a => a.Email == userEmail);
+        }
         public IActionResult ViewAll()
         {
             var opportunities = _myDbContext.Opportunities.ToList();
@@ -138,7 +175,12 @@ namespace VES.Controllers
         }
         public IActionResult AddAlert()
         {
-            return View();
+            string userEmail = HttpContext.Session.GetString("email");
+            if (IsUserAuthenticated(userEmail))
+            {
+                return View();
+            }
+            return HomePage();
         }
         [HttpPost]
         public IActionResult AddAlert(Alert model)
@@ -156,36 +198,43 @@ namespace VES.Controllers
         }
         public IActionResult Events()
         {
-            DateTime today = DateTime.Now.Date;
             string userEmail = HttpContext.Session.GetString("email");
-            var myEvents = _myDbContext.Opportunities.Where(o => o.UserEmail == userEmail).ToList();
-            VolunteerRegister volunteer = _myDbContext.Volunteers.FirstOrDefault(v => v.Email == userEmail);
-            List<OpportunityModel> joinedEvents = new List<OpportunityModel>();
-            var regEvents = _myDbContext.EventRegistrations.Where(o => o.UserEmail == userEmail).ToList();
-            foreach (var reg in regEvents)
+            if (IsUserAuthenticated(userEmail))
             {
-                var title = reg.EventName;
-                var events = _myDbContext.Opportunities.Where(o => o.Title == title);
-                joinedEvents.AddRange(events);
-            }
-            var pastEvents = joinedEvents.Where(o => o.Date < today).ToList();
-            var futureEvents = joinedEvents.Where(o => o.Date >= today).ToList();
-            var othersEvents = _myDbContext.Opportunities.Where(o => o.UserEmail != userEmail).ToList();
-            var notJoinedEvents = othersEvents.Where(o => !joinedEvents.Any(j => j.Title == o.Title)).ToList();
-            var viewModel = new MyEventsViewModel
-            {
-                MyEvents = myEvents,
-                JoinedEvents = futureEvents,
-                OtherEvents = notJoinedEvents,
-                PastEvents = pastEvents
-            };
-            if (volunteer.Role == "Volunteer")
-            {
-                return View(viewModel);
+                DateTime today = DateTime.Now.Date;
+                var myEvents = _myDbContext.Opportunities.Where(o => o.UserEmail == userEmail).ToList();
+                VolunteerRegister volunteer = _myDbContext.Volunteers.FirstOrDefault(v => v.Email == userEmail);
+                List<OpportunityModel> joinedEvents = new List<OpportunityModel>();
+                var regEvents = _myDbContext.EventRegistrations.Where(o => o.UserEmail == userEmail).ToList();
+                foreach (var reg in regEvents)
+                {
+                    var title = reg.EventName;
+                    var events = _myDbContext.Opportunities.Where(o => o.Title == title);
+                    joinedEvents.AddRange(events);
+                }
+                var pastEvents = joinedEvents.Where(o => o.Date < today).ToList();
+                var futureEvents = joinedEvents.Where(o => o.Date >= today).ToList();
+                var othersEvents = _myDbContext.Opportunities.Where(o => o.UserEmail != userEmail).ToList();
+                var notJoinedEvents = othersEvents.Where(o => !joinedEvents.Any(j => j.Title == o.Title)).ToList();
+                var viewModel = new MyEventsViewModel
+                {
+                    MyEvents = myEvents,
+                    JoinedEvents = futureEvents,
+                    OtherEvents = notJoinedEvents,
+                    PastEvents = pastEvents
+                };
+                if (volunteer.Role == "Volunteer")
+                {
+                    return View(viewModel);
+                }
+                else
+                {
+                    return View("MyEvents", viewModel);
+                }
             }
             else
             {
-                return View("MyEvents",viewModel);
+                return HomePage();
             }
         }
         public class MyEventsViewModel
@@ -285,21 +334,25 @@ namespace VES.Controllers
         public IActionResult Notification()
         {
             string userEmail = HttpContext.Session.GetString("email");
-
-            var othervol = _myDbContext.EventRegistrations.Where(p => p.EventEmail == userEmail).ToList();
-            var myvol = _myDbContext.EventRegistrations.Where(p => p.UserEmail == userEmail).ToList();
-
-            var allNotifications = othervol.Concat(myvol)
-                                            .OrderByDescending(notification => notification.JoinedDate)
-                                            .ToList();
-
-            var viewModel = new NotificationViewModel
+            if (IsUserAuthenticated(userEmail))
             {
-                UserEmail = userEmail,
-                AllNotifications = allNotifications
-            };
 
-            return View(viewModel);
+                var othervol = _myDbContext.EventRegistrations.Where(p => p.EventEmail == userEmail).ToList();
+                var myvol = _myDbContext.EventRegistrations.Where(p => p.UserEmail == userEmail).ToList();
+
+                var allNotifications = othervol.Concat(myvol)
+                                                .OrderByDescending(notification => notification.JoinedDate)
+                                                .ToList();
+
+                var viewModel = new NotificationViewModel
+                {
+                    UserEmail = userEmail,
+                    AllNotifications = allNotifications
+                };
+
+                return View(viewModel);
+            }
+            return HomePage();
         }
         public class NotificationViewModel
         {
@@ -371,7 +424,7 @@ namespace VES.Controllers
             List<Alert> myAlerts = new List<Alert>();
             string user = HttpContext.Session.GetString("email");
             VolunteerRegister volunteer = _myDbContext.Volunteers.FirstOrDefault(v => v.Email == user);
-            if (volunteer.Role == "Volunteer")
+            if (volunteer != null && volunteer.Role == "Volunteer")
             {
                 var info = _myDbContext.AlertInfo.FirstOrDefault(o => o.Email == user);
                 var alert = _myDbContext.Alerts.FirstOrDefault(o => o.UserEmail != user);
@@ -420,14 +473,15 @@ namespace VES.Controllers
             else
             {
                 var alert = _myDbContext.Alerts.FirstOrDefault(o => o.UserEmail == user);
-                if (alert.UserEmail == user)
+                if (user != null && alert.UserEmail == user)
                 {
                     myAlerts.Add(alert);
+                    List<Alert> sortedAlerts = myAlerts.OrderBy(a => a.DueDate).ToList();
+                    return View("MyAlerts", sortedAlerts);
                 }
-                List<Alert> sortedAlerts = myAlerts.OrderBy(a => a.DueDate).ToList();
-                return View("MyAlerts", sortedAlerts);
+                return HomePage();
             }
-            
+
         }
 
         public class MyAlertViewModel
@@ -461,6 +515,24 @@ namespace VES.Controllers
                 return RedirectToAction("PastEvent", "Opportunity", new { title = name });
             }
             return View(model);
+        }
+        public IActionResult AlertDetails(string title)
+        {
+            string userEmail = HttpContext.Session.GetString("email");
+            if (IsUserAuthenticated(userEmail))
+            {
+                var opportunityDetails = _myDbContext.Alerts.FirstOrDefault(o => o.Title == title);
+                if (opportunityDetails == null)
+                {
+                    return View("OpportunityNotFound");
+                }
+
+                return View(opportunityDetails);
+            }
+            else
+            {
+                return HomePage();
+            }
         }
     }
 }

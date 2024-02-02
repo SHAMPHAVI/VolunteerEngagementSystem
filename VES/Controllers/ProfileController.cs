@@ -12,19 +12,27 @@ namespace VES.Controllers
         {
             _myDbContext = myDbContext;
         }
-
+        private bool IsUserAuthenticated(string userEmail)
+        {
+            return _myDbContext.Volunteers.Any(a => a.Email == userEmail);
+        }
+        private RedirectToActionResult HomePage()
+        {
+            return RedirectToAction("Index", "Home");
+        }
         public IActionResult User(VolunteerRegister volunteer)
         {
             string userEmail = HttpContext.Session.GetString("email");
             volunteer = _myDbContext.Volunteers.FirstOrDefault(v => v.Email == userEmail);
-            if (volunteer.Role == "Organization") {
+            if (volunteer!=null && volunteer.Role == "Organization") {
                 return View("Organization", volunteer);
             }
-            if(volunteer.Role == "Volunteer")
+            if (volunteer != null && volunteer.Role == "Volunteer")
             {
                 return View("Volunteer", volunteer);
             }
-            return View("Error");
+                return HomePage();
+
         }
         [HttpGet]
         public IActionResult Edit()
@@ -32,15 +40,15 @@ namespace VES.Controllers
             string userEmail = HttpContext.Session.GetString("email");
             VolunteerRegister volunteer = _myDbContext.Volunteers.FirstOrDefault(v => v.Email == userEmail);
 
-            if (volunteer.Role == "Organization")
+            if (volunteer != null && volunteer.Role == "Organization")
             {
                 return View("EditOrganization", volunteer);
             }
-            if (volunteer.Role == "Volunteer")
+            if (volunteer != null && volunteer.Role == "Volunteer")
             {
                 return View("EditVolunteer", volunteer);
             }
-            return View("Error");
+            return HomePage();
         }
 
         [HttpPost]

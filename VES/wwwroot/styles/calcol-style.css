@@ -1,0 +1,15 @@
+﻿.My.Event {
+    background-color: aquamarine;
+}
+.Past.Joined.Event {
+    background-color: aqua;
+}
+.Future.Joined.Event {
+    background-color: aliceblue;
+}
+.Not.Joined.Event {
+    background-color: aliceblue;
+}
+.info-text {
+    display: none;
+}

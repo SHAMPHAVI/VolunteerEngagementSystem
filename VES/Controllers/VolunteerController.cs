@@ -211,5 +211,18 @@ namespace VES.Controllers
             _myDbContext.SaveChanges();
             return RedirectToAction("Event_Rating", "Volunteer");
         }
+        public IActionResult PastEvent(string title)
+        {
+            string userEmail = HttpContext.Session.GetString("email");
+
+                var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
+                if (opportunityDetails == null)
+                {
+                    return View("OpportunityNotFound");
+                }
+
+                return View(opportunityDetails);
+        }
     }
+
 }

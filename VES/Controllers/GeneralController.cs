@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
+using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VES.Controllers
 {
@@ -21,11 +23,20 @@ namespace VES.Controllers
         {
             return View();
         }
-
+        private bool IsUserAuthenticated(string userEmail)
+        {
+            return _myDbContext.Volunteers.Any(a => a.Email == userEmail);
+        }
+        private RedirectToActionResult HomePage()
+        {
+            return RedirectToAction("Index", "Home");
+        }
         public IActionResult Calendar(int? year, int? month)
         {
-            DateTime today = DateTime.Now.Date;
             string userEmail = HttpContext.Session.GetString("email");
+            if (IsUserAuthenticated(userEmail))
+            {
+            DateTime today = DateTime.Now.Date;
             int currentYear = DateTime.Now.Year;
             int currentMonth = DateTime.Now.Month;
             if (year.HasValue && month.HasValue)
@@ -46,8 +57,15 @@ namespace VES.Controllers
                 nextMonth = 1;
                 currentYear++;
             }
-            var myEvents = _myDbContext.Opportunities.Where(o => o.UserEmail == userEmail).ToList();
-            VolunteerRegister volunteer = _myDbContext.Volunteers.FirstOrDefault(v => v.Email == userEmail);
+                var myEvents = new List<EventData>
+                {
+                    new EventData
+                    {
+                        Events = _myDbContext.Opportunities.Where(o => o.UserEmail == userEmail).ToList(),
+                        Color = "My Event"
+                    }
+                };
+                VolunteerRegister volunteer = _myDbContext.Volunteers.FirstOrDefault(v => v.Email == userEmail);
             List<OpportunityModel> joinedEvents = new List<OpportunityModel>();
             var regEvents = _myDbContext.EventRegistrations.Where(o => o.UserEmail == userEmail).ToList();
 
@@ -58,12 +76,33 @@ namespace VES.Controllers
                 joinedEvents.AddRange(events);
             }
 
-            var pastEvents = joinedEvents.Where(o => o.Date < today).ToList();
-            var futureEvents = joinedEvents.Where(o => o.Date >= today).ToList();
-            var othersEvents = _myDbContext.Opportunities.Where(o => o.UserEmail != userEmail).ToList();
-            var notJoinedEvents = othersEvents.Where(o => !joinedEvents.Any(j => j.Title == o.Title)).ToList();
+                var pastEvents = new List<EventData>
+                {
+                    new EventData
+                    {
+                        Events = joinedEvents.Where(o => o.Date < today).ToList(),
+                        Color = "Past Joined Event"
+                    }
+                };
+              var futureEvents = new List<EventData>
+                {
+                    new EventData
+                    {
+                        Events = joinedEvents.Where(o => o.Date >= today).ToList(),
+                        Color = "Future Joined Event"
+                    }
+                };
+                var othersEvents = _myDbContext.Opportunities.Where(o => o.UserEmail != userEmail).ToList();
+                var notJoinedEvents = new List<EventData>
+                {
+                    new EventData
+                    {
+                        Events = othersEvents.Where(o => !joinedEvents.Any(j => j.Title == o.Title)).ToList(),
+                        Color = "Not Joined Event"
+                    }
+                };
 
-            var viewModel = new MyEventsViewModel
+                var viewModel = new MyEventsViewModel
             {
                 MyEvents = myEvents,
                 JoinedEvents = futureEvents,
@@ -75,22 +114,25 @@ namespace VES.Controllers
                 Month= currentMonth
             };
 
-            if (volunteer?.Role == "Volunteer")
-            {
                 return View(viewModel);
+
             }
             else
             {
-                return View(viewModel);
+                return HomePage();
             }
         }
-
+        public class EventData
+        {
+            public List<OpportunityModel> Events { get; set; }
+            public string Color { get; set; }
+        }
         public class MyEventsViewModel
         {
-            public List<OpportunityModel> MyEvents { get; set; }
-            public List<OpportunityModel> JoinedEvents { get; set; }
-            public List<OpportunityModel> OtherEvents { get; set; }
-            public List<OpportunityModel> PastEvents { get; set; }
+            public List<EventData> MyEvents { get; set; }
+            public List<EventData> JoinedEvents { get; set; }
+            public List<EventData> OtherEvents { get; set; }
+            public List<EventData> PastEvents { get; set; }
             public int Year { get; set; }
             public int PreviousMonth { get; set; }
             public int NextMonth { get; set; }
@@ -126,23 +168,23 @@ namespace VES.Controllers
                 return calendarWeeks;
             }
 
-            public IEnumerable<OpportunityModel> GetEventsForDate(DateTime date)
+            public IEnumerable<EventData> GetEventsForDate(DateTime date)
             {
                 return MyEvents
                     .Concat(JoinedEvents)
                     .Concat(OtherEvents)
                     .Concat(PastEvents)
-                    .Where(evt => evt.Date.Date == date.Date);
+                   .Where(evt => evt.Events.Any(e => e.Date.Date == date.Date));
+            }
+            public IEnumerable<EventData> GetEventsForDay(int year, int month, int day)
+            {
+                return MyEvents
+                    .Concat(JoinedEvents)
+                .Concat(OtherEvents)
+                .Concat(PastEvents)
+                 .Where(o => o.Events.Any(e => e.Date.Year == year && e.Date.Month == month && e.Date.Day == day));
             }
 
-            public IEnumerable<OpportunityModel> GetEventsForDay(int year, int month, int day)
-            {
-                return MyEvents
-                    .Concat(JoinedEvents)
-                    .Concat(OtherEvents)
-                    .Concat(PastEvents)
-                    .Where(o => o.Date.Year == year && o.Date.Month == month && o.Date.Day == day);
-            }
         }
 
         public class CalendarWeek
@@ -153,7 +195,7 @@ namespace VES.Controllers
         public class CalendarDay
         {
             public int Day { get; set; }
-            public IEnumerable<OpportunityModel> Title { get; set; } = new List<OpportunityModel>();
+            public IEnumerable<EventData> Title { get; set; } = new List<EventData>();
         }
     }
 }

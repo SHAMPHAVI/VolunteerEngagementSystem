@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IkgILNXhABu/L8Boff84bXKWap6yY2EDpuS+oKUb6/4=",
+  "Hash": "3tTITRIB/4dmlzlI6DFK7V9765w0cgG2Y2BU2vHdgdA=",
   "Source": "VES",
   "BasePath": "_content/VES",
   "Mode": "Default",
@@ -1288,6 +1288,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\styles\\admin-layout-style.css"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\calcol-style.css",
+      "SourceId": "VES",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\",
+      "BasePath": "_content/VES",
+      "RelativePath": "styles/calcol-style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\styles\\calcol-style.css"
     },
     {
       "Identity": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\calendar-style.css",

@@ -2,7 +2,7 @@
     Layout = "_Layout_A";
 }
 @using VES.Helpers
-
+<link rel="stylesheet" href="~/styles/calcol-style.css">
 <div style="text-align: center; margin-bottom: 20px;">
     <form asp-action="Calendar" asp-controller="General" method="get">
         <label for="year">Year:</label>
@@ -41,7 +41,23 @@
 
                             @foreach (var evt in Model.GetEventsForDay(Model.Year, Model.Month, day.Day))
                             {
-                                <div>@HtmlHelpers.Truncate(evt.Title, 20)</div>
+                                foreach (var opportunity in evt.Events)
+                                {
+                                    <div class="opportunity-wrapper">
+                                        <div class="title-wrapper">
+                                            @{
+                                                string url = "https://localhost:7090/Opportunity/";
+                                                string path = evt.Color == "My Event"? "Details"
+                                                : (evt.Color == "Not Joined Event" ? "JoinEvents" 
+                                                :"Joined Events" );
+                                                string href = url + path + "?title=" + opportunity.Title;
+                                            }
+                                            <a href="@href" class="@evt.Color opportunity-title">@HtmlHelpers.Truncate(opportunity.Title, 20)</a>
+                                            <div class="info-text">@evt.Color</div>
+                                        </div>
+                                    </div>
+
+                                }
                             }
                         </td>
                     }
@@ -50,3 +66,23 @@
         </tbody>
     </table>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var opportunityWrappers = document.querySelectorAll('.opportunity-wrapper');
+
+        opportunityWrappers.forEach(function (wrapper) {
+            var titleWrapper = wrapper.querySelector('.title-wrapper');
+            var titleDiv = wrapper.querySelector('.opportunity-title');
+            var infoText = wrapper.querySelector('.info-text');
+
+            titleDiv.addEventListener('mouseenter', function () {
+                infoText.style.display = 'block';
+            });
+
+            titleWrapper.addEventListener('mouseleave', function () {
+                infoText.style.display = 'none';
+            });
+        });
+    });
+
+</script>

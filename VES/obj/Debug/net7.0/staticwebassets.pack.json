@@ -265,6 +265,10 @@
       "PackagePath": "staticwebassets\\styles\\admin-layout-style.css"
     },
     {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\calcol-style.css",
+      "PackagePath": "staticwebassets\\styles\\calcol-style.css"
+    },
+    {
       "Id": "C:\\Users\\USER\\source\\repos\\VES\\VES\\wwwroot\\styles\\calendar-style.css",
       "PackagePath": "staticwebassets\\styles\\calendar-style.css"
     },

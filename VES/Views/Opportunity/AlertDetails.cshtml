@@ -9,19 +9,18 @@
 <body>
     @if (Model != null)
     {
-        <form method="post" action="Join">
+        <form>
             <div class="head">
                 <input type="hidden" name="EventName" value="@Model.Title">
                 <h1 >@Model.Title</h1>
             </div>
             <p><strong>Location:</strong> @Model.Province, @Model.District, @Model.City</p>
-            <p><strong>Category:</strong> @Model.Category</p>
-            <p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
+            <p><strong>Requirement(Team/Blood Group):</strong> @Model.Team, @Model.BloodGroup</p>
+            <p><strong>Contact:</strong> @Model.UserEmail</p>
+            <p><strong>Date:</strong> @Model.DueDate.ToShortDateString()</p>
             <div class="p1">
                 <p>@Model.Description</p>
-            </div>
-            <input type="submit" value="Join">
-           
+            </div>           
         </form>
     }
 

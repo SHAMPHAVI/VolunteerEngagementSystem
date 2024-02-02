@@ -14,6 +14,7 @@ namespace VES.Controllers
         {
             _myDbContext = myDbContext;
         }
+
         public ActionResult Users()
         {
             string userEmail = HttpContext.Session.GetString("email");

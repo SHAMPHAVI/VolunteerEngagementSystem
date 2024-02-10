@@ -188,6 +188,7 @@ C:\Users\USER\source\repos\VES\VES\obj\Debug\net7.0\staticwebassets\msbuild.buil
 C:\Users\USER\source\repos\VES\VES\obj\Debug\net7.0\staticwebassets.pack.json
 C:\Users\USER\source\repos\VES\VES\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\USER\source\repos\VES\VES\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout_A.cshtml.rz.scp.css
+C:\Users\USER\source\repos\VES\VES\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout_Admin.cshtml.rz.scp.css
 C:\Users\USER\source\repos\VES\VES\obj\Debug\net7.0\scopedcss\bundle\VES.styles.css
 C:\Users\USER\source\repos\VES\VES\obj\Debug\net7.0\scopedcss\projectbundle\VES.bundle.scp.css
 C:\Users\USER\source\repos\VES\VES\obj\Debug\net7.0\VES.csproj.CopyComplete
@@ -196,4 +197,3 @@ C:\Users\USER\source\repos\VES\VES\obj\Debug\net7.0\refint\VES.dll
 C:\Users\USER\source\repos\VES\VES\obj\Debug\net7.0\VES.pdb
 C:\Users\USER\source\repos\VES\VES\obj\Debug\net7.0\VES.genruntimeconfig.cache
 C:\Users\USER\source\repos\VES\VES\obj\Debug\net7.0\ref\VES.dll
-C:\Users\USER\source\repos\VES\VES\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout_Admin.cshtml.rz.scp.css

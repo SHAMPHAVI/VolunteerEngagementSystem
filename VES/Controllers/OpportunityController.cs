@@ -428,7 +428,7 @@ namespace VES.Controllers
             {
                 var info = _myDbContext.AlertInfo.FirstOrDefault(o => o.Email == user);
                 var alert = _myDbContext.Alerts.FirstOrDefault(o => o.UserEmail != user);
-                switch (alert.Location)
+                switch (alert?.Location)
                 {
                     case "City":
                         if (alert.City == info.City)
@@ -448,6 +448,8 @@ namespace VES.Controllers
                             locAlerts.Add(alert);
                         }
                         break;
+                    default:
+                        return View("OpportunityNotFound");
                 }
                 if (alert.BloodGroup == info.BloodGroup)
                 {

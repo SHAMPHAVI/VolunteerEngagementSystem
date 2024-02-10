@@ -48,8 +48,8 @@
                                             @{
                                                 string url = "https://localhost:7090/Opportunity/";
                                                 string path = evt.Color == "My Event"? "Details"
-                                                : (evt.Color == "Not Joined Event" ? "JoinEvents" 
-                                                :"Joined Events" );
+                                                : (evt.Color == "Not Joined Event" ? "JoinEvents"
+                                                : "JoinedEvent");
                                                 string href = url + path + "?title=" + opportunity.Title;
                                             }
                                             <a href="@href" class="@evt.Color opportunity-title">@HtmlHelpers.Truncate(opportunity.Title, 20)</a>

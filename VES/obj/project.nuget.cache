@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Go1mMNxBUuidYMwJ+aIBdL6fTNxJE4ocfKbpN/CUp9F0RdvnJHedWDeVCN5ToVlXEX3sEblnNBvnmzbJhxdHfQ==",
+  "dgSpecHash": "DvwpYVmhtJVVc7yyqGL5vbeSzLenSktt4+Z5LsNUJ36edgxo2Rc1fiH5AyVTi1kZSe24pPlfQu2eGwBqi1sBsA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\USER\\source\\repos\\VES\\VES\\VES.csproj",
+  "projectFilePath": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\VES.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USER\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

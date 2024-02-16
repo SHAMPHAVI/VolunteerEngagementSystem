@@ -191,7 +191,7 @@ namespace VES.Controllers
             if (ModelState.IsValid)
             {
                 InsertAlertDataIntoDatabase(model);
-                return RedirectToAction("Events");
+                return RedirectToAction("ViewAlerts");
             }
 
             return View(model);
@@ -431,19 +431,19 @@ namespace VES.Controllers
                 switch (alert?.Location)
                 {
                     case "City":
-                        if (alert.City == info.City)
+                        if (alert.City != null && alert.City == info.City)
                         {
                             locAlerts.Add(alert);
                         }
                         break;
                     case "Province":
-                        if (alert.Province == info.Province)
+                        if (alert.Province != null && alert.Province == info.Province)
                         {
                             locAlerts.Add(alert);
                         }
                         break;
                     case "District":
-                        if (alert.District == info.District)
+                        if (alert.District != null && alert.District == info.District)
                         {
                             locAlerts.Add(alert);
                         }
@@ -451,11 +451,11 @@ namespace VES.Controllers
                     default:
                         return View("OpportunityNotFound");
                 }
-                if (alert.BloodGroup == info.BloodGroup)
+                if (alert.BloodGroup != null && alert.BloodGroup == info.BloodGroup)
                 {
                     bTypeAlerts.Add(alert);
                 }
-                if (alert.Team == info.Team)
+                if (alert.Team != null && alert.Team == info.Team)
                 {
                     teamAlerts.Add(alert);
                 }
@@ -475,7 +475,11 @@ namespace VES.Controllers
             else
             {
                 var alert = _myDbContext.Alerts.FirstOrDefault(o => o.UserEmail == user);
-                if (user != null && alert.UserEmail == user)
+                if (alert == null)
+                {
+                    return View("OpportunityNotFound");
+                }
+                else if (user!=null && alert.UserEmail == user)
                 {
                     myAlerts.Add(alert);
                     List<Alert> sortedAlerts = myAlerts.OrderBy(a => a.DueDate).ToList();

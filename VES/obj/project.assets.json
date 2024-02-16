@@ -3031,11 +3031,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\USER\\source\\repos\\VES\\VES\\VES.csproj",
+      "projectUniqueName": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\VES.csproj",
       "projectName": "VES",
-      "projectPath": "C:\\Users\\USER\\source\\repos\\VES\\VES\\VES.csproj",
+      "projectPath": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\VES.csproj",
       "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\USER\\source\\repos\\VES\\VES\\obj\\",
+      "outputPath": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",

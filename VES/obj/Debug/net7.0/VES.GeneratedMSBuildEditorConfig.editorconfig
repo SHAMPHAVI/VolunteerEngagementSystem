@@ -9,199 +9,199 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = VES
 build_property.RootNamespace = VES
-build_property.ProjectDir = C:\Users\USER\source\repos\VES\VES\
+build_property.ProjectDir = C:\Users\USER\source\repos\VES1\VES\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\USER\source\repos\VES\VES
+build_property.MSBuildProjectDirectory = C:\Users\USER\source\repos\VES1\VES
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Admin/Login.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Admin/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Dashboard/Alerts.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Dashboard/Alerts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFsZXJ0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Dashboard/Engagement.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Dashboard/Engagement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEVuZ2FnZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Dashboard/Events.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Dashboard/Events.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEV2ZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Dashboard/Organization.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Dashboard/Organization.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXE9yZ2FuaXphdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Dashboard/Overview.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Dashboard/Overview.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXE92ZXJ2aWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Dashboard/Ratings.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Dashboard/Ratings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFJhdGluZ3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Dashboard/Users.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Dashboard/Users.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFVzZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Dashboard/Volunteers.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Dashboard/Volunteers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFZvbHVudGVlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/General/Calendar.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/General/Calendar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VuZXJhbFxDYWxlbmRhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/General/GetStarted.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/General/GetStarted.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VuZXJhbFxHZXRTdGFydGVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Home/AboutUs.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Home/AboutUs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dFVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Home/Index.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Home/Privacy.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/Add.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/AddAlert.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/AddAlert.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcQWRkQWxlcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/AlertDetails.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/AlertDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcQWxlcnREZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/Details.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/Edit.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/Events.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/Events.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcRXZlbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/JoinedEvent.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/JoinedEvent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcSm9pbmVkRXZlbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/JoinEvents.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/JoinEvents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcSm9pbkV2ZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/MyAlerts.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/MyAlerts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcTXlBbGVydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/MyEvents.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/MyEvents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcTXlFdmVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/Notification.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/Notification.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcTm90aWZpY2F0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/OpportunityNotFound.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/OpportunityNotFound.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcT3Bwb3J0dW5pdHlOb3RGb3VuZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/Participant_Rating.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/Participant_Rating.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcUGFydGljaXBhbnRfUmF0aW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Opportunity/ViewAlerts.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/ViewAlerts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcVmlld0FsZXJ0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Profile/EditOrganization.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Profile/EditOrganization.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxFZGl0T3JnYW5pemF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Profile/EditVolunteer.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Profile/EditVolunteer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxFZGl0Vm9sdW50ZWVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Profile/Organization.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Profile/Organization.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxPcmdhbml6YXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Profile/UpdateAlertInfo.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Profile/UpdateAlertInfo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxVcGRhdGVBbGVydEluZm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Profile/Volunteer.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Profile/Volunteer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxWb2x1bnRlZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Shared/Error.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Volunteer/AboutUs.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Volunteer/AboutUs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9sdW50ZWVyXEFib3V0VXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Volunteer/Event_Rating.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Volunteer/Event_Rating.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9sdW50ZWVyXEV2ZW50X1JhdGluZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Volunteer/Home.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Volunteer/Home.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9sdW50ZWVyXEhvbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Volunteer/Login.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Volunteer/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9sdW50ZWVyXExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Volunteer/OrgRegister.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Volunteer/OrgRegister.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9sdW50ZWVyXE9yZ1JlZ2lzdGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Volunteer/PastEvent.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Volunteer/PastEvent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9sdW50ZWVyXFBhc3RFdmVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Volunteer/Register.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Volunteer/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9sdW50ZWVyXFJlZ2lzdGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/_ViewImports.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/_ViewStart.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/VES/VES/Views/Shared/_Layout.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-cnvv0krnl2
 
-[C:/Users/USER/source/repos/VES/VES/Views/Shared/_Layout_A.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Shared/_Layout_A.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfQS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-7sgj0hlqak
 
-[C:/Users/USER/source/repos/VES/VES/Views/Shared/_Layout_Admin.cshtml]
+[C:/Users/USER/source/repos/VES1/VES/Views/Shared/_Layout_Admin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfQWRtaW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-3mwejixcus

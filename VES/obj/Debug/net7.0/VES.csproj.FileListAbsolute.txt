@@ -282,3 +282,5 @@ C:\Users\USER\source\repos\VES1\VES\obj\Debug\net7.0\refint\VES.dll
 C:\Users\USER\source\repos\VES1\VES\obj\Debug\net7.0\VES.pdb
 C:\Users\USER\source\repos\VES1\VES\obj\Debug\net7.0\VES.genruntimeconfig.cache
 C:\Users\USER\source\repos\VES1\VES\obj\Debug\net7.0\ref\VES.dll
+C:\Users\USER\source\repos\VES1\VES\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\USER\source\repos\VES1\VES\bin\Debug\net7.0\PuppeteerSharp.dll

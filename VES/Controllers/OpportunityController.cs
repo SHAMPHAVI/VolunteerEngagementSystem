@@ -427,38 +427,43 @@ namespace VES.Controllers
             if (volunteer != null && volunteer.Role == "Volunteer")
             {
                 var info = _myDbContext.AlertInfo.FirstOrDefault(o => o.Email == user);
-                var alert = _myDbContext.Alerts.FirstOrDefault(o => o.UserEmail != user);
-                switch (alert?.Location)
+                var alerts = _myDbContext.Alerts.Where(o => o.UserEmail != user).ToList();
+
+                foreach (var alert in alerts)
                 {
-                    case "City":
-                        if (alert.City != null && alert.City == info.City)
-                        {
-                            locAlerts.Add(alert);
-                        }
-                        break;
-                    case "Province":
-                        if (alert.Province != null && alert.Province == info.Province)
-                        {
-                            locAlerts.Add(alert);
-                        }
-                        break;
-                    case "District":
-                        if (alert.District != null && alert.District == info.District)
-                        {
-                            locAlerts.Add(alert);
-                        }
-                        break;
-                    default:
-                        return View("OpportunityNotFound");
+                    switch (alert.Location)
+                    {
+                        case "City":
+                            if (alert.City != null && alert.City == info?.City)
+                            {
+                                locAlerts.Add(alert);
+                            }
+                            break;
+                        case "Province":
+                            if (alert.Province != null && alert.Province == info?.Province)
+                            {
+                                locAlerts.Add(alert);
+                            }
+                            break;
+                        case "District":
+                            if (alert.District != null && alert.District == info?.District)
+                            {
+                                locAlerts.Add(alert);
+                            }
+                            break;
+                    }
+
+                    if (alert.BloodGroup != null && alert.BloodGroup == info?.BloodGroup)
+                    {
+                        bTypeAlerts.Add(alert);
+                    }
+
+                    if (alert.Team != null && alert.Team == info?.Team)
+                    {
+                        teamAlerts.Add(alert);
+                    }
                 }
-                if (alert.BloodGroup != null && alert.BloodGroup == info.BloodGroup)
-                {
-                    bTypeAlerts.Add(alert);
-                }
-                if (alert.Team != null && alert.Team == info.Team)
-                {
-                    teamAlerts.Add(alert);
-                }
+
                 List<Alert> sortedLocAlerts = locAlerts.OrderBy(a => a.DueDate).ToList();
                 List<Alert> sortedbTypeAlerts = bTypeAlerts.OrderBy(a => a.DueDate).ToList();
                 List<Alert> sortedteamAlerts = teamAlerts.OrderBy(a => a.DueDate).ToList();
@@ -479,16 +484,16 @@ namespace VES.Controllers
                 {
                     return View("OpportunityNotFound");
                 }
-                else if (user!=null && alert.UserEmail == user)
+                else if (user != null && alert.UserEmail == user)
                 {
                     myAlerts.Add(alert);
                     List<Alert> sortedAlerts = myAlerts.OrderBy(a => a.DueDate).ToList();
                     return View("MyAlerts", sortedAlerts);
                 }
-                return HomePage();
+                return RedirectToAction("HomePage");
             }
-
         }
+
 
         public class MyAlertViewModel
         {

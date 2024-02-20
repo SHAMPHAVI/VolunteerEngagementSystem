@@ -23,8 +23,8 @@
             <input type="submit" value="Leave">
            
         </form>
-        <form method="post" action="@Url.Action("Contact", "Event")">
-            <input type="hidden" name="EventName" value="@Model.Title">
+        <form method="post" action="@Url.Action("Chat", "General", new { title = Model.Title })">
+            <input type="submit" value="Chat" class="btn btn-info" onclick="return confirm('You are redirected to the Chat Page of @Model.Title');">
         </form>
     }
 
@@ -32,5 +32,6 @@
     {
         <p>Opportunity not found.</p>
     }
+
 </body>
 </html>

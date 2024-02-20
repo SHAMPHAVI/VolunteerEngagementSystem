@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DvwpYVmhtJVVc7yyqGL5vbeSzLenSktt4+Z5LsNUJ36edgxo2Rc1fiH5AyVTi1kZSe24pPlfQu2eGwBqi1sBsA==",
+  "dgSpecHash": "OI0f5KqjZo6KbJyW2e14NrN5GxFuLw3qXgq0A9kJybtmjPSI50vBlCBcshJZTkbioc8NobaJxkK9sd0HejWVYg==",
   "success": true,
   "projectFilePath": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\VES.csproj",
   "expectedPackageFiles": [
@@ -43,8 +43,10 @@
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\7.0.0\\pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\puppeteersharp\\14.1.0\\puppeteersharp.14.1.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.1\\system.configuration.configurationmanager.6.0.1.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

@@ -18,7 +18,33 @@ namespace VES.Controllers
         {
             _myDbContext = context ?? throw new ArgumentNullException(nameof(context));
         }
+        public IActionResult Chat(string title)
+        {
+            var comments = _myDbContext.Comments.Where(c => c.Title == title).ToList();
+           ViewBag.Title = title;
+            return View(comments);
+        }
+        [HttpPost]
+        public ActionResult AddComment(string newCommentText, string replyto, string type, string title)
+        {
+            string userEmail = HttpContext.Session.GetString("email");
+            var newComment = new CommentModel
+            {
+                Id = Guid.NewGuid(),
+                UserEmail = userEmail, 
+                CommentText = newCommentText,
+                Timestamp = DateTime.Now,
+                Title = title, 
+                type = type,
+                replyto = replyto
+            };
 
+            _myDbContext.Comments.Add(newComment);
+            _myDbContext.SaveChanges(); 
+
+            
+            return RedirectToAction("Chat", new { title = newComment.Title });
+        }
         public ActionResult GetStarted()
         {
             return View();

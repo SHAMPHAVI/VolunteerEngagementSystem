@@ -1,0 +1,83 @@
+﻿@{
+    Layout = "_Layout_A";
+}
+@model List<VES.Models.CommentModel>
+
+<div>
+    @foreach (var comment in Model.Where(c => c.type == "main"))
+    {
+        <div>
+            <strong>@comment.UserEmail</strong> - @comment.Timestamp
+            <p>@comment.CommentText</p>
+            <button class="replyButton" data-commentId="@comment.Id">Reply</button>
+            <div class="replies" id="replies_@comment.Id">
+                @foreach (var reply in Model.Where(c => c.type == "reply" && c.replyto == comment.Id.ToString()))
+                {
+                    <div style="margin-left: 20px;">
+                        <strong>@reply.UserEmail</strong> - @reply.Timestamp
+                        <p>@reply.CommentText</p>
+                    </div>
+                }
+            </div>
+            <div class="replyForm" id="replyForm_@comment.Id" style="display:none;">
+                @Html.Editor("NewReply_" + comment.Id)
+                <button class="submitReplyButton" data-commentId="@comment.Id">Submit Reply</button>
+            </div>
+        </div>
+    }
+</div>
+
+<div>
+    <h2>Add New Comment</h2>
+    <form method="post" action="@Url.Action("AddComment", "General")">
+        <input type="hidden" id="EventTitle" name="Title" value="@ViewBag.Title" />
+        <label for="NewComment">New Comment:</label>
+        <textarea id="NewComment" name="NewComment"></textarea>
+        <button type="submit" id="submitNewComment">Submit</button>
+    </form>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".replyButton").click(function () {
+                var commentId = $(this).data("commentId");
+                $("#replyForm_" + commentId).toggle();
+            });
+
+            $(".submitReplyButton").click(function () {
+                var commentId = $(this).data("commentId");
+                var replyText = $("#NewReply_" + commentId).val();
+
+            });
+
+            $("#submitNewComment").click(function (event) {
+                event.preventDefault();
+
+
+                var newCommentText = $("#NewComment").val();
+                var eventTitle = $("#EventTitle").val();
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("AddComment", "General")",
+                    data: { newCommentText: newCommentText, replyto: "new", type: "main", title: eventTitle },
+                    success: function (response) {
+
+                        console.log("Comment added successfully!");
+
+                    },
+                    error: function (xhr, status, error) {
+
+                        console.error("Error adding comment:", error);
+
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+

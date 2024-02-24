@@ -13,20 +13,8 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\images\\Back.jpg",
-      "PackagePath": "staticwebassets\\images\\Back.jpg"
-    },
-    {
       "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\images\\Logo.PNG",
       "PackagePath": "staticwebassets\\images\\Logo.PNG"
-    },
-    {
-      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\images\\MyEvents.PNG",
-      "PackagePath": "staticwebassets\\images\\MyEvents.PNG"
-    },
-    {
-      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\images\\Opportunities.PNG",
-      "PackagePath": "staticwebassets\\images\\Opportunities.PNG"
     },
     {
       "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\js\\site.js",
@@ -259,6 +247,94 @@
     {
       "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\0610dd6a-ff18-40b2-a477-daa1ccfbb07e_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\0610dd6a-ff18-40b2-a477-daa1ccfbb07e_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\22737fb0-d4d3-4538-ab24-0b5f02a67373_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\22737fb0-d4d3-4538-ab24-0b5f02a67373_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\2d27524f-dc50-4c8d-9d88-07cd2573fc16_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\2d27524f-dc50-4c8d-9d88-07cd2573fc16_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\496f8c6b-2a27-4371-af8a-8f6aaef7eae9_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\496f8c6b-2a27-4371-af8a-8f6aaef7eae9_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\4c26fe17-ae04-408c-bb5e-29ebc60cd151_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\4c26fe17-ae04-408c-bb5e-29ebc60cd151_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\52a9fe92-dff8-470a-8be8-a02b269d7e9e_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\52a9fe92-dff8-470a-8be8-a02b269d7e9e_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\5eabc4ab-1662-4b2d-bd12-bebffe7a492a_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\5eabc4ab-1662-4b2d-bd12-bebffe7a492a_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\6b81007c-c116-4941-94ce-20d53da4dca3_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\6b81007c-c116-4941-94ce-20d53da4dca3_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\6d6b36f3-de05-44b7-b509-aec5410a09a7_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\6d6b36f3-de05-44b7-b509-aec5410a09a7_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\705b1996-2904-4355-82c4-45ba18545b14_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\705b1996-2904-4355-82c4-45ba18545b14_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\7265af30-fe63-4e9b-b85a-a114e8db971b_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\7265af30-fe63-4e9b-b85a-a114e8db971b_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\72dbc819-c00b-4089-8f44-4353545dbb71_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\72dbc819-c00b-4089-8f44-4353545dbb71_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\79a0879d-da60-4181-8e25-9d2c264169ea_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\79a0879d-da60-4181-8e25-9d2c264169ea_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\83986faa-e9eb-4589-b395-a11dfdff7511_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\83986faa-e9eb-4589-b395-a11dfdff7511_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\8ee32731-7564-4404-8291-d5055567e781_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\8ee32731-7564-4404-8291-d5055567e781_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\980bc0a8-4606-4d02-9333-8ba9fb3ba1e7_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\980bc0a8-4606-4d02-9333-8ba9fb3ba1e7_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\adb15ebb-f806-4cc6-8a8d-49b406e67df5_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\adb15ebb-f806-4cc6-8a8d-49b406e67df5_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\b4c7b334-aea0-448b-a7ea-c948e436e6ed_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\b4c7b334-aea0-448b-a7ea-c948e436e6ed_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\c5965bb2-8d41-47d3-9b14-03125a785c2a_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\c5965bb2-8d41-47d3-9b14-03125a785c2a_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\cfb0ff34-f98c-43a8-99b6-ad60c1dcb536_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\cfb0ff34-f98c-43a8-99b6-ad60c1dcb536_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\ea76abd5-9ce7-42b1-bcae-26d8347a707b_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\ea76abd5-9ce7-42b1-bcae-26d8347a707b_CrisisHotlines793-752-62818.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\ee490ed7-0a33-47be-9ea4-728513b5d358_CrisisHotlines793-752-62818.jpg",
+      "PackagePath": "staticwebassets\\resources\\ee490ed7-0a33-47be-9ea4-728513b5d358_CrisisHotlines793-752-62818.jpg"
     },
     {
       "Id": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\styles\\admin-layout-style.css",

@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "_Layout_A";
+}
+
+<div>
+    <div>
+        <strong>@Model.MainComment.UserEmail</strong> - @Model.MainComment.Timestamp
+        <p>@Model.MainComment.CommentText</p>
+        <div>
+            @foreach (var reply in Model.Replies)
+            {
+                <div>
+                    <strong>@reply.UserEmail</strong> - @reply.Timestamp
+                    <p>@reply.CommentText</p>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div>
+    <form id="addReplyForm" method="post" action="@Url.Action("AddReview", "General")">
+        <input type="hidden" id="Title" name="Title" value="@ViewBag.Title" />
+        <input type="hidden" id="CommentId" name="CommentId" value="@Model.MainComment.Id" />
+        <textarea id="NewComment" name="NewComment"></textarea>
+        <div><button type="submit" id="submitNewComment">Add Reply</button></div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#addReplyForm").submit(function (event) {
+                event.preventDefault();
+
+                var newCommentText = $("#NewComment").val();
+                var eventTitle = $("#Title").val();
+                var commentId = $("#CommentId").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("AddReview", "General")",
+                    data: { newCommentText: newCommentText, replyto: commentId, type: "reply", title: eventTitle },
+                    success: function (response) {
+                        console.log("Reply added successfully!");
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error adding reply:", error);
+                    }
+                });
+            });
+        });
+    </script>
+}

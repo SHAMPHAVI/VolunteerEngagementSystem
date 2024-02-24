@@ -21,6 +21,20 @@
                 <p>@Model.Description</p>
             </div>           
         </form>
+        <table class="table-container">
+            <tr>
+                <td>
+                    <form method="post" action="@Url.Action("Reviews", "General", new { title = Model.Title })">
+                        <input type="submit" value="Reviews" class="btn btn-primary">
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="@Url.Action("EventPhotos", "General", new { title = Model.Title })">
+                        <input type="submit" value="Event Photos" class="btn btn-primary">
+                    </form>
+                </td>
+            </tr>
+        </table>
     }
 
     else

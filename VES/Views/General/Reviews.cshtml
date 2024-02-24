@@ -1,14 +1,14 @@
 ﻿@{
     Layout = "_Layout_A";
 }
-@model List<VES.Models.CommentModel>
+@model List<VES.Models.ReviewModel>
 
 <div>
     @foreach (var comment in Model.Where(c => c.type == "main"))
     {
         <div>
             <strong>@comment.UserEmail</strong> - @comment.Timestamp
-            <a href="@Url.Action("ReplyPage", "General", new { commentId = comment.Id })">
+            <a href="@Url.Action("ReviewReplies", "General", new { commentId = comment.Id })">
                 
                 <p>@comment.CommentText</p>
             </a>
@@ -18,10 +18,10 @@
 
 
 <div>
-    <form method="post" action="@Url.Action("AddComment", "General")">
+    <form method="post" action="@Url.Action("AddReview", "General")">
         <input type="hidden" id="EventTitle" name="Title" value="@ViewBag.Title" />
         <textarea id="NewComment" name="NewComment"></textarea>
-        <div><button type="submit" id="submitNewComment">Add Comment</button></div>
+        <div><button type="submit" id="submitNewComment">Add Review</button></div>
         
     </form>
 </div>
@@ -40,7 +40,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "@Url.Action("AddComment", "General")",
+                    url: "@Url.Action("AddReview", "General")",
                     data: { newCommentText: newCommentText, replyto: "new", type: "main", title: eventTitle },
                     success: function (response) {
 

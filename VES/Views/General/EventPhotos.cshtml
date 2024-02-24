@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "_Layout_A";
+}
+
+<head>
+    <link rel="stylesheet" href="~/styles/rate-style.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .image-scroll-container {
+            max-height: 550px;
+            min-width: 1000px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    </style>
+</head>
+
+<form method="post" enctype="multipart/form-data" action="@Url.Action("UploadImage", "General")">
+    <div class="form-group">
+        <input type="file" name="imageFile" />
+        <input type="hidden" name="eventTitle" value="@ViewBag.Title" />
+        <button type="submit">Upload Image</button>
+    </div>
+</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="image-scroll-container">
+                <div class="row">
+                    @foreach (var imagePath in Model)
+                    {
+                        <div class="col-md-3 mb-3">
+                            <a href="~/resources/@imagePath" target="_blank">
+                                <img src="~/resources/@imagePath" alt="Event Photo" class="img-fluid" />
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

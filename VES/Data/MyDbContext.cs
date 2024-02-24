@@ -25,6 +25,8 @@ namespace VES.Data
         public DbSet<RateModel> EventRating { get; set; }
         public DbSet<ParticipantRating> ParticipantRating { get; set; }
         public DbSet<CommentModel> Comments { get; set; }
+        public DbSet<ReviewModel> Reviews { get; set; }
+        public DbSet<EventPhotos> Images { get; set; }
 
     }
 }

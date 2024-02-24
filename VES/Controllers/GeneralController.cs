@@ -1,28 +1,151 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Drawing;
 using VES.Data;
 using VES.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Drawing;
-using Microsoft.EntityFrameworkCore;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 namespace VES.Controllers
 {
     public class GeneralController : Controller
     {
         private readonly MyDbContext _myDbContext;
+        private readonly IWebHostEnvironment _environment;
 
-        public GeneralController(MyDbContext context)
+        public GeneralController(MyDbContext context, IWebHostEnvironment environment)
         {
             _myDbContext = context ?? throw new ArgumentNullException(nameof(context));
+            _environment = environment;
+        }
+        [HttpPost]
+        public IActionResult UploadImage(IFormFile imageFile, string eventTitle)
+        {
+            string userEmail = HttpContext.Session.GetString("email");
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                string uploadsFolder = Path.Combine(_environment.WebRootPath, "resources");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                Guid id = Guid.NewGuid();
+                string title = eventTitle.Replace(" ", "");
+                string uniqueFileName = id.ToString() + "_" + title + ".jpg";
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var image = Image.FromStream(imageFile.OpenReadStream()))
+                {
+                    int maxWidth = 1500;
+                    int maxHeight = 1500; 
+
+                    int newWidth = image.Width;
+                    int newHeight = image.Height;
+
+                    if (image.Width > maxWidth)
+                    {
+                        newWidth = maxWidth;
+                        newHeight = (int)Math.Round((double)image.Height * maxWidth / image.Width);
+                    }
+
+                    if (newHeight > maxHeight)
+                    {
+                        newHeight = maxHeight;
+                        newWidth = (int)Math.Round((double)image.Width * maxHeight / image.Height);
+                    }
+
+                    using (var resizedImage = new Bitmap(newWidth, newHeight))
+                    {
+                        using (var graphics = Graphics.FromImage(resizedImage))
+                        {
+                            graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                            graphics.DrawImage(image, 0, 0, newWidth, newHeight);
+                        }
+
+                        resizedImage.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    }
+                }
+
+                var imageModel = new EventPhotos
+                {
+                    Id = Guid.NewGuid(),
+                    UserEmail = userEmail,
+                    ImagePath = uniqueFileName,
+                    Timestamp = DateTime.Now,
+                    Title = eventTitle
+                };
+
+                _myDbContext.Images.Add(imageModel);
+                _myDbContext.SaveChanges();
+
+                return RedirectToAction("EventPhotos", new { title = eventTitle });
+            }
+
+            return RedirectToAction("EventPhotos", new { title = eventTitle });
+        }
+        public IActionResult EventPhotos(string title)
+        {
+            string eventTitle = title;
+            string uploadsFolder = Path.Combine(_environment.WebRootPath, "resources");
+            string[] imageFiles = Directory.GetFiles(uploadsFolder, "*.jpg");
+            if(title!=null)
+            {
+                eventTitle = title.Replace(" ", "");
+
+            }
+            var imagesWithTitle = imageFiles.Where(file => !string.IsNullOrEmpty(title) && Path.GetFileNameWithoutExtension(file).Contains(eventTitle)).Select(Path.GetFileName);
+            ViewBag.Title = title;
+            return View(imagesWithTitle.ToList());
         }
         public IActionResult Chat(string title)
         {
-            var comments = _myDbContext.Comments.Where(c => c.Title == title).ToList();
+            var comments = _myDbContext.Comments.Where(c => c.Title == title).OrderByDescending(c => c.Timestamp).ToList();
            ViewBag.Title = title;
             return View(comments);
+        }
+        public IActionResult Reviews(string title)
+        {
+            var comments = _myDbContext.Reviews.Where(c => c.Title == title).OrderByDescending(c => c.Timestamp).ToList();
+            ViewBag.Title = title;
+            return View(comments);
+        }
+        
+        public IActionResult ReviewReplies(Guid commentId)
+        {
+
+            var mainComment = _myDbContext.Reviews.FirstOrDefault(c => c.Id == commentId);
+            ViewBag.Title = mainComment.Title;
+            var replies = _myDbContext.Reviews.Where(c => c.type == "reply" && c.replyto == commentId.ToString()).OrderByDescending(c => c.Timestamp).ToList();
+
+            var model = new ReviewPageViewModel
+            {
+                MainComment = mainComment,
+                Replies = replies
+            };
+
+            return View(model);
+        }
+        public IActionResult ReplyPage(Guid commentId)
+        {
+           
+            var mainComment = _myDbContext.Comments.FirstOrDefault(c => c.Id == commentId);
+            ViewBag.Title = mainComment.Title;
+            var replies = _myDbContext.Comments.Where(c => c.type == "reply" && c.replyto == commentId.ToString()).OrderByDescending(c => c.Timestamp).ToList();
+
+            var model = new ReplyPageViewModel
+            {
+                MainComment = mainComment,
+                Replies = replies
+            };
+
+            return View(model);
+        }
+        public class ReviewPageViewModel
+        {
+            public ReviewModel MainComment { get; set; }
+            public List<ReviewModel> Replies { get; set; }
+        }
+        public class ReplyPageViewModel
+        {
+            public CommentModel MainComment { get; set; }
+            public List<CommentModel> Replies { get; set; }
         }
         [HttpPost]
         public ActionResult AddComment(string newCommentText, string replyto, string type, string title)
@@ -44,6 +167,27 @@ namespace VES.Controllers
 
             
             return RedirectToAction("Chat", new { title = newComment.Title });
+        }
+        [HttpPost]
+        public ActionResult AddReview(string newCommentText, string replyto, string type, string title)
+        {
+            string userEmail = HttpContext.Session.GetString("email");
+            var newComment = new ReviewModel
+            {
+                Id = Guid.NewGuid(),
+                UserEmail = userEmail,
+                CommentText = newCommentText,
+                Timestamp = DateTime.Now,
+                Title = title,
+                type = type,
+                replyto = replyto
+            };
+
+            _myDbContext.Reviews.Add(newComment);
+            _myDbContext.SaveChanges();
+
+
+            return RedirectToAction("Reviews", new { title = newComment.Title });
         }
         public ActionResult GetStarted()
         {

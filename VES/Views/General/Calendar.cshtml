@@ -37,28 +37,44 @@
                     @foreach (var day in week.Days)
                     {
                         <td style="width: 100px; height: 100px; overflow: hidden; white-space: nowrap;">
-                            <strong>@day.Day</strong><br />
+                            @if (day!= null && day.Day != null)
+                            {
+                                <strong>@day.Day</strong><br />
 
-                            @foreach (var evt in Model.GetEventsForDay(Model.Year, Model.Month, day.Day))
+                            DateTime date = new DateTime(Model.Year, Model.Month, day.Day);
+
+                            @foreach (var evt in Model.GetEventsForDate(date))
                             {
                                 foreach (var opportunity in evt.Events)
                                 {
-                                    <div class="opportunity-wrapper">
-                                        <div class="title-wrapper">
-                                            @{
-                                                string url = "https://localhost:7090/Opportunity/";
-                                                string path = evt.Color == "My Event"? "Details"
-                                                : (evt.Color == "Not Joined Event" ? "JoinEvents"
-                                                : "JoinedEvent");
-                                                string href = url + path + "?title=" + opportunity.Title;
-                                            }
-                                            <a href="@href" class="@evt.Color opportunity-title">@HtmlHelpers.Truncate(opportunity.Title, 20)</a>
-                                            <div class="info-text">@evt.Color</div>
-                                        </div>
-                                    </div>
+                                    if (opportunity.Date == date)
+                                    {
+                                        <div class="opportunity-wrapper">
+                                            <div class="title-wrapper">
+                                                @{
+                                                    string url = "https://localhost:7090/Opportunity/";
+                                                    string path = evt.Color == "My Event" ? "Details"
+                                                    : (evt.Color == "Not Joined Event" ? "JoinEvents"
+                                                    : "JoinedEvent");
+                                                    string href = $"{url}{path}?title={opportunity.Title}";
+                                                }
 
+                                                <a href="@href" class="@evt.Color opportunity-title">@HtmlHelpers.Truncate(opportunity.Title, 20)</a>
+                                                <div class="info-text">@evt.Color</div>
+
+                                            </div>
+                                        </div>
+                                    }
+
+                                    
                                 }
                             }
+                            }
+                            else
+                            {
+                                <p> </p>
+                            }
+                            
                         </td>
                     }
                 </tr>

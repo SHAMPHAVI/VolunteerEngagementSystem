@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Drawing;
 using VES.Data;
 using VES.Models;
+using static VES.Controllers.GeneralController;
 namespace VES.Controllers
 {
     public class GeneralController : Controller
@@ -214,19 +216,6 @@ namespace VES.Controllers
                 currentYear = year.Value;
                 currentMonth = month.Value;
             }
-            int previousMonth = currentMonth - 1;
-            int nextMonth = currentMonth + 1;
-            if (previousMonth < 1)
-            {
-                previousMonth = 12;
-                currentYear--;
-            }
-
-            if (nextMonth > 12)
-            {
-                nextMonth = 1;
-                currentYear++;
-            }
                 var myEvents = new List<EventData>
                 {
                     new EventData
@@ -279,8 +268,6 @@ namespace VES.Controllers
                 OtherEvents = notJoinedEvents,
                 PastEvents = pastEvents,
                 Year = currentYear,
-                PreviousMonth = previousMonth,
-                NextMonth = nextMonth,
                 Month= currentMonth
             };
 
@@ -304,19 +291,18 @@ namespace VES.Controllers
             public List<EventData> OtherEvents { get; set; }
             public List<EventData> PastEvents { get; set; }
             public int Year { get; set; }
-            public int PreviousMonth { get; set; }
-            public int NextMonth { get; set; }
             public int Month { get; set; }
+            List<CalendarWeek> calendarWeeks = new List<CalendarWeek>();
             public IEnumerable<CalendarWeek> GetCalendarWeeks(int year, int month)
             {
-                List<CalendarWeek> calendarWeeks = new List<CalendarWeek>();
+
                 int daysInMonth = DateTime.DaysInMonth(year, month);
 
                 for (int day = 1; day <= daysInMonth; day++)
                 {
                     DateTime currentDate = new DateTime(year, month, day);
 
-                    if (currentDate.DayOfWeek == DayOfWeek.Sunday || day == 1)
+                    if (currentDate.DayOfWeek == DayOfWeek.Sunday)
                     {
                         CalendarWeek week = new CalendarWeek();
 
@@ -325,7 +311,6 @@ namespace VES.Controllers
                             CalendarDay calendarDay = new CalendarDay
                             {
                                 Day = day + i,
-                                Title = GetEventsForDay(year, month, day)
                             };
 
                             week.Days.Add(calendarDay);
@@ -333,26 +318,62 @@ namespace VES.Controllers
 
                         calendarWeeks.Add(week);
                     }
+                    else if (day == 1)
+                    {
+                        var w = currentDate.DayOfWeek;
+                        int d = 0;
+                        int i = 0;
+                        switch (w)
+                        {
+                            case DayOfWeek.Monday: d = 1; break;
+                            case DayOfWeek.Tuesday: d = 2; break;
+                            case DayOfWeek.Wednesday: d = 3; break;
+                            case DayOfWeek.Thursday: d = 4; break;
+                            case DayOfWeek.Friday: d = 5; break;
+                            case DayOfWeek.Saturday: d = 6; break;
+
+                        }
+                        CalendarWeek week = new CalendarWeek();
+                        for (i = 0; i < 7; i++)
+
+                        {
+                            if (i < d)
+                            {
+                                week.Days.Add(null);
+                            }
+                            else
+                            {
+                                CalendarDay calendarDay = new CalendarDay
+                                {
+                                    Day = day+i-d,
+                                };
+
+                                week.Days.Add(calendarDay);
+                            }
+                        }
+                        calendarWeeks.Add(week);
+                       
+                    }
                 }
 
                 return calendarWeeks;
             }
 
+
             public IEnumerable<EventData> GetEventsForDate(DateTime date)
             {
-                return MyEvents
-                    .Concat(JoinedEvents)
-                    .Concat(OtherEvents)
-                    .Concat(PastEvents)
-                   .Where(evt => evt.Events.Any(e => e.Date.Date == date.Date));
-            }
-            public IEnumerable<EventData> GetEventsForDay(int year, int month, int day)
-            {
-                return MyEvents
-                    .Concat(JoinedEvents)
-                .Concat(OtherEvents)
-                .Concat(PastEvents)
-                 .Where(o => o.Events.Any(e => e.Date.Year == year && e.Date.Month == month && e.Date.Day == day));
+                DateTime startOfDay = date.Date;
+                DateTime endOfDay = startOfDay.AddDays(1).AddTicks(-1);
+                var jEvents = JoinedEvents.Where(e => e.Events.Any(eventModel => eventModel.Date >= startOfDay && eventModel.Date <= endOfDay));
+                var myEvents = MyEvents.Where(e => e.Events.Any(eventModel => eventModel.Date >= startOfDay && eventModel.Date <= endOfDay));
+                var oEvents = OtherEvents.Where(e => e.Events.Any(eventModel => eventModel.Date >= startOfDay && eventModel.Date <= endOfDay));
+                var pEvents = PastEvents.Where(e => e.Events.Any(eventModel => eventModel.Date >= startOfDay && eventModel.Date <= endOfDay));
+                var eventsForDate = myEvents
+                    .Concat(jEvents)
+                    .Concat(oEvents)
+                    .Concat(pEvents);
+
+                return eventsForDate;
             }
 
         }
@@ -365,7 +386,6 @@ namespace VES.Controllers
         public class CalendarDay
         {
             public int Day { get; set; }
-            public IEnumerable<EventData> Title { get; set; } = new List<EventData>();
         }
     }
 }

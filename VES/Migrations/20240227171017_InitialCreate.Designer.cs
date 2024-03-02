@@ -11,7 +11,7 @@ using VES.Data;
 namespace VES.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20240223171501_InitialCreate")]
+    [Migration("20240227171017_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

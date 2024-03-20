@@ -15,15 +15,6 @@ namespace VES.Controllers
         {
             _myDbContext = myDbContext;
         }
-        private bool IsUserAuthenticated()
-        {
-            string userEmail = HttpContext.Session.GetString("email");
-            return _myDbContext.Volunteers.Any(a => a.Email == userEmail);
-        }
-        private RedirectToActionResult HomePage()
-        {
-            return RedirectToAction("Index", "Home");
-        }
         public IActionResult Add()
         {
             return View();
@@ -40,7 +31,8 @@ namespace VES.Controllers
             foreach (var eventRegistration in events)
             {
                 var rating = _myDbContext.ParticipantRating
-                    .FirstOrDefault(pr => pr.EventName == eventRegistration.EventName && pr.Participant == eventRegistration.UserEmail);
+                    .FirstOrDefault(pr => pr.EventName == eventRegistration.EventName 
+                    && pr.Participant == eventRegistration.UserEmail);
 
                 var participantRatingViewModel = new ParticipantRatingViewModel
                 {
@@ -54,89 +46,6 @@ namespace VES.Controllers
 
             return View(participantRatings);
         }
-
-        public class ParticipantRatingViewModel
-        {
-            public string? Participant { get; set; }
-            public string? EventName { get; set; }
-            public int? Rating { get; set; }
-        }
-
-        public IActionResult Details(string title)
-        {
-            string userEmail = HttpContext.Session.GetString("email");
-            if (IsUserAuthenticated(userEmail))
-            {
-                var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
-                if (opportunityDetails == null)
-                {
-                    return View("OpportunityNotFound");
-                }
-
-                return View(opportunityDetails);
-            }
-            else
-            {
-                return HomePage();
-            }
-        }
-        public IActionResult JoinEvents(string title)
-        {
-            string userEmail = HttpContext.Session.GetString("email");
-            if (IsUserAuthenticated(userEmail))
-            {
-                var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
-            if (opportunityDetails == null)
-            {
-                return View("OpportunityNotFound");
-            }
-
-            return View(opportunityDetails);
-            }
-            else
-            {
-                return HomePage();
-            }
-
-        }
-        public IActionResult PastEvent(string title)
-        {
-            string userEmail = HttpContext.Session.GetString("email");
-            if (IsUserAuthenticated(userEmail))
-            {
-                var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
-            if (opportunityDetails == null)
-            {
-                return View("OpportunityNotFound");
-            }
-
-            return View(opportunityDetails);
-            }
-            else
-            {
-                return HomePage();
-            }
-        }
-        public IActionResult JoinedEvent(string title)
-        {
-            string userEmail = HttpContext.Session.GetString("email");
-            if (IsUserAuthenticated(userEmail))
-            {
-                var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
-            if (opportunityDetails == null)
-            {
-                return View("OpportunityNotFound");
-            }
-
-            return View(opportunityDetails);
-            }
-            else
-            {
-                return HomePage();
-            }
-        }
-
-
         [HttpPost]
         public IActionResult Add(OpportunityModel model)
         {
@@ -151,23 +60,7 @@ namespace VES.Controllers
 
             return View(model);
         }
-        private void InsertOpportunityDataIntoDatabase(OpportunityModel model)
-        {
-            try
-            {
-                _myDbContext.Opportunities.Add(model);
-                _myDbContext.SaveChanges();
-            }
-            catch (DbUpdateException ex)
-            {
-                ModelState.AddModelError("", "An error occurred while saving your data.");
-            }
-
-        }
-        private bool IsUserAuthenticated(string userEmail)
-        {
-            return _myDbContext.Volunteers.Any(a => a.Email == userEmail);
-        }
+        
         public IActionResult ViewAll()
         {
             var opportunities = _myDbContext.Opportunities.ToList();
@@ -175,10 +68,12 @@ namespace VES.Controllers
         }
         public IActionResult AddAlert()
         {
+
             string userEmail = HttpContext.Session.GetString("email");
+            var detail = _myDbContext.AlertInfo.FirstOrDefault(o => o.Email == userEmail);
             if (IsUserAuthenticated(userEmail))
             {
-                return View();
+                return View(detail);
             }
             return HomePage();
         }
@@ -237,13 +132,6 @@ namespace VES.Controllers
                 return HomePage();
             }
         }
-        public class MyEventsViewModel
-        {
-            public List<OpportunityModel> MyEvents { get; set; }
-            public List<OpportunityModel> JoinedEvents { get; set; }
-            public List<OpportunityModel> OtherEvents { get; set; }
-            public List<OpportunityModel> PastEvents { get; set; }
-        }
         [HttpPost]
         public IActionResult Join(EventRegistration model)
         {
@@ -278,59 +166,6 @@ namespace VES.Controllers
             }
             return View(model);
         }
-        private void InsertEventDataIntoDatabase(EventRegistration model)
-        {
-            try
-            {
-                _myDbContext.EventRegistrations.Add(model);
-                _myDbContext.SaveChanges();
-            }
-            catch (DbUpdateException ex)
-            {
-                ModelState.AddModelError("", "An error occurred while saving your data.");
-            }
-        }
-        private void InsertAlertDataIntoDatabase(Alert model)
-        {
-            try
-            {
-                _myDbContext.Alerts.Add(model);
-                _myDbContext.SaveChanges();
-            }
-            catch (DbUpdateException ex)
-            {
-                ModelState.AddModelError("", "An error occurred while saving your data.");
-            }
-        }
-        public IActionResult GetDistricts(string province)
-        {
-            var districts = GetDistrictsByProvince(province);
-            return Json(districts);
-        }
-        public List<District> GetDistrictsByProvince(string province)
-        {
-            return _myDbContext.Districts
-                .Where(d => d.province_id.ToString() == province)
-                .OrderBy(d => d.name_en)
-                .ToList();
-        }
-        public IActionResult GetCities(string district)
-        {
-            var cities = GetCitiesByDistrict(district);
-            return Json(cities);
-        }
-        public List<City> GetCitiesByDistrict(string district)
-        {
-            return _myDbContext.Cities
-                .Where(d => d.district_id.ToString() == district)
-                .OrderBy(d => d.name_en)
-                .ToList();
-        }
-        public IActionResult GetProvinces()
-        {
-            var provinces = _myDbContext.Provinces.OrderBy(p => p.name_en).ToList();
-            return Json(provinces);
-        }
         public IActionResult Notification()
         {
             string userEmail = HttpContext.Session.GetString("email");
@@ -354,12 +189,32 @@ namespace VES.Controllers
             }
             return HomePage();
         }
-        public class NotificationViewModel
-        {
-            public string UserEmail { get; set; }
-            public List<EventRegistration> AllNotifications { get; set; }
-        }
         [HttpPost]
+        public IActionResult RateEvent(RateModel model)
+        {
+            model.UserEmail = HttpContext.Session.GetString("email");
+            model.Id = Guid.NewGuid();
+            model.Date = DateTime.Now.Date;
+            var name = model.EventName;
+            if (ModelState.IsValid)
+            {
+                var existingRating = _myDbContext.EventRating.FirstOrDefault(u => u.UserEmail == model.UserEmail);
+
+                if (existingRating == null)
+                {
+                    _myDbContext.EventRating.Add(model);
+                }
+                else
+                {
+                    existingRating.Rating = model.Rating;
+                    _myDbContext.Entry(existingRating).State = EntityState.Modified;
+                }
+                _myDbContext.SaveChanges();
+
+                return RedirectToAction("PastEvent", "Opportunity", new { title = name });
+            }
+            return View(model);
+        }
         public IActionResult Update(OpportunityModel updatedModel, string title)
         {
             updatedModel.UserEmail = HttpContext.Session.GetString("email");
@@ -386,7 +241,26 @@ namespace VES.Controllers
             }
             return View("Details");
         }
-        [HttpPost]
+
+        public IActionResult AlertDetails(string title)
+        {
+            string userEmail = HttpContext.Session.GetString("email");
+            if (IsUserAuthenticated(userEmail))
+            {
+                var opportunityDetails = _myDbContext.Alerts.FirstOrDefault(o => o.Title == title);
+                if (opportunityDetails == null)
+                {
+                    return View("OpportunityNotFound");
+                }
+
+                return View(opportunityDetails);
+            }
+            else
+            {
+                return HomePage();
+            }
+        }
+        [HttpPost]        
         public IActionResult Edit(string title)
         {
             var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
@@ -493,46 +367,165 @@ namespace VES.Controllers
                 return RedirectToAction("HomePage");
             }
         }
-
-
+        public class NotificationViewModel
+        {
+            public string UserEmail { get; set; }
+            public List<EventRegistration> AllNotifications { get; set; }
+        }
+        private RedirectToActionResult HomePage()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+        public class ParticipantRatingViewModel
+        {
+            public string? Participant { get; set; }
+            public string? EventName { get; set; }
+            public int? Rating { get; set; }
+        }
         public class MyAlertViewModel
         {
             public List<Alert> LocAlerts { get; set; }
             public List<Alert> BTypeAlerts { get; set; }
             public List<Alert> TeamAlerts { get; set; }
         }
-        [HttpPost]
-        public IActionResult RateEvent(RateModel model)
+        public class MyEventsViewModel
         {
-            model.UserEmail = HttpContext.Session.GetString("email");
-            model.Id = Guid.NewGuid();
-            model.Date= DateTime.Now.Date;
-            var name = model.EventName;
-            if (ModelState.IsValid)
-            {
-                var existingRating = _myDbContext.EventRating.FirstOrDefault(u => u.UserEmail == model.UserEmail);
-
-                if (existingRating == null)
-                {
-                    _myDbContext.EventRating.Add(model);
-                }
-                else
-                {
-                    existingRating.Rating = model.Rating;
-                    _myDbContext.Entry(existingRating).State = EntityState.Modified;
-                }
-                _myDbContext.SaveChanges();
-
-                return RedirectToAction("PastEvent", "Opportunity", new { title = name });
-            }
-            return View(model);
+            public List<OpportunityModel> MyEvents { get; set; }
+            public List<OpportunityModel> JoinedEvents { get; set; }
+            public List<OpportunityModel> OtherEvents { get; set; }
+            public List<OpportunityModel> PastEvents { get; set; }
         }
-        public IActionResult AlertDetails(string title)
+        private void InsertOpportunityDataIntoDatabase(OpportunityModel model)
+        {
+            try
+            {
+                _myDbContext.Opportunities.Add(model);
+                _myDbContext.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "An error occurred while saving your data.");
+            }
+
+        }
+        private bool IsUserAuthenticated(string userEmail)
+        {
+            return _myDbContext.Volunteers.Any(a => a.Email == userEmail);
+        }
+        private void InsertEventDataIntoDatabase(EventRegistration model)
+        {
+            try
+            {
+                _myDbContext.EventRegistrations.Add(model);
+                _myDbContext.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "An error occurred while saving your data.");
+            }
+        }
+        private void InsertAlertDataIntoDatabase(Alert model)
+        {
+            try
+            {
+                _myDbContext.Alerts.Add(model);
+                _myDbContext.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "An error occurred while saving your data.");
+            }
+        }
+        public IActionResult GetDistricts(string province)
+        {
+            var districts = GetDistrictsByProvince(province);
+            return Json(districts);
+        }
+        public List<District> GetDistrictsByProvince(string province)
+        {
+            return _myDbContext.Districts
+                .Where(d => d.province_id.ToString() == province)
+                .OrderBy(d => d.name_en)
+                .ToList();
+        }
+        public IActionResult GetCities(string district)
+        {
+            var cities = GetCitiesByDistrict(district);
+            return Json(cities);
+        }
+        public List<City> GetCitiesByDistrict(string district)
+        {
+            return _myDbContext.Cities
+                .Where(d => d.district_id.ToString() == district)
+                .OrderBy(d => d.name_en)
+                .ToList();
+        }
+        public IActionResult GetProvinces()
+        {
+            var provinces = _myDbContext.Provinces.OrderBy(p => p.name_en).ToList();
+            return Json(provinces);
+        }
+        public IActionResult Details(string title)
         {
             string userEmail = HttpContext.Session.GetString("email");
             if (IsUserAuthenticated(userEmail))
             {
-                var opportunityDetails = _myDbContext.Alerts.FirstOrDefault(o => o.Title == title);
+                var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
+                if (opportunityDetails == null)
+                {
+                    return View("OpportunityNotFound");
+                }
+
+                return View(opportunityDetails);
+            }
+            else
+            {
+                return HomePage();
+            }
+        }
+        public IActionResult JoinEvents(string title)
+        {
+            string userEmail = HttpContext.Session.GetString("email");
+            if (IsUserAuthenticated(userEmail))
+            {
+                var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
+                if (opportunityDetails == null)
+                {
+                    return View("OpportunityNotFound");
+                }
+
+                return View(opportunityDetails);
+            }
+            else
+            {
+                return HomePage();
+            }
+
+        }
+        public IActionResult PastEvent(string title)
+        {
+            string userEmail = HttpContext.Session.GetString("email");
+            if (IsUserAuthenticated(userEmail))
+            {
+                var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
+                if (opportunityDetails == null)
+                {
+                    return View("OpportunityNotFound");
+                }
+
+                return View(opportunityDetails);
+            }
+            else
+            {
+                return HomePage();
+            }
+        }
+        public IActionResult JoinedEvent(string title)
+        {
+            string userEmail = HttpContext.Session.GetString("email");
+            if (IsUserAuthenticated(userEmail))
+            {
+                var opportunityDetails = _myDbContext.Opportunities.FirstOrDefault(o => o.Title == title);
                 if (opportunityDetails == null)
                 {
                     return View("OpportunityNotFound");

@@ -83,6 +83,12 @@ namespace VES.Controllers
         }
         public IActionResult UpdateAlertInfo()
         {
+            var email= HttpContext.Session.GetString("email");
+            var existingUser = _myDbContext.AlertInfo.FirstOrDefault(u => u.Email == email);
+            if (existingUser != null)
+            {
+                return View("EditAlertInfo",existingUser);
+            }
             return View();
         }
         public IActionResult AlertInfo()
@@ -115,7 +121,7 @@ namespace VES.Controllers
                 }
                 _myDbContext.SaveChanges();
 
-                return RedirectToAction("ViewAlerts","Opportunity"); 
+                return RedirectToAction("UpdateAlertInfo"); 
             }
             return View(alertModel);
         }

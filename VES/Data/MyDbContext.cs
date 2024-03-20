@@ -11,8 +11,6 @@ namespace VES.Data
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
         }
-
-
         public DbSet<VolunteerRegister> Volunteers { get; set; }
         public DbSet<AdminLogin> Admin { get; set; }
         public DbSet<OpportunityModel> Opportunities { get; set; }

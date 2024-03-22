@@ -74,6 +74,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VuZXJhbFxHZXRTdGFydGVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/USER/source/repos/VES1/VES/Views/General/MyCalendar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VuZXJhbFxNeUNhbGVuZGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/USER/source/repos/VES1/VES/Views/General/ReplyPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VuZXJhbFxSZXBseVBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -208,6 +212,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/USER/source/repos/VES1/VES/Views/Volunteer/PastEvent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9sdW50ZWVyXFBhc3RFdmVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/source/repos/VES1/VES/Views/Volunteer/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9sdW50ZWVyXFByaXZhY3kuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/USER/source/repos/VES1/VES/Views/Volunteer/Register.cshtml]

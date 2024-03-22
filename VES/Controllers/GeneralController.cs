@@ -271,7 +271,14 @@ namespace VES.Controllers
                 Month= currentMonth
             };
 
-                return View(viewModel);
+                if (volunteer.Role == "Volunteer")
+                {
+                    return View(viewModel);
+                }
+                else
+                {
+                    return View("MyCalendar", viewModel);
+                }
 
             }
             else
@@ -359,7 +366,17 @@ namespace VES.Controllers
                 return calendarWeeks;
             }
 
+            public IEnumerable<EventData> GetMyEventsForDate(DateTime date)
+            {
 
+                DateTime startOfDay = date.Date;
+                DateTime endOfDay = startOfDay.AddDays(1).AddTicks(-1);
+
+                var myEvents = MyEvents.Where(e => e.Events.Any(eventModel => eventModel.Date >= startOfDay && eventModel.Date <= endOfDay));
+
+
+                return myEvents;
+            }
             public IEnumerable<EventData> GetEventsForDate(DateTime date)
             {
                 DateTime startOfDay = date.Date;

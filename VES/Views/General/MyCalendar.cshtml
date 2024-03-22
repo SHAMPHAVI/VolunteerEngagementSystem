@@ -1,0 +1,104 @@
+﻿@{
+    Layout = "_Layout_A";
+}
+@using VES.Helpers
+<link rel="stylesheet" href="~/styles/calcol-style.css">
+<div style="text-align: center; margin-bottom: 20px;">
+    <form asp-action="Calendar" asp-controller="General" method="get">
+        <label for="year">Year:</label>
+        <select id="year" name="year" asp-items="HtmlHelpers.GetYearOptions(Model.Year)">
+        </select>
+
+        <label for="month">Month:</label>
+        <select id="month" name="month" asp-items="HtmlHelpers.GetMonthOptions(Model.Month)">
+        </select>
+
+        <button type="submit" class="btn btn-primary">Go</button>
+    </form>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var week in Model.GetCalendarWeeks(Model.Year, Model.Month))
+            {
+                <tr>
+                    @foreach (var day in week.Days)
+                    {
+                        <td style="width: 100px; height: 100px; overflow: hidden; white-space: nowrap;">
+                            @if (day!= null && day.Day != null)
+                            {
+                                <strong>@day.Day</strong><br />
+
+                            DateTime date = new DateTime(Model.Year, Model.Month, day.Day);
+
+                            @foreach (var evt in Model.GetMyEventsForDate(date))
+                            {
+                                foreach (var opportunity in evt.Events)
+                                {
+                                    if (opportunity.Date == date)
+                                    {
+                                        <div class="opportunity-wrapper">
+                                            <div class="title-wrapper">
+                                                @{
+                                                    string url = "https://localhost:7090/Opportunity/";
+                                                    string path = evt.Color == "My Event" ? "Details"
+                                                    : (evt.Color == "Not Joined Event" ? "JoinEvents"
+                                                    : "JoinedEvent");
+                                                    string href = $"{url}{path}?title={opportunity.Title}";
+                                                }
+
+                                                <a href="@href" class="@evt.Color opportunity-title">@HtmlHelpers.Truncate(opportunity.Title, 20)</a>
+                                                <div class="info-text">@evt.Color</div>
+
+                                            </div>
+                                        </div>
+                                    }
+
+                                    
+                                }
+                            }
+                            }
+                            else
+                            {
+                                <p> </p>
+                            }
+                            
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var opportunityWrappers = document.querySelectorAll('.opportunity-wrapper');
+
+        opportunityWrappers.forEach(function (wrapper) {
+            var titleWrapper = wrapper.querySelector('.title-wrapper');
+            var titleDiv = wrapper.querySelector('.opportunity-title');
+            var infoText = wrapper.querySelector('.info-text');
+
+            titleDiv.addEventListener('mouseenter', function () {
+                infoText.style.display = 'block';
+            });
+
+            titleWrapper.addEventListener('mouseleave', function () {
+                infoText.style.display = 'none';
+            });
+        });
+    });
+
+</script>

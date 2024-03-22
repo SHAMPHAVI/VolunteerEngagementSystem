@@ -109,6 +109,7 @@ namespace VES.Controllers
 
         public IActionResult Login()
         {
+
             return View();
         }
         [HttpPost]
@@ -117,7 +118,7 @@ namespace VES.Controllers
             if (ModelState.IsValid)
             {
                 VolunteerRegister volunteer = _myDbContext.Volunteers.FirstOrDefault(v => v.Email == model.Email);
-                if (volunteer != null && (model.Password== volunteer.Password))
+                if (volunteer != null && (model.Password == volunteer.Password))
                 {
                     string data = model.Email;
                     HttpContext.Session.SetString("email", data);
@@ -125,12 +126,18 @@ namespace VES.Controllers
                 }
                 else
                 {
+
                     ModelState.AddModelError("Password", "Incorrect email or password.");
+
+
                 }
             }
+                return View();
 
-            return View();
+           
+            
         }
+
         [HttpPost]
         public IActionResult AddRating(ParticipantRating model)
         {

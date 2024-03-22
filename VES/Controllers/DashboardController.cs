@@ -340,5 +340,27 @@ namespace VES.Controllers
             public EngagementModel  Engagement { get; set; }
             public RatingViewModel Rating { get; set; }
         }
+        public IActionResult DeleteUser()
+        {
+            string UserEmail = HttpContext.Session.GetString("email");
+            bool isAdmin = _myDbContext.Admin.Any(a => a.Email == UserEmail);
+            if (!isAdmin)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            var users = _myDbContext.Volunteers.ToList();
+            return View(users);
+        }
+        [HttpPost]
+        public IActionResult ConfirmDelete(string email)
+        {
+            var user = _myDbContext.Volunteers.FirstOrDefault(a => a.Email == email);
+            if (user != null)
+            {
+                _myDbContext.Volunteers.Remove(user);
+                _myDbContext.SaveChanges();
+            }
+            return RedirectToAction("DeleteUser");
+        }
     }
 }

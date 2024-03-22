@@ -8,6 +8,12 @@
 </head>
 <body>
     <h1>Admin Login</h1>
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div style="color: red;">
+            @Html.ValidationSummary()
+        </div>
+    }
     <form action="Login" method="post">
 
         <label for="email">Email</label>

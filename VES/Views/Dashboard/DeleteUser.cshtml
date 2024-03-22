@@ -1,0 +1,38 @@
+﻿<link rel="stylesheet" href="~/styles/overview-style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-DcUz5YPFvZUE4k0/8q+NlaNUuB7wHrbv6k3G95G1bQ+5vT6yBsljhJ0mOw5K00bHsLsJZPh6wPz2dQyHvj2xGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+@{
+    Layout = "_Layout_Admin";
+}
+@model List<VolunteerRegister>
+
+<h1>Delete Users</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Full_Name</td>
+                <td>
+                    @user.Email
+                   
+                </td>
+                <td>
+                    <form method="post" action="@Url.Action("ConfirmDelete", "Dashboard")" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                        <input type="hidden" name="email" value="@user.Email" />
+                        <button type="submit" class="btn btn-link text-danger" >
+                            &#10006
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

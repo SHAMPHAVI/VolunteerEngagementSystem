@@ -36,7 +36,7 @@
                             if ((string.IsNullOrWhiteSpace(locationFilter) || opportunity.Province.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.City.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.District.Contains(locationFilter, StringComparison.OrdinalIgnoreCase))
                             && (string.IsNullOrWhiteSpace(categoryFilter) || opportunity.Team.Contains(categoryFilter, StringComparison.OrdinalIgnoreCase)))
                             {
-                                <a href="AlertDetails?title=@opportunity.Title" class="card">
+                                <a href="AlertDetails?id=@opportunity.Id" class="card">
                                     <div>
                                         <h2>@opportunity.Title</h2>
                                         <p><strong>Location :</strong> @opportunity.City, @opportunity.District, @opportunity.Province</p>

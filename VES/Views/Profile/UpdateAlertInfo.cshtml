@@ -11,8 +11,11 @@
     <link rel="stylesheet" href="~/styles/i-style.css">
 </head>
 <body>
-    <header>
+    <header style="display: flex; justify-content: space-between;">
         <h1>Update Alert Information</h1>
+        <a asp-area="" asp-controller="Opportunity" asp-action="ViewAlerts">
+            View Alerts
+        </a>
     </header>
     <main>
         <form action="UpdateInfo" method="post">
@@ -90,7 +93,9 @@
             </table>
             <input type="submit" value="Save Changes">
         </form>
+
     </main>
+
     <script>
         function getprovinces() {
             fetch(`/Opportunity/GetProvinces`)

@@ -8,10 +8,13 @@
     {
         <div>
             <strong>@comment.UserEmail</strong> - @comment.Timestamp
-            <a href="@Url.Action("ReplyPage", "General", new { commentId = comment.Id })">
-                
-                <p>@comment.CommentText</p>
-            </a>
+            <p>@comment.CommentText
+                <a href="@Url.Action("ReplyPage", "General", new { commentId = comment.Id })">
+                    View Replies
+
+                </a>
+            </p>
+           
         </div>
     }
 </div>
@@ -20,7 +23,7 @@
 <div>
     <form method="post" action="@Url.Action("AddComment", "General")">
         <input type="hidden" id="EventTitle" name="Title" value="@ViewBag.Title" />
-        <textarea id="NewComment" name="NewComment"></textarea>
+        <textarea id="NewComment" name="NewComment" rows="3" cols="100"></textarea>
         <div><button type="submit" id="submitNewComment">Add Comment</button></div>
         
     </form>

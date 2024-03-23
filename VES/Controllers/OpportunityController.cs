@@ -242,12 +242,12 @@ namespace VES.Controllers
             return View("Details");
         }
 
-        public IActionResult AlertDetails(string title)
+        public IActionResult AlertDetails(Guid id)
         {
             string userEmail = HttpContext.Session.GetString("email");
             if (IsUserAuthenticated(userEmail))
             {
-                var opportunityDetails = _myDbContext.Alerts.FirstOrDefault(o => o.Title == title);
+                var opportunityDetails = _myDbContext.Alerts.FirstOrDefault(o => o.Id == id);
                 if (opportunityDetails == null)
                 {
                     return View("OpportunityNotFound");
@@ -366,6 +366,19 @@ namespace VES.Controllers
                 }
                 return RedirectToAction("HomePage");
             }
+        }
+        public IActionResult MyAlerts()
+        {
+            List<Alert> myAlerts = new List<Alert>();
+            string user = HttpContext.Session.GetString("email");
+            var alert = _myDbContext.Alerts.FirstOrDefault(o => o.UserEmail == user);
+            if (alert != null && user != null && alert.UserEmail == user)
+            {
+                myAlerts.Add(alert);
+                List<Alert> sortedAlerts = myAlerts.OrderBy(a => a.DueDate).ToList();
+                return View("MyAlerts", sortedAlerts);
+            }
+            return View("OpportunityNotFound");
         }
         public class NotificationViewModel
         {

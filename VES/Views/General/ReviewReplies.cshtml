@@ -23,7 +23,7 @@
     <form id="addReplyForm" method="post" action="@Url.Action("AddReview", "General")">
         <input type="hidden" id="Title" name="Title" value="@ViewBag.Title" />
         <input type="hidden" id="CommentId" name="CommentId" value="@Model.MainComment.Id" />
-        <textarea id="NewComment" name="NewComment"></textarea>
+        <textarea id="NewComment" name="NewComment" rows="3" cols="100"></textarea>
         <div><button type="submit" id="submitNewComment">Add Reply</button></div>
     </form>
 </div>

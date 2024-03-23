@@ -33,6 +33,10 @@
                         <input type="text" id="location" name="location" value="@locationFilter" />
                         <input type="submit" value="Filter" />
                         <a href="?" class="clear-filter-button">Clear</a>
+                        <p1 class="gap"></p1>
+                        <a class="add-button" href="@Url.Action("MyAlerts", "Opportunity")">My Alerts</a>
+                        <p1 class="gap-less"></p1>
+                        <a href="@Url.Action("UpdateAlertInfo", "Profile")">Update Alert Information</a>
                     </form>
                 </div>
                 <div class="cardcont">
@@ -41,7 +45,7 @@
                         {
                             if ((string.IsNullOrWhiteSpace(locationFilter) || opportunity.Province.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.City.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.District.Contains(locationFilter, StringComparison.OrdinalIgnoreCase)))
                             {
-                                <a href="AlertDetails?title=@opportunity.Title" class="card">
+                                <a href="AlertDetails?id=@opportunity.Id" class="card">
                                     <div>
                                         <h2>@opportunity.Title</h2>
                                         <p><strong>Location :</strong> @opportunity.City, @opportunity.District, @opportunity.Province</p>
@@ -63,6 +67,10 @@
 
                         <input type="submit" value="Filter" />
                         <a href="?" class="clear-filter-button">Clear</a>
+                        <p1 class="gap"></p1>
+                        <a class="add-button" href="@Url.Action("MyAlerts", "Opportunity")">My Alerts</a>
+                        <p1 class="gap-less"></p1>
+                        <a href="@Url.Action("UpdateAlertInfo", "Profile")">Update Alert Information</a>
                     </form>
                 </div>
                 <div class="cardcont">
@@ -71,7 +79,7 @@
                         {
                             if ((string.IsNullOrWhiteSpace(locationFilter) || opportunity.Province.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.City.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.District.Contains(locationFilter, StringComparison.OrdinalIgnoreCase)))
                             {
-                                <a href="AlertDetails?title=@opportunity.Title" class="card">
+                                <a href="AlertDetails?id=@opportunity.Id" class="card">
                                     <div>
                                         <h2>@opportunity.Title</h2>
                                         <p><strong>Location :</strong> @opportunity.City, @opportunity.District, @opportunity.Province</p>
@@ -93,6 +101,10 @@
 
                         <input type="submit" value="Filter" />
                         <a href="?" class="clear-filter-button">Clear</a>
+                        <p1 class="gap"></p1>
+                        <a class="add-button" href="@Url.Action("MyAlerts", "Opportunity")">My Alerts</a>
+                        <p1 class="gap-less"></p1>
+                        <a href="@Url.Action("UpdateAlertInfo", "Profile")">Update Alert Information</a>
                     </form>
                 </div>
                 <div class="cardcont">
@@ -101,7 +113,7 @@
                         {
                             if ((string.IsNullOrWhiteSpace(locationFilter) || opportunity.Province.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.City.Contains(locationFilter, StringComparison.OrdinalIgnoreCase) || opportunity.District.Contains(locationFilter, StringComparison.OrdinalIgnoreCase)))
                             {
-                                <a href="AlertDetails?title=@opportunity.Title" class="card">
+                                <a href="AlertDetails?id=@opportunity.Id" class="card">
                                     <div>
                                         <h2>@opportunity.Title</h2>
                                         <p><strong>Location :</strong> @opportunity.City, @opportunity.District, @opportunity.Province</p>

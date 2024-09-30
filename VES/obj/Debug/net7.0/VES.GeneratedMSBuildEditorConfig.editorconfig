@@ -126,6 +126,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcRXZlbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/EventUpdates.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcRXZlbnRVcGRhdGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/JoinedEvent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcSm9pbmVkRXZlbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -156,6 +160,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/ViewAlerts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcVmlld0FsZXJ0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/source/repos/VES1/VES/Views/Opportunity/ViewParticipants.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3Bwb3J0dW5pdHlcVmlld1BhcnRpY2lwYW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/USER/source/repos/VES1/VES/Views/Profile/EditAlertInfo.cshtml]

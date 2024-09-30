@@ -48,6 +48,11 @@
                             <input type="submit" value="Event Photos" class="btn btn-primary">
                         </form>
                     </td>
+                    <td>
+                        <form method="post" action="@Url.Action("ViewParticipants", "Opportunity", new { title = Model.Title })">
+                            <input type="submit" value="Participants">
+                        </form>
+                    </td>
                 </tr>
             </table>
 

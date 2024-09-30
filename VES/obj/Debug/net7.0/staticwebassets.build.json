@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0Z+12dafKC00Kzj67OL0yXIuGtN9Wk7n8SEX0k7z4b4=",
+  "Hash": "EneZp/7Nhj2DUa5pLXzrIK/vR9YaFDk0HIX/3fNGjpw=",
   "Source": "VES",
   "BasePath": "_content/VES",
   "Mode": "Default",
@@ -1250,6 +1250,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\resources\\4730ecba-960d-41d5-ae77-01bdbc21c376_BeachCleanup-Colombo06-2023.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\4ab9e5bf-79c9-41d0-a83f-00cdf4d5b3ed_CommunityServiceGalnewa.jpg",
+      "SourceId": "VES",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\",
+      "BasePath": "_content/VES",
+      "RelativePath": "resources/4ab9e5bf-79c9-41d0-a83f-00cdf4d5b3ed_CommunityServiceGalnewa.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\resources\\4ab9e5bf-79c9-41d0-a83f-00cdf4d5b3ed_CommunityServiceGalnewa.jpg"
     },
     {
       "Identity": "C:\\Users\\USER\\source\\repos\\VES1\\VES\\wwwroot\\resources\\77563ad5-77e9-40a1-8f2f-7c7b90d99c2f_BeachCleanup-Colombo06-2023.jpg",

@@ -2,7 +2,7 @@
     Layout = "_Layout_A";
 }
 <h1 style="color: #37d3c2; text-align: center;">Notifications</h1>
-
+<a asp-area="" asp-controller="Opportunity" asp-action="EventUpdates" class="add-button">Event Updates</a>
 @foreach (var vol in Model.AllNotifications)
 {
     if (vol.UserEmail != Model.UserEmail)

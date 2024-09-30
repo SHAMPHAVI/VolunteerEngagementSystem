@@ -20,5 +20,6 @@ public class OpportunityModel
     public string? City { get; set; }
     public string? UserEmail { get; set; }
     public string? Category { get; set; }
+    public string? Updated { get; set; }
 }
 

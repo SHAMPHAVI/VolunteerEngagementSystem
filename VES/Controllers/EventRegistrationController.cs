@@ -80,6 +80,6 @@ namespace VES.Controllers
                 ModelState.AddModelError("", "An error occurred while saving your event registration data.");
             }
         }
-
+        
     }
 }

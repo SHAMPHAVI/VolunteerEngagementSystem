@@ -5,6 +5,7 @@ using VES.Models;
 using Microsoft.AspNetCore.Authentication;
 using VES.Models.Location;
 using System.Linq;
+using System.Drawing;
 
 namespace VES.Controllers
 {
@@ -77,6 +78,7 @@ namespace VES.Controllers
             }
             return HomePage();
         }
+
         [HttpPost]
         public IActionResult AddAlert(Alert model)
         {
@@ -231,6 +233,7 @@ namespace VES.Controllers
                     existingOpportunity.Category = updatedModel.Category;
                     existingOpportunity.Date = updatedModel.Date;
                     existingOpportunity.Description = updatedModel.Description;
+                    existingOpportunity.Updated = "Yes";
                     _myDbContext.SaveChanges();
                     return RedirectToAction("Details", new { title = existingOpportunity.Title });
                 }
@@ -551,5 +554,38 @@ namespace VES.Controllers
                 return HomePage();
             }
         }
+        public IActionResult ViewParticipants(string title)
+        {
+            var reg = _myDbContext.EventRegistrations.Where(o => o.EventName == title).OrderBy(a => a.JoinedDate).ToList();
+            return View(reg);
+        }
+        public IActionResult EventUpdates()
+        {
+            string userEmail = HttpContext.Session.GetString("email");
+            var reg = _myDbContext.EventRegistrations.Where(o => o.UserEmail == userEmail).OrderBy(a => a.JoinedDate).ToList();
+            var events = new List<UpdatedEvent>();
+            foreach(var o in reg)
+            {
+                var name = o.EventName;
+                var evt = _myDbContext.Opportunities.Where(opp => opp.Title == name).ToList();
+                foreach(var i in evt)
+                {
+                    if (i.Updated!= null)
+                    {
+                        var updated = new UpdatedEvent
+                        {
+                            title = i.Title,
+                        };
+                        events.Add(updated);
+                    }
+                }
+            }
+            return View(events);
+        }
+        public class UpdatedEvent
+        {
+            public string title { get; set; }
+        }
     }
-}
+
+   }

@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "_Layout_A";
+}
+
+<head>
+    <link rel="stylesheet" href="~/styles/rate-style.css">
+</head>
+
+<div class="container mt-4">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Joined Event</th>
+                <th>User Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.JoinedDate.ToShortDateString()</td>
+                    <td>@item.UserEmail</td>
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

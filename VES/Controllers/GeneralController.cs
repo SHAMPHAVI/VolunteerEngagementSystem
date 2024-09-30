@@ -404,5 +404,6 @@ namespace VES.Controllers
         {
             public int Day { get; set; }
         }
+     
     }
 }
